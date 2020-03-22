@@ -5,9 +5,9 @@ footer {
 }
 
 
-/* header {
-    background: linear-gradient(107deg, rgba(153, 151, 249, 1) 0%, rgba(149, 142, 247, 1) 35%, rgba(129, 104, 240, 1) 50%, rgba(166, 192, 251, 1) 65%, rgba(175, 213, 254, 0) 92%);
-} */
+header {
+    /* background: linear-gradient(107deg, rgba(153, 151, 249, 1) 0%, rgba(149, 142, 247, 1) 35%, rgba(129, 104, 240, 1) 50%, rgba(166, 192, 251, 1) 65%, rgba(175, 213, 254, 0) 92%); */
+}
 
 header .header-text {
     left: 1em;
