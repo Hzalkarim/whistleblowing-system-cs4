@@ -9,7 +9,7 @@
                             <a class="nav-link" href="index.php?view=home">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?view=pelapor">Pelapor View</a>
+                            <a class="nav-link" href="index.php?view=pelapor">Ajukan Pelaporan</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?view=admin">Admin View</a>
