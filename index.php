@@ -19,7 +19,7 @@
         if (!isset($_GET['view'])) $_GET['view'] = 'home';
         switch ($_GET['view']){
             case 'home':
-                echo "<h3>Selamat Datang</h3>";
+                require "page/home.php";
                 break;
             case 'pelapor':
                 require "page/pelapor.php";
