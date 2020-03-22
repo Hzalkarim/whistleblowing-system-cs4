@@ -24,11 +24,14 @@
             case 'pelapor':
                 require "page/pelapor.php";
                 break;
+            case 'hasilPelapor':
+                require "page/hasilPelapor.php";
+                break;
             case 'admin':
                 require "page/admin.php";
                 break;
             default:
-                echo "404 Not Found";
+                echo '<div class="display-1">404 Not Found</div>';
         }
 
         ?>
