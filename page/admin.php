@@ -1,9 +1,8 @@
 <?php
     $data = Array(
-        "Hafizh;2 Maret 2020;Saya Sendiri;Tidur dikelas;Karena mengantuk;klik link ini",
-        "Anomim;2 Maret 2020;Saya Sendiri;Tidur dikelas;Karena mengantuk;klik link ini",
-        "Rizky;2 Maret 2020;Saya Sendiri;Tidur dikelas;Karena mengantuk;klik link ini",
-        "Aqilla;2 Maret 2020;Saya Sendiri;Tidur dikelas;Karena mengantuk;klik link ini"
+        "Hafizh;2 Maret 2020;Saya Sendiri;Kedisiplinan;Karena mengantuk;klik link ini",
+        "Anomim;2 Maret 2020;Saya Sendiri;Kedisiplinan;Karena mengantuk;klik link ini",
+        "Rizkyy;4 Maret 2020;;Sarana Prasarana;Jadi susah tidur karena kepanasan;"
     );
 ?>
 
@@ -20,10 +19,11 @@
                 <tr>
                     <th>Pelapor</th>
                     <th>Tanggal Pelaporan</th>
-                    <th>Pelanggar</th>
-                    <th>Pelanggaran</th>
-                    <th>Penjelasan</th>
+                    <th>Pihak Terkait</th>
+                    <th>Kategori</th>
+                    <th>Pengaduan</th>
                     <th>Bukti</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +32,7 @@
                 <?php foreach(explode(';', $str) as $d):?>
                     <td><?php echo $d?></td>
                 <?php endforeach?>
+                    <td><button class="btn btn-primary">Tindak</button> </td>
                 </tr>
             <?php endforeach?>
             </tbody>
