@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container">
 <h1>Laporan</h1>
 <hr />
@@ -36,4 +37,10 @@
       <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
+=======
+<div class="row">
+    <div class="col-12">
+        <h2>Halo dari pelapor</h2>
+    </div>
+>>>>>>> 16991e562a7a27696e188901fd390db076811c7f
 </div>
