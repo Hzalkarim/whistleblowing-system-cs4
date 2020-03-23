@@ -13,8 +13,27 @@ header .header-text {
     left: 1em;
 }
 
+aside {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+    height: 100%;
+    z-index: 10;
+    background-color: azure;
+    transform: translateX(-105%);
+    transition: transform .5s ease-in-out;
+    will-change: transform;
+}
+
+.wb-side-show {
+    transform: none;
+    transition: transform .5s ease-in-out;
+}
+
 footer {
     position: fixed;
+    z-index: 20;
     bottom: 0px;
     /* background: linear-gradient(107deg, rgba(153, 151, 249, 0) 8%, rgba(149, 142, 247, 1) 35%, rgba(129, 104, 240, 1) 50%, rgba(166, 192, 251, 1) 65%, rgba(175, 213, 254, 1) 100%); */
 }
