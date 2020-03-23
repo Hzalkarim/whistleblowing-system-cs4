@@ -1,5 +1,5 @@
+var isShow = false;
 $(document).ready(function(){
-    var isShow = false;
     $("#side-toggle").click(function(){
         if (!isShow){
             $("aside").addClass("wb-side-show");
