@@ -13,6 +13,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?view=admin">Admin View</a>
                         </li>
+                        <li class="nav-item">
+                            <a id="side-toggle" class="nav-link" href="#">Sidebar</a>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                     <?php if (!isset($_POST['user'])):?>
