@@ -12,8 +12,6 @@
 
 <?php include "page/component/header.php" ?>
 
-<?php include "page/component/sidebar.php" ?>
-
 <main>
     <div class="container my-2">
         <?php
