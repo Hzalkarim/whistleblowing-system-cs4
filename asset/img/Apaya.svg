@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="119.31055mm"
+   height="119.31054mm"
+   viewBox="0 0 119.31055 119.31054"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="Apaya.svg">
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient861-8-1">
+      <stop
+         style="stop-color:#ffd700;stop-opacity:1"
+         offset="0"
+         id="stop857" />
+      <stop
+         id="stop883"
+         offset="0.18762495"
+         style="stop-color:#ecff00;stop-opacity:1" />
+      <stop
+         style="stop-color:#ffdd00;stop-opacity:1"
+         offset="0.44398335"
+         id="stop877" />
+      <stop
+         id="stop881"
+         offset="0.68643183"
+         style="stop-color:#ff9400;stop-opacity:1" />
+      <stop
+         style="stop-color:#ff006d;stop-opacity:1"
+         offset="1"
+         id="stop859" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="gears"
+       id="path-effect824"
+       is_visible="true"
+       teeth="10"
+       phi="5"
+       min_radius="5" />
+    <inkscape:path-effect
+       effect="construct_grid"
+       id="path-effect820"
+       is_visible="true"
+       nr_x="5"
+       nr_y="5" />
+    <inkscape:path-effect
+       effect="gears"
+       id="path-effect818"
+       is_visible="true"
+       teeth="10"
+       phi="5"
+       min_radius="5" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient861-8-1"
+       id="linearGradient863"
+       x1="146.76077"
+       y1="167.74553"
+       x2="61.96447"
+       y2="82.193275"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(6.047619,25.324405)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="125.3374"
+     inkscape:cy="239.13254"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-center="true"
+     showguides="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-43.508602,-83.770154)">
+    <path
+       style="opacity:1;fill:url(#linearGradient863);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.4839825;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+       d="m 68.308637,83.770154 a 24.799961,24.799961 0 0 0 -24.800035,24.800036 24.799961,24.799961 0 0 0 19.794656,24.26208 v 70.24842 H 162.81915 V 103.56481 H 92.593977 A 24.799961,24.799961 0 0 0 68.308637,83.770154 Z m 0,10.029359 A 14.770569,14.770569 0 0 1 83.079311,108.57019 14.770569,14.770569 0 0 1 68.308637,123.34086 14.770569,14.770569 0 0 1 53.537963,108.57019 14.770569,14.770569 0 0 1 68.308637,93.799513 Z m 24.262085,19.776057 h 60.237668 v 79.49436 H 73.314017 v -60.21441 a 24.799961,24.799961 0 0 0 19.256705,-19.27995 z"
+       id="rect826"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
