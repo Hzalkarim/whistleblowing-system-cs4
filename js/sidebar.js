@@ -8,4 +8,13 @@ $(document).ready(function(){
         }
         isShow = !isShow;
     })
+
+    var h = $("html").css("height");
+    var hi = parseInt(h.substring(0, h.length - 2));
+    var b = $(window).height();
+    // alert("Height = " + hi + "\nBottom = " + b);
+
+    if (hi < b){
+        $("footer").addClass("position-fixed");
+    }
 })
