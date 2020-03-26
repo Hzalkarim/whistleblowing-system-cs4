@@ -29,12 +29,7 @@ require "page/component/header.php";
     if (!$page_exist){
         echo '<div class="display-1">404 Not Found</div>';
     } else {
-        foreach ($pages as $page => $p_title) {
-            if ($_GET['view'] == $page){
-                require 'page/' . $page . '.php';
-                break;
-            }
-        }
+        require 'page/' . $_GET['view'] . '.php';
     }
     ?>
 </main>
