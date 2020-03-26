@@ -1,7 +1,7 @@
 <?php
 
 $page_title = "Sistem Pengaduan Dari Kami";
-include "page/component/header.php"
+require "page/component/header.php"
 ?>
 
 <main>
@@ -30,4 +30,4 @@ include "page/component/header.php"
     </div>
 </main>
 
-<?php include "page/component/footer.php" ?>
+<?php require "page/component/footer.php" ?>
