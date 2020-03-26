@@ -4,7 +4,9 @@ $pages = Array(
     'home' => 'Sistem Pengaduan Kampus',
     'pelapor' => 'Submit Pengaduan',
     'hasilPelapor' => 'Histori Pengaduan',
-    'admin' => 'Daftar Pengaduan'
+    'admin' => 'Daftar Pengaduan',
+    'admin_regis' => 'Registrasi Administrator',
+    'mhs_regis' => 'Registrasi Mahasiswa'
 );
 
 if (!isset($_GET['view'])) $_GET['view'] = 'home';
