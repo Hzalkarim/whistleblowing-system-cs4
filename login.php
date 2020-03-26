@@ -2,10 +2,8 @@
 $page_title = "Halaman Login";
 require "page/component/header.php";
 ?>
-
-<?php echo KABAR_SAYA; ?>
 <main class="container">
-    <div class="row mt-5">
+    <div class="row">
         <div class="col-lg-4 col-md-2"></div>
         <div class="col-lg-4 col-md-8 col-sm-12 text-center bg-light rounded p-4">
             <form method="post" action="index.php">
