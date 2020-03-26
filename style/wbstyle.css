@@ -38,6 +38,10 @@ aside {
     will-change: transform;
 }
 
+.nav-item.show {
+    position: relative;
+}
+
 #side-toggle {
     position: absolute;
     top: 50%;
