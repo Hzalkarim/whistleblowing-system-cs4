@@ -2,56 +2,56 @@
 	class Mahasiswa{
 		private $nama;
 		private $nim;
-		private $noTelp;
+		private $no_telp;
 		private $alamat;
 		private $gender;
 		private $prodi;
 
-		function set_nama($nama){
+		function setNama($nama){
 			$this->nama = $nama;
 		}
 
-		function get_nama(){
+		function getNama(){
 			return $this->nama; 
 		}
 
-		function set_nim($nim){
+		function setNim($nim){
 			$this->nim = $nim;
 		}
 
-		function get_nim(){
+		function getNim(){
 			return $this->nim;
 		}
 
-		function set_noTelp($noTelp){
-			$this->noTelp = $noTelp;
+		function setNoTelp($no_telp){
+			$this->no_telp = $no_telp;
 		}
 
-		function get_noTelp(){
-			return $this->noTelp;
+		function getNoTelp(){
+			return $this->no_telp;
 		}
 
-		function set_alamat($alamat){
+		function setAlamat($alamat){
 			$this->alamat = $alamat;
 		}
 
-		function get_alamat(){
+		function getAlamat(){
 			return $this->alamat;
 		}
 
-		function set_gender($gender){
+		function setGender($gender){
 			$this->gender = $gender;
 		}
 
-		function get_gender(){
+		function getGender(){
 			return $this->gender;
 		}
 
-		function set_prodi($prodi){
+		function setProdi($prodi){
 			$this->prodi = $prodi;
 		}
 
-		function get_prodi(){
+		function getProdi(){
 			return $this->prodi;
 		}
 	}

@@ -3,19 +3,19 @@
 		private $deskripsi;
 		private $tanggal;
 
-		function set_deskripsi($deskripsi){
+		function setDeskripsi($deskripsi){
 			$this->deskripsi = $deskripsi;
 		}
 
-		function get_deskripsi(){
+		function getDeskripsi(){
 			return $this->deskripsi;
 		}
 
-		function set_tanggal($tanggal){
+		function setTanggal($tanggal){
 			$this->tanggal = $tanggal;
 		}
 
-		function get_tanggal(){
+		function getTanggal(){
 			return $this->tanggal;
 		}
 	}

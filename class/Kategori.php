@@ -1,21 +1,21 @@
 <?php
 	class Kategori{
-		private $IDKategori;
+		private $id_kategori;
 		private $Nama;
 
-		function set_IDKategori($IDKategori){
-			$this->IDKategori = $IDKategori;
+		function setIdKategori($id_kategori){
+			$this->Id_kategori = $Id_kategori;
 		}
 
-		function get_IDKategori(){
-			return $this->IDKategori;
+		function getIdKategori(){
+			return $this->Id_kategori;
 		}
 
-		function set_nama($nama){
+		function setNama($nama){
 			$this->nama = $nama;
 		}
 
-		function get_nama(){
+		function getNama(){
 			return $this->nama;
 		}
 	}

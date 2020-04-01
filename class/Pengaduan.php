@@ -1,56 +1,56 @@
 <?php
 	class Pengaduan{
-		private $IDPengaduan;
+		private $id_pengaduan;
 		private $bukti;
 		private $tanggal;
 		private $isi;
 		private $judul;
 		private $status;
 
-		function set_IDPengaduan($IDPengaduan){
-			$this->IDPengaduan = $IDPengaduan;
+		function setIdPengaduan($id_pengaduan){
+			$this->id_pengaduan = $id_pengaduan;
 		}
 
-		function get_IDPengaduan(){
-			return $this->IDPengaduan;
+		function getIdPengaduan(){
+			return $this->id_pengaduan;
 		}
 
-		function set_bukti($bukti){
+		function setBukti($bukti){
 			$this->bukti = $bukti;
 		}
 
-		function get_bukti(){
+		function getBukti(){
 			return $this->bukti;
 		}
 
-		function set_tanggal($tanggal){
+		function setTanggal($tanggal){
 			$this->tanggal = $tanggal;
 		}
 
-		function get_tanggal(){
+		function getTanggal(){
 			return $this->tanggal;
 		}
 
-		function set_isi($isi){
+		function setIsi($isi){
 			$this->isi = $isi;
 		}
 
-		function get_isi(){
+		function getIsi(){
 			return $this->isi;
 		}
 
-		function set_judul($judul){
+		function setJudul($judul){
 			$this->judul = $judul;
 		}
 
-		function get_judul(){
+		function getJudul(){
 			return $this->judul;
 		}
-		function set_status($status){
+		function setStatus($status){
 			$this->status = $status;
 		}
 
-		function get_status(){
+		function getStatus(){
 			return $this->status;
 		}
 	}

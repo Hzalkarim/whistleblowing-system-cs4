@@ -4,27 +4,27 @@
 		private $password;
 		private $role;
 
-		function set_email($email){
+		function setEmail($email){
 			$this->email = $email;
 		}
 
-		function get_email(){
+		function getEmail(){
 			return $this->email;
 		}
 
-		function set_password($password){
+		function setPassword($password){
 			$this->password = $password;
 		}
 
-		function get_password(){
+		function getPassword(){
 			return $this->password;
 		}
 
-		function set_role($role){
+		function setRole($role){
 			$this->role = $role;
 		}
 
-		function get_role(){
+		function getRole(){
 			return $this->role;
 		}
 	}

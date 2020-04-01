@@ -1,57 +1,57 @@
 <?php
 	class Admin{
 		private $nama;
-		private $noTelp;
+		private $no_telp;
 		private $email;
 		private $password;
 		private $alamat;
 		private $gender;
 
-		function set_nama($nama){
+		function setNama($nama){
 			$this->nama = $nama;
 		}
 
-		function get_nama(){
+		function getNama(){
 			return $this->nama;
 		}
 
-		function set_noTelp($noTelp){
-			$this->noTelp = $noTelp;
+		function setNoTelp($no_telp){
+			$this->no_telp = $no_telp;
 		}
 
-		function get_noTelp(){
-			return $this->noTelp;
+		function getNoTelp(){
+			return $this->no_telp;
 		}
 
-		function set_email($email){
+		function setEmail($email){
 			$this->email = $email;
 		}
 
-		function get_email(){
+		function getEmail(){
 			return $this->email;
 		}
 
-		function set_password($password){
+		function setPassword($password){
 			$this->password = $password;
 		}
 
-		function get_password(){
+		function getPassword(){
 			return $this->password;
 		}
 
-		function set_alamat($alamat){
+		function setAlamat($alamat){
 			$this->alamat = $alamat;
 		}
 
-		function get_alamat(){
+		function getAlamat(){
 			return $this->alamat;
 		}
 
-		function set_gender($gender){
+		function setGender($gender){
 			$this->gender = $gender;
 		}
 
-		function get_gender(){
+		function getGender(){
 			return $this->gender;
 		}
 	}

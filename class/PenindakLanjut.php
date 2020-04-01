@@ -1,57 +1,57 @@
 <?php
 	class PenindakLanjut{
 		private $nama;
-		private $IDPegawai;
+		private $id_pegawai;
 		private $alamat;
-		private $noTelp;
+		private $no_telp;
 		private $gender;
 		private $bidang;
 
-		function set_nama($nama){
+		function setNama($nama){
 			$this->nama = $nama;
 		}
 
-		function get_nama(){
+		function getNama(){
 			return $this->nama;
 		}
 
-		function set_IDPegawai($IDPegawai){
-			$thsi->IDPegawai = $IDPegawai;
+		function setIdPegawai($id_pegawai){
+			$thsi->id_pegawai = $id_pegawai;
 		}
 
-		function get_IDPegawai(){
-			return $this->IDPegawai;
+		function getIdPegawai(){
+			return $this->id_pegawai;
 		}
 
-		function set_alamat($alamat){
+		function setAlamat($alamat){
 			$this->alamat = $alamat;
 		}
 
-		function get_alamat(){
+		function getAlamat(){
 			return $this->alamat;
 		}
 
-		function set_noTelp($noTelp){
-			$this->noTelp = $noTelp;
+		function setNoTelp($no_telp){
+			$this->no_telp = $no_telp;
 		}
 
-		function get_noTelp(){
-			return $this->noTelp;
+		function getNoTelp(){
+			return $this->no_telp;
 		}
 
-		function set_gender($gender){
+		function setGender($gender){
 			$this->gender = $gender;
 		}
 
-		function get_gender(){
+		function getGender(){
 			return $this->gender;
 		}
 
-		function set_bidang($bidang){
+		function setBidang($bidang){
 			$this->bidang = $bidang;
 		}
 
-		function get_bidang(){
+		function getBidang(){
 			return $this->bidang;
 		}
 	}
