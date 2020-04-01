@@ -1,49 +1,57 @@
 <?php
 	class Pengaduan{
-		private $bidang;
-		private $lAkademik;
-		private $lSarPras;
-		private $lKeuangan;
-		private $lPerpus;
+		private $IDPengaduan;
+		private $bukti;
+		private $tanggal;
+		private $isi;
+		private $judul;
+		private $status;
 
-		function set_bidang($bidang){
-			$this->bidang = $bidang;
+		function set_IDPengaduan($IDPengaduan){
+			$this->IDPengaduan = $IDPengaduan;
 		}
 
-		function get_bidang(){
-			return $this->bidang;
+		function get_IDPengaduan(){
+			return $this->IDPengaduan;
 		}
 
-		function set_lAkademik($lAkademik){
-			$this->lAkademik = $lAkademik;
+		function set_bukti($bukti){
+			$this->bukti = $bukti;
 		}
 
-		function get_lAkademik(){
-			return $this->lAkademik;
+		function get_bukti(){
+			return $this->bukti;
 		}
 
-		function set_lSarPras($lSarPras){
-			$this->lSarPras = $lSarPras;
+		function set_tanggal($tanggal){
+			$this->tanggal = $tanggal;
 		}
 
-		function get_lSarPras(){
-			return $this->lSarPras;
+		function get_tanggal(){
+			return $this->tanggal;
 		}
 
-		function set_lKeuangan($lKeuangan){
-			$this->lKeuangan = $lKeuangan;
+		function set_isi($isi){
+			$this->isi = $isi;
 		}
 
-		function get_lKeuangan(){
-			return $this->lKeuangan;
+		function get_isi(){
+			return $this->isi;
 		}
 
-		function set_lPerpus($lPerpus){
-			$this->lPerpus = $lPerpus;
+		function set_judul($judul){
+			$this->judul = $judul;
 		}
 
-		function get_lPerpus(){
-			return $this->lPerpus;
+		function get_judul(){
+			return $this->judul;
+		}
+		function set_status($status){
+			$this->status = $status;
+		}
+
+		function get_status(){
+			return $this->status;
 		}
 	}
 ?>

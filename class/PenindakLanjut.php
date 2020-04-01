@@ -1,12 +1,11 @@
 <?php
-	class WakabidMhs{
+	class PenindakLanjut{
 		private $nama;
-		private $NIDN;
-		private $email;
-		private $password;
+		private $IDPegawai;
 		private $alamat;
 		private $noTelp;
 		private $gender;
+		private $bidang;
 
 		function set_nama($nama){
 			$this->nama = $nama;
@@ -16,28 +15,12 @@
 			return $this->nama;
 		}
 
-		function set_NIDN($NIDN){
-			$thsi->NIDN = $NIDN;
+		function set_IDPegawai($IDPegawai){
+			$thsi->IDPegawai = $IDPegawai;
 		}
 
-		function get_NIDN(){
-			return $this->NIDN;
-		}
-
-		function set_email($email){
-			$this->email = $email;
-		}
-
-		function get_email(){
-			return $this->email;
-		}
-
-		function set_password($password){
-			$this->password = $password;
-		}
-
-		function get_password(){
-			return $this->password;
+		function get_IDPegawai(){
+			return $this->IDPegawai;
 		}
 
 		function set_alamat($alamat){
@@ -62,6 +45,14 @@
 
 		function get_gender(){
 			return $this->gender;
+		}
+
+		function set_bidang($bidang){
+			$this->bidang = $bidang;
+		}
+
+		function get_bidang(){
+			return $this->bidang;
 		}
 	}
 ?>

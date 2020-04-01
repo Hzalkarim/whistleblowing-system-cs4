@@ -2,8 +2,6 @@
 	class Mahasiswa{
 		private $nama;
 		private $nim;
-		private $email;
-		private $password;
 		private $noTelp;
 		private $alamat;
 		private $gender;
@@ -23,22 +21,6 @@
 
 		function get_nim(){
 			return $this->nim;
-		}
-
-		function set_email($email){
-			$this->email = $email;
-		}
-
-		function get_email(){
-			return $this->email;
-		}
-
-		function set_password($password){
-			$this->password = $password;
-		}
-
-		function get_password(){
-			return $this->password;
 		}
 
 		function set_noTelp($noTelp){
