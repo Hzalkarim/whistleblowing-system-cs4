@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12">
-        <h1>Laporan</h1>
+        <h1>Form Pengaduan</h1>
         <hr />
 
         <div class="jumbotron">
@@ -10,7 +10,7 @@
                     <!-- <input type="text" class="form-control" placeholder="Pelapor" id="pelapor" name="pelapor"> -->
                     <div class="form-check-inline">
                         <label for="user">
-                            <input type="radio" name="pelapor" value="user"> Sebagai Mahasiswa
+                            <input type="radio" name="pelapor" value="user" checked> Sebagai Mahasiswa
                         </label>
                     </div>
                     <div class="form-check-inline">
