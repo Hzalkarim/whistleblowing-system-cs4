@@ -7,5 +7,16 @@ $(document).ready(function(){
             $("aside").removeClass("wb-side-show");
         }
         isShow = !isShow;
-    })
+    });
+
+    var khususPLanjut = $(".p-lanjut-field");
+
+    $('[name="peran"]').click(function(){
+
+        if ($(this).val() == "admin"){
+            khususPLanjut.addClass("collapse");
+        } else {
+            khususPLanjut.removeClass("collapse");
+        }
+    });
 })
