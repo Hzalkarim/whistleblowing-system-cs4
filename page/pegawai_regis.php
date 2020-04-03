@@ -4,7 +4,7 @@
         <div class="text-center my-4">
             <h4>Form Pendaftaran Pegawai</h4>
         </div>
-        <form class="mt-4">
+        <form class="safe-open">
             <div class="form-group">
                 <label for="nama-lengkap">Nama Lengkap</label>
                 <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama">
@@ -53,14 +53,16 @@
             </div>
             <div class="form-group p-lanjut-field collapse">
                 <label for="nama-lengkap">ID Pegawai</label>
-                <input type="text" name="id-pegawai" class="form-control" placeholder="Masukkan Nama">
+                <input type="text" name="id-pegawai" class="form-control" placeholder="Masukkan ID Pegawai">
             </div>
             <div class="form-group p-lanjut-field collapse">
                 <label for="bidang">Bidang</label>
                 <select class="form-control" name="bidang">
-                    <option value="bm">Bisnis Manajemen</option>
-                    <option value="si">Sistem Informasi</option>
-                    <option value="cs">Ilmu Komputer</option>
+                    <option>Layanan Kedisiplinan</option>
+                    <option>Layanan Akedemik</option>
+                    <option>Layanan Sarana Prasarana</option>
+                    <option>Layanan Keuangan</option>
+                    <option>Layanan Perpustakaan</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary mb-4">Registrasi</button>
