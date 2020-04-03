@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-12">
-		<h1>Riwayat Pelaporan</h1>
+		<h1>Riwayat Pengaduan</h1>
 		<hr />
 		<table class="table table-striped">
 			<thead>
@@ -15,7 +15,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>karim</td>
+					<td>anonim</td>
 					<td><?php
 					date_default_timezone_set("Asia/Jakarta");
 					echo date("Y/m/d");
