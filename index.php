@@ -4,8 +4,8 @@ $pages = Array(
     'home' => 'Sistem Pengaduan Kampus',
     'pelapor' => 'Submit Pengaduan',
     'hasilPelapor' => 'Histori Pengaduan',
-    'admin' => 'Daftar Pengaduan',
-    'admin_regis' => 'Registrasi Administrator',
+    'pegawai' => 'Daftar Pengaduan',
+    'pegawai_regis' => 'Registrasi Pegawai',
     'mhs_regis' => 'Registrasi Mahasiswa'
 );
 
