@@ -7,8 +7,8 @@
 				<tr>
 					<th>Pelapor</th>
 					<th>Tanggal Pelaporan</th>
-					<th>Pelanggar</th>
 					<th>Kategori</th>
+					<th>Judul</th>
 					<th>Pengaduan</th>
 					<th>Bukti</th>
 				</tr>
@@ -20,8 +20,8 @@
 					date_default_timezone_set("Asia/Jakarta");
 					echo date("Y/m/d");
 					?></td>
-					<td>Rizky</td>
 					<td>Layanan Kedisiplinan</td>
+					<td>Si Rizky Tidur</td>
 					<td>Ketiduran di kelas karakter</td>
 					<td><a href="#">Klik di sini</a></td>
 				</tr>
@@ -31,8 +31,8 @@
 					// date_default_timezone_set("Asia/Jakarta");
 					echo date("Y/m/d");
 					?></td>
-					<td>Rizky</td>
 					<td>Layanan Kedisiplinan</td>
+					<td>Si Rizky Tidur</td>
 					<td>Ketiduran di kelas karakter</td>
 					<td><a href="#">Klik di sini</a></td>
 				</tr>
@@ -42,8 +42,8 @@
 					// date_default_timezone_set("Asia/Jakarta");
 					echo date("Y/m/d");
 					?></td>
-					<td>Rizky</td>
 					<td>Layanan Kedisiplinan</td>
+					<td>Si Rizky Tidur</td>
 					<td>Ketiduran di kelas karakter</td>
 					<td><a href="#">Klik di sini</a></td>
 				</tr>
