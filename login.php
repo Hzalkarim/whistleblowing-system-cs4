@@ -2,6 +2,7 @@
 $page_title = "Halaman Login";
 require "page/component/header.php";
 ?>
+
 <main class="container mt-5">
     <div class="row">
         <div class="col-lg-4 col-md-2"></div>
