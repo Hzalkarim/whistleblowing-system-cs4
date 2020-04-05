@@ -24,7 +24,7 @@
                             <a class="nav-link" href="index.php?view=pelapor">Ajukan Pelaporan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?view=admin">Admin View</a>
+                            <a class="nav-link" href="index.php?view=pegawai">Admin View</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -34,7 +34,7 @@
                                 Registrasi
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="index.php?view=admin_regis">Administrator</a>
+                                <a class="dropdown-item" href="index.php?view=pegawai_regis">Pegawai</a>
                                 <a class="dropdown-item" href="index.php?view=mhs_regis">Mahasiswa</a>
                             </div>
                         </li>

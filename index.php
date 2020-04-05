@@ -4,8 +4,8 @@ $pages = Array(
     'home' => 'Sistem Pengaduan Kampus',
     'pelapor' => 'Submit Pengaduan',
     'hasilPelapor' => 'Histori Pengaduan',
-    'admin' => 'Daftar Pengaduan',
-    'admin_regis' => 'Registrasi Administrator',
+    'pegawai' => 'Daftar Pengaduan',
+    'pegawai_regis' => 'Registrasi Pegawai',
     'mhs_regis' => 'Registrasi Mahasiswa'
 );
 
@@ -29,12 +29,7 @@ require "page/component/header.php";
     if (!$page_exist){
         echo '<div class="display-1">404 Not Found</div>';
     } else {
-        foreach ($pages as $page => $p_title) {
-            if ($_GET['view'] == $page){
-                require 'page/' . $page . '.php';
-                break;
-            }
-        }
+        require 'page/' . $_GET['view'] . '.php';
     }
     ?>
 </main>

@@ -2,24 +2,12 @@
     <div class="col"></div>
     <div class="col-sm-12 col-md-8 col-lg-6 bg-light mt-5 rounded">
         <div class="text-center my-4">
-            <h4>Form Pendaftaran Akun Mahasiswa</h4>
+            <h4>Form Pendaftaran Pegawai</h4>
         </div>
-        <form class="mt-4">
+        <form class="safe-open">
             <div class="form-group">
                 <label for="nama-lengkap">Nama Lengkap</label>
                 <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama">
-            </div>
-            <div class="form-group">
-                <label for="nama-lengkap">NIM</label>
-                <input type="text" name="nim" class="form-control" placeholder="Masukkan NIM">
-            </div>
-            <div class="form-group">
-                <label for="prodi">Program Studi</label>
-                <select class="form-control" name="prodi">
-                    <option value="bm">Bisnis Manajemen</option>
-                    <option value="si">Sistem Informasi</option>
-                    <option value="cs">Ilmu Komputer</option>
-                </select>
             </div>
             <div class="form-group">
                 <label for="alamat-email">Alamat Email</label>
@@ -49,6 +37,33 @@
             <div class="form-group">
                 <label for="no-telp">Nomor Telepon</label>
                 <input type="number" name="no-telp" class="form-control" placeholder="Masukkan no Telepon">
+            </div>
+            <div class="form-group my-3">
+                <label class="mr-5" for="jenis-kel">Peran</label>
+                <div class="form-check-inline">
+                    <label for="wanita">
+                        <input type="radio" id="admin" name="peran" value="admin" checked> Administrator
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label for="pria">
+                        <input type="radio" id="p-lanjut" name="peran" value="p-lanjut"> Penindak Lanjut
+                    </label>
+                </div>
+            </div>
+            <div class="form-group p-lanjut-field collapse">
+                <label for="nama-lengkap">ID Pegawai</label>
+                <input type="text" name="id-pegawai" class="form-control" placeholder="Masukkan ID Pegawai">
+            </div>
+            <div class="form-group p-lanjut-field collapse">
+                <label for="bidang">Bidang</label>
+                <select class="form-control" name="bidang">
+                    <option>Layanan Kedisiplinan</option>
+                    <option>Layanan Akedemik</option>
+                    <option>Layanan Sarana Prasarana</option>
+                    <option>Layanan Keuangan</option>
+                    <option>Layanan Perpustakaan</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary mb-4">Registrasi</button>
             <button type="reset" class="btn btn-danger mb-4">Hapus</button>

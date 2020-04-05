@@ -1,16 +1,19 @@
 <?php
     $data = Array(
-        "Hafizh;2 Maret 2020;Saya Sendiri;Kedisiplinan;Karena mengantuk;klik link ini",
-        "Anomim;2 Maret 2020;Saya Sendiri;Kedisiplinan;Karena mengantuk;klik link ini",
-        "Rizkyy;4 Maret 2020;;Sarana Prasarana;Jadi susah tidur karena kepanasan;"
+        "Hafizh;2 Maret 2020;Layanan Kedisiplinan;Saya Tidur;Karena mengantuk;klik link ini",
+        "Anomim;2 Maret 2020;Layanan Kedisiplinan;Saya Tidur;Karena mengantuk;klik link ini",
+        "Rizkyy;4 Maret 2020;Sarana Prasarana;AC Mati;Jadi susah tidur karena kepanasan;"
     );
+
+    $bidang = "Layanan Kedisiplinan";
 ?>
 
 
 <div class="row">
     <div class="col-12">
         <div class="jumbotron my-3">
-            <h3 class="display-4">Tampilan Data Pelaporan</h1>
+            <h3 class="display-4">Daftar Pengaduan</h1><hr>
+            <h4>Bidang: Layanan Kedisiplinan</h4>
         </div>
     </div>
     <div class="col-12">
@@ -19,8 +22,8 @@
                 <tr>
                     <th>Pelapor</th>
                     <th>Tanggal Pelaporan</th>
-                    <th>Pihak Terkait</th>
                     <th>Kategori</th>
+                    <th>Judul</th>
                     <th>Pengaduan</th>
                     <th>Bukti</th>
                     <th></th>
@@ -32,7 +35,12 @@
                 <?php foreach(explode(';', $str) as $d):?>
                     <td><?php echo $d?></td>
                 <?php endforeach?>
-                    <td><button class="btn btn-primary">Tindak</button> </td>
+                    <td>
+                        <button class="btn btn-primary"
+                        <?php if (!strpos($str, $bidang)) echo "disabled" ?>
+                        >
+                        Tindak</button>
+                    </td>
                 </tr>
             <?php endforeach?>
             </tbody>
