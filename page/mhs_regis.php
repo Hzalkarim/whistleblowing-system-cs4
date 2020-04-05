@@ -7,11 +7,11 @@
         <form class="mt-4">
             <div class="form-group">
                 <label for="nama-lengkap">Nama Lengkap</label>
-                <input type="email" name="nama" class="form-control" placeholder="Masukkan Nama">
+                <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama">
             </div>
             <div class="form-group">
                 <label for="nama-lengkap">NIM</label>
-                <input type="email" name="nim" class="form-control" placeholder="Masukkan NIM">
+                <input type="text" name="nim" class="form-control" placeholder="Masukkan NIM">
             </div>
             <div class="form-group">
                 <label for="prodi">Program Studi</label>
