@@ -29,15 +29,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                     <?php if (!isset($_POST['user'])):?>
-                        <li class="nav-item">
-                            <a class="dropdown-toggle nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
-                                Registrasi
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="index.php?view=pegawai_regis">Pegawai</a>
-                                <a class="dropdown-item" href="index.php?view=mhs_regis">Mahasiswa</a>
-                            </div>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="index.php?view=mhs_regis">Registrasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
                     <?php else:?>
                         <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
