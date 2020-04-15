@@ -3,7 +3,16 @@
 class UserController extends WbController {
 
     public function insert($newModel){
+        $col = implode(", ", $newModel->getColumns());
+        $valArr = array_map(
+            function ($x) { return "'" . $x . "'"; },
+            $newModel->getValues()
+        );
+        $val = implode(", ", $valArr);
 
+        $sql = "INSERT INTO employee ($col) VALUES ($val)";
+
+        $this->hasil = mysqli_query($this->connection, $sql);
     }
 
     public function update($newModel){
