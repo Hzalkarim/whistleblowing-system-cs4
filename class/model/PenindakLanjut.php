@@ -16,7 +16,7 @@
 		}
 
 		function setIdPegawai($id_pegawai){
-			$thsi->id_pegawai = $id_pegawai;
+			$this->id_pegawai = $id_pegawai;
 		}
 
 		function getIdPegawai(){

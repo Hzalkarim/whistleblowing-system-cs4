@@ -1,12 +1,15 @@
 <?php
 
+include "class/wb_controller.php";
+include "class/wb_model.php";
+
 $pages = Array(
     'home' => 'Sistem Pengaduan Kampus',
     'pelapor' => 'Submit Pengaduan',
     'hasilPelapor' => 'Histori Pengaduan',
     'pegawai' => 'Daftar Pengaduan',
     'pegawai_regis' => 'Registrasi Pegawai',
-    'mhs_regis' => 'Registrasi Mahasiswa'
+    'mhs_regis' => 'Registrasi Mahasiswa',
 );
 
 if (!isset($_GET['view'])) $_GET['view'] = 'home';
