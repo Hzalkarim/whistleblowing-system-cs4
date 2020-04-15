@@ -16,9 +16,21 @@
             <div class="form-group">
                 <label for="prodi">Program Studi</label>
                 <select class="form-control" name="prodi">
-                    <option value="bm">Bisnis Manajemen</option>
+                    <?php
+
+                    require_once "class/model/ProgramStudi.php";
+                    require_once "class/controller/ProgramStudiController.php";
+
+                    $prodiCt = new ProgramStudiController();
+                    $semuaProdi = $prodiCt->select();
+
+                    foreach ($semuaProdi as $prodi) {
+                        echo '<option value="'.$prodi->getKode().'">'.$prodi->getNama().'</option>';
+                    }
+                    ?>
+                    <!-- <option value="bm">Bisnis Manajemen</option>
                     <option value="si">Sistem Informasi</option>
-                    <option value="cs">Ilmu Komputer</option>
+                    <option value="cs">Ilmu Komputer</option> -->
                 </select>
             </div>
             <div class="form-group">
