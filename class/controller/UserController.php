@@ -10,9 +10,9 @@ class UserController extends WbController {
         );
         $val = implode(", ", $valArr);
 
-        $sql = "INSERT INTO employee ($col) VALUES ($val)";
+        $sql = "INSERT INTO user ($col) VALUES ($val)";
 
-        $this->hasil = mysqli_query($this->connection, $sql);
+        return mysqli_query($this->connection, $sql);
     }
 
     public function update($newModel){
