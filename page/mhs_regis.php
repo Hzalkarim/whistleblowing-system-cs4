@@ -45,7 +45,7 @@
                 <label class="mr-5" for="jenis-kel">Jenis Kelamin</label>
                 <div class="form-check-inline">
                     <label for="pria">
-                        <input type="radio" name="gender" value="L"> Laki - Laki
+                        <input type="radio" name="gender" value="L" checked> Laki - Laki
                     </label>
                 </div>
                 <div class="form-check-inline">
