@@ -28,6 +28,7 @@ require "page/component/header.php";
 if (isset($_POST['btn-submit'])) {
 
     require_once "class/wb_controller.php";
+    require_once "class/wb_model.php";
     require_once "class/controller/UserController.php";
     require_once "class/model/User.php";
 
@@ -35,7 +36,6 @@ if (isset($_POST['btn-submit'])) {
     $userCt = new UserController();
 
     $user->setEmail($_POST['email']);
-
     $user = $userCt->where($user)->select();
 
     if (!is_null($user) && $user->getPassword() == md5($_POST['password'])){
