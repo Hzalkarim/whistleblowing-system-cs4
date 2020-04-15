@@ -1,10 +1,11 @@
 <?php
-	class User{
+	class User extends WbModel{
 		private $user_id;
 		private $email;
 		private $password;
 		private $nama;
 		private $role;
+
 
 		function setUserId($user_id){
 			$this->user_id = $user_id;
@@ -46,61 +47,15 @@
 			return $this->role;
 		}
 
-		public function setAllValues($data) {
-			$col = $this->getColumns();
-
-			$this->setUserId($data[$col[0]]);
-			$this->setEmail($data[$col[1]]);
-			$this->setPassword($data[$col[2]]);
-			$this->setNama($data[$col[3]]);
-		}
-
-		public function getColumns(){
-			$columns = Array(
-				"user_id", "email", "pwd", "nama"
+		protected function setColumnFunc() {
+			$colfun = Array(
+				"user_id" => "UserId",
+				"email" => "Email",
+				"pwd" => "Password",
+				"nama" => "Nama"
 			);
 
-			return $columns;
-		}
-
-		public function getConditions() {
-			$conditions = Array();
-
-			$db_wb_user = Array(
-				"user_id" => $this->getUserId(),
-				"email" => $this->getEmail(),
-				"pwd" => $this->getPassword(),
-				"nama" => $this->getNama()
-			);
-
-			foreach ($db_wb_user as $col => $val) {
-				if (is_null($val)) continue;
-
-				$conditions[] = "{$col} = '{$val}'";
-			}
-
-			return implode(", ", $conditions);
-		}
-
-		public function getValues() {
-			$values = Array();
-
-			$db_wb_user = Array(
-				$this->getUserId(),
-				$this->getEmail(),
-				$this->getPassword(),
-				$this->getNama()
-			);
-
-			foreach ($db_wb_user as $val) {
-				if (is_null($val)){
-					$values[] = "NULL";
-				} else {
-					$values[] = $val;
-				}
-			}
-
-			return $values;
+			$this->columnFunc = $colfun;
 		}
 	}
 ?>

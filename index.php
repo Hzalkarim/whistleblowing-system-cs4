@@ -1,6 +1,7 @@
 <?php
 
 include "class/wb_controller.php";
+include "class/wb_model.php";
 
 $pages = Array(
     'home' => 'Sistem Pengaduan Kampus',
