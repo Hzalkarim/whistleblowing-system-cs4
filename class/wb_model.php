@@ -18,6 +18,7 @@ abstract class WbModel {
         $colfun = $this->getColumnFunc();
 
         foreach ($colfun as $col => $fun){
+            if (!isset($data[$col])) continue;
             $act = "set" . $fun;
             $this->$act($data[$col]);
         }
