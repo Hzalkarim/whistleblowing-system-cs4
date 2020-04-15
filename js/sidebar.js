@@ -12,7 +12,7 @@ $(document).ready(function(){
     var khususPLanjut = $(".p-lanjut-field");
 
     $('[name="peran"]').click(function(){
-
+        var hehe;
         if ($(this).val() == "admin"){
             khususPLanjut.addClass("collapse");
         } else {
