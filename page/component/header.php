@@ -28,12 +28,12 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                    <?php if (!isset($_POST['user'])):?>
+                    <?php if (!isset($_COOKIE['user_nama'])):?>
                         <li class="nav-item"><a class="nav-link" href="index.php?view=mhs_regis">Registrasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
                     <?php else:?>
                         <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
-                        <li class="navbar-text nav-item text-white ml-3"><b>Selamat datang, <?php echo $_POST['user']?></b></li>
+                        <li class="navbar-text nav-item text-white ml-3"><b>Selamat datang, <?php echo "{$_COOKIE['user_nama']}:{$_COOKIE['user_id']}"?></b></li>
                     <?php endif?>
                     </ul>
                 </nav>
