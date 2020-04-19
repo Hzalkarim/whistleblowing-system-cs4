@@ -5,7 +5,7 @@ abstract class WbController
     private $host = "localhost";
     private $user = "root";
     private $password = "";
-    private $dbname = "whistleblowing_system";
+    private $dbname = "whistleblowing_system_2";
     private $model;
     public $connection;
 

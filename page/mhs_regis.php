@@ -14,8 +14,8 @@
                 <input type="text" name="nim" class="form-control" placeholder="Masukkan NIM">
             </div>
             <div class="form-group">
-                <label for="prodi">Program Studi</label>
-                <select class="form-control" name="prodi">
+                <label for="kode_prodi">Program Studi</label>
+                <select class="form-control" name="kode_prodi">
                     <?php
 
                     require_once "class/model/ProgramStudi.php";
