@@ -5,7 +5,7 @@ class UserController extends WbController {
     public function insert($newModel){
         $col = implode(", ", $newModel->getColumns());
         $valArr = array_map(
-            function ($x) { return "'" . $x . "'"; },
+            function ($x) { return $x == "id" ? $x : "'" . $x . "'"; },
             $newModel->getValues()
         );
         $val = implode(", ", $valArr);
