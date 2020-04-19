@@ -38,9 +38,10 @@ if (isset($_POST['btn-submit'])) {
     $user->setEmail($_POST['email']);
     $user = $userCt->where($user)->select();
 
+    // echo implode(", ", $user->getValues()) . md5($_POST['password']);die;
     if (!is_null($user) && $user->getPassword() == md5($_POST['password'])){
-        setcookie('user_nama', $user->getNama());
-        setcookie('user_id', $user->getUserId());
+        setcookie('user_nama', $user->getNama(), 0, "/");
+        setcookie('user_id', $user->getUserId(), 0, "/");
         header("Location: index.php");
     } else {
         echo '<script>alert("Email atau Password salah")</script>';
