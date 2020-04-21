@@ -5,7 +5,7 @@ abstract class WbController
     private $host = "localhost";
     private $user = "root";
     private $password = "";
-    private $dbname = "whistleb_system";
+    private $dbname = "whistleblowing_system_2";
     private $model;
     public $connection;
 
@@ -19,6 +19,7 @@ abstract class WbController
         return $this->model;
     }
 
+    #set model for conditions
     public function where($model){
         $this->model = $model;
         return $this;

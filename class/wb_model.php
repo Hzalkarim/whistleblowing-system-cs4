@@ -18,6 +18,7 @@ abstract class WbModel {
         $colfun = $this->getColumnFunc();
 
         foreach ($colfun as $col => $fun){
+            if (!isset($data[$col])) continue;
             $act = "set" . $fun;
             $this->$act($data[$col]);
         }
@@ -29,15 +30,17 @@ abstract class WbModel {
 
     public function getConditions() {
         $colfun = $this->getColumnFunc();
-        $db_wb_user = Array();
-
-        foreach ($colfun as $col => $fun) {
-            $act = "get" . $fun;
-            $db_wb_user[$col] = $this->$act();
-        }
+        // $db_wb_user = Array();
+        //
+        // foreach ($colfun as $col => $fun) {
+        //     $act = "get" . $fun;
+        //     $db_wb_user[$col] = $this->$act();
+        // }
 
         $conditions = Array();
-        foreach ($db_wb_user as $col => $val) {
+        foreach ($colfun as $col => $fun) {
+            $act = "get" . $fun;
+            $val = $this->$act();
             if (is_null($val)) continue;
 
             $conditions[] = "{$col} = '{$val}'";

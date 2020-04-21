@@ -20,19 +20,34 @@
                         <a class="navbar-brand" href="index.php?view=home">Whistleblowing</a>
                     </div>
                     <ul class="nav navbar-nav mr-auto">
+                    <?php if (isset($_COOKIE['user_role'])): ?>
+
+                    <?php if (strtolower($_COOKIE['user_role']) == 'mahasiswa'): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?view=pelapor">Ajukan Pelaporan</a>
                         </li>
+                    <?php elseif (strtolower($_COOKIE['user_role']) == 'administrator'): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?view=pegawai">Admin View</a>
                         </li>
+                    <?php elseif (strtolower($_COOKIE['user_role']) == 'penindak lanjut'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?view=pegawai">Laporan View</a>
+                        </li>
+                    <?php endif ?>
+
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Ajukan Pelaporan</a>
+                        </li>
+                    <?php endif ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                     <?php if (!isset($_COOKIE['user_nama'])):?>
                         <li class="nav-item"><a class="nav-link" href="index.php?view=mhs_regis">Registrasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
                     <?php else:?>
-                        <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
                         <li class="navbar-text nav-item text-white ml-3"><b>Selamat datang, <?php echo "{$_COOKIE['user_nama']}:{$_COOKIE['user_id']}"?></b></li>
                     <?php endif?>
                     </ul>
