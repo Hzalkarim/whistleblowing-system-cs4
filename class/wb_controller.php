@@ -19,6 +19,7 @@ abstract class WbController
         return $this->model;
     }
 
+    #set model for conditions
     public function where($model){
         $this->model = $model;
         return $this;
