@@ -48,4 +48,12 @@ class PengaduanController extends WbController {
         }
     }
 
+    public function getCount(){
+        $sql = "CALL `get_pengaduan_count`()";
+        $resultOne = mysqli_query($this->connection, $sql);
+        $data = mysqli_fetch_assoc($resultOne);
+
+        return $data['total'];
+    }
+
 }
