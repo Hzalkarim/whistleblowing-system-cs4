@@ -14,8 +14,12 @@ class Pengaduan extends WbModel{
 	private $tanggal_tindak_lanjut;
 	private $id_pegawai_penindak_lanjut;
 
+	private $colfunType = 'pengaduan';
+
 	protected function setColumnFunc() {
-		$colfun = Array(
+		$colfun = Array();
+
+		$colfun['pengaduan'] = Array(
 			'id' => 'Id',
 			'nim_mahasiswa' => 'NimMahasiswa',
 			'tanggal_pengaduan' => 'TanggalPengaduan',
@@ -31,7 +35,32 @@ class Pengaduan extends WbModel{
 			'id_pegawai_penindak_lanjut' => 'IdPegawaiPenindakLanjut'
 		);
 
-		$this->columnFunc = $colfun;
+		$colfun['basic_pengaduan'] = Array(
+			'id' => 'Id',
+			'nim_mahasiswa' => 'NimMahasiswa',
+			'tanggal_pengaduan' => 'TanggalPengaduan',
+			'judul' => 'Judul',
+			'isi' => 'Isi',
+			'bukti' => 'Bukti',
+			'status' => 'Status',
+			'id_kategori' => 'IdKategori',
+			'privasi_pengadu' => 'PrivasiPengadu'
+		);
+
+		$colfun['basic_tindak_lanjut'] = Array(
+			'id_pengaduan' => 'Id',
+			'user_id_admin_verifikator' => 'UserIdAdminVerifikator',
+			'deskripsi_tindak_lanjut' => 'DeskripsiTindakLanjut',
+			'tanggal_tindak_lanjut' => 'TanggalTindakLanjut',
+			'id_pegawai_penindak_lanjut' => 'IdPegawaiPenindakLanjut'
+		);
+
+		$this->columnFunc = $colfun[$this->colfunType];
+	}
+
+	public function setColumnFuncType($table_view) {
+		$this->colfunType = $table_view;
+		$this->setColumnFunc();
 	}
 
 	public function getId(){
