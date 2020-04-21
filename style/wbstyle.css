@@ -61,7 +61,7 @@ aside {
 
 .home-title {
     margin: 50px 0px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .safe-open {
