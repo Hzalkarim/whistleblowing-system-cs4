@@ -49,7 +49,7 @@ abstract class WbModel {
         return implode(", ", $conditions);
     }
 
-    public function getValues() {
+    public function getAllValues() {
         $colfun = $this->getColumnFunc();
 
         $values = Array();

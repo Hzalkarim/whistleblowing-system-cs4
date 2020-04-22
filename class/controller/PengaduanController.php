@@ -13,11 +13,10 @@ class PengaduanController extends WbController {
         $newModel->setColumnFuncType($this->table_view);
         $col = implode(", ", $newModel->getColumns());
         $valArr = array_map(
-            function ($x) { return $x == "id" ? $x : "'" . $x . "'"; },
-            $newModel->getValues()
+            function ($x) { return $x == "NULL" ? $x : "'" . $x . "'"; },
+            $newModel->getAllValues()
         );
         $val = implode(", ", $valArr);
-
         $sql = "INSERT INTO basic_pengaduan ($col) VALUES ($val)";
 
         return mysqli_query($this->connection, $sql);
