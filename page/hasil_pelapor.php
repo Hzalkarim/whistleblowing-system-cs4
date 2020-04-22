@@ -1,3 +1,35 @@
+<?php
+
+require_once "class/model/Mahasiswa.php";
+require_once "class/controller/MahasiswaController.php";
+require_once "class/model/Pengaduan.php";
+require_once "class/controller/PengaduanController.php";
+require_once "class/model/User.php";
+require_once "class/controller/UserController.php";
+require_once "class/model/Kategori.php";
+require_once "class/controller/KategoriController.php";
+
+$user = new User();
+$user->setUserId($_COOKIE['user_id']);
+
+$mCt = new MahasiswaController();
+$mhs = $mCt->where($user)->select();
+
+$pCt = new PengaduanController();
+$p = $pCt->where($mhs)->setTableOrView('basic_pengaduan')->select();
+
+$kat = new Kategori();
+$katCt = new KategoriController();
+// foreach ($p as $pengaduan){
+// 	$kat->setId($pengaduan->getIdKategori());
+// 	$katArr = $katCt->where($kat)->select();
+// 	$pengaduan->setIdKategori($katArr[0]->getNama());
+// 	print_r($pengaduan->getAllValues());
+// }
+// die;
+
+?>
+
 <div class="row">
 	<div class="col-12">
 		<h1>Riwayat Pengaduan</h1>
@@ -5,7 +37,6 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Pelapor</th>
 					<th>Tanggal Pelaporan</th>
 					<th>Kategori</th>
 					<th>Judul</th>
@@ -14,39 +45,20 @@
 				</tr>
 			</thead>
 			<tbody>
+			<?php if (is_null($p)): ?>
 				<tr>
-					<td>anonim</td>
-					<td><?php
-					date_default_timezone_set("Asia/Jakarta");
-					echo date("Y/m/d");
-					?></td>
-					<td>Layanan Kedisiplinan</td>
-					<td>Si Rizky Tidur</td>
-					<td>Ketiduran di kelas karakter</td>
-					<td><a href="#">Klik di sini</a></td>
+					<td colspan="6">Belum ada submit pengaduan</td>
 				</tr>
+			<?php else: ?>
+			<?php foreach($p as $pengaduan): ?>
 				<tr>
-					<td>karim</td>
-					<td><?php
-					// date_default_timezone_set("Asia/Jakarta");
-					echo date("Y/m/d");
-					?></td>
-					<td>Layanan Kedisiplinan</td>
-					<td>Si Rizky Tidur</td>
-					<td>Ketiduran di kelas karakter</td>
-					<td><a href="#">Klik di sini</a></td>
+					<td><?php echo $pengaduan->getTanggalPengaduan() ?></td>
+					<td><?php echo $pengaduan->getIdKategori() ?></td>
+					<td><?php echo $pengaduan->getJudul() ?></td>
+					<td><?php echo $pengaduan->getIsi() ?></td>
+					<td><?php echo $pengaduan->getBukti() ?></td>
 				</tr>
-				<tr>
-					<td>karim</td>
-					<td><?php
-					// date_default_timezone_set("Asia/Jakarta");
-					echo date("Y/m/d");
-					?></td>
-					<td>Layanan Kedisiplinan</td>
-					<td>Si Rizky Tidur</td>
-					<td>Ketiduran di kelas karakter</td>
-					<td><a href="#">Klik di sini</a></td>
-				</tr>
+			<?php endforeach;endif; ?>
 			</tbody>
 		</table>
 	</div>
