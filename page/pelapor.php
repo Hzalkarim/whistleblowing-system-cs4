@@ -21,15 +21,13 @@ $listKategori = $kategoriCt->select();
                 <div class="form-group">
                     <label for="pelapor">Pelapor :</label><br>
                     <!-- <input type="text" class="form-control" placeholder="Pelapor" id="pelapor" name="pelapor"> -->
-                    <div class="form-check-inline">
-                        <label for="user">
-                            <input type="radio" name="pelapor" value="Sebagai Mahasiswa" checked> Sebagai Mahasiswa
-                        </label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="pelapor" value="Sebagai Mahasiswa" checked>
+                        <label class="form-check-label" for="user">Sebagai Mahasiswa</label>
                     </div>
-                    <div class="form-check-inline">
-                        <label for="anon">
-                            <input type="radio" name="pelapor" value="Anonim"> Sebagai Anonim
-                        </label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="pelapor" value="Anonim">
+                        <label class="form-check-label" for="anon">Sebagai Anonim</label>
                     </div>
                 </div>
                 <div class="form-group">
