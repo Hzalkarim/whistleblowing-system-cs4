@@ -42,12 +42,13 @@ $katCt = new KategoriController();
 					<th>Judul</th>
 					<th>Pengaduan</th>
 					<th>Bukti</th>
+					<th>Status</th>
 				</tr>
 			</thead>
 			<tbody>
-			<?php if (is_null($p)): ?>
+			<?php if (count($p) == 0): ?>
 				<tr>
-					<td colspan="6">Belum ada submit pengaduan</td>
+					<td colspan="6" class="h1 text-center">Belum ada submit pengaduan</td>
 				</tr>
 			<?php else: ?>
 			<?php foreach($p as $pengaduan): ?>
@@ -57,6 +58,7 @@ $katCt = new KategoriController();
 					<td><?php echo $pengaduan->getJudul() ?></td>
 					<td><?php echo $pengaduan->getIsi() ?></td>
 					<td><?php echo $pengaduan->getBukti() ?></td>
+					<td><?php echo $pengaduan->getStatus() ?></td>
 				</tr>
 			<?php endforeach;endif; ?>
 			</tbody>
