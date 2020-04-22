@@ -17,4 +17,19 @@ class MahasiswaController extends WbController {
     public function update($model){}
     public function delete(){}
     public function select(){}
+
+    public function getNimFromUserId($user_id) {
+        $sql = "SELECT nim FROM mahasiswa WHERE user_id = '{$user_id}'";
+
+        $resultOne = mysqli_query($this->connection, $sql);
+
+        if (mysqli_num_rows($resultOne) == 1) {
+            // $this->hasil = true;
+            $data = mysqli_fetch_assoc($resultOne);
+
+            return $data['nim'];
+        } else {
+            return 0;
+        }
+    }
 }
