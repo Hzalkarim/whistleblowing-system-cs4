@@ -3,15 +3,30 @@
 abstract class WbModel {
 
     protected $columnFunc;
+    protected $tableName;
+    protected $foreignKeys;
 
     function __construct(){
         $this->setColumnFunc();
+        $this->setTableName();
+        $this->setForeignKeys();
     }
 
+    abstract public function getPrimaryKey();
     abstract protected function setColumnFunc();
+    abstract protected function setTableName();
+    abstract protected function setForeignKeys();
 
     protected function getColumnFunc() {
         return $this->columnFunc;
+    }
+
+    public function getTableName() {
+        return $this->tableName;
+    }
+
+    public function getForeignKeys() {
+        return $this->foreignKeys;
     }
 
     public function setAllValues($data) {

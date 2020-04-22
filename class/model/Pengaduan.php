@@ -16,6 +16,26 @@ class Pengaduan extends WbModel{
 
 	private $colfunType = 'pengaduan';
 
+
+	public function getPrimaryKey() {
+		return $this->getId();
+	}
+
+	protected function setTableName() {
+		$this->tableName = 'pengaduan';
+	}
+
+	protected function setForeignKeys() {
+		$fk = Array(
+			'mahasiswa' => 'nim_mahasiswa',
+			'kategori' => 'id_kategori',
+			'user' => 'user_id_admin_verifikator',
+			'penindak_lanjut' => 'id_pegawai_penindak_lanjut'
+		);
+
+		$this->foreignKeys = $fk;
+	}
+
 	protected function setColumnFunc() {
 		$colfun = Array();
 
