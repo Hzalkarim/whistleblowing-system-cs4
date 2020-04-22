@@ -36,10 +36,10 @@
                     <td><?php echo $d?></td>
                 <?php endforeach?>
                     <td>
-                        <button class="btn btn-primary"
+                        <a href="#" class="btn btn-primary"
                         <?php if (!strpos($str, $bidang)) echo "disabled" ?>
                         >
-                        Tindak</button>
+                        Tindak</a>
                     </td>
                 </tr>
             <?php endforeach?>
