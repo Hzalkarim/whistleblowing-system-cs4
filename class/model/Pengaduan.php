@@ -47,6 +47,15 @@ class Pengaduan extends WbModel{
 			'privasi_pengadu' => 'PrivasiPengadu'
 		);
 
+		$colfun['basic_pengaduan_insert'] = Array(
+			'nim_mahasiswa' => 'NimMahasiswa',
+			'judul' => 'Judul',
+			'isi' => 'Isi',
+			'bukti' => 'Bukti',
+			'id_kategori' => 'IdKategori',
+			'privasi_pengadu' => 'PrivasiPengadu'
+		);
+
 		$colfun['basic_tindak_lanjut'] = Array(
 			'id_pengaduan' => 'Id',
 			'user_id_admin_verifikator' => 'UserIdAdminVerifikator',
@@ -55,6 +64,7 @@ class Pengaduan extends WbModel{
 			'id_pegawai_penindak_lanjut' => 'IdPegawaiPenindakLanjut'
 		);
 
+		if (is_null($this->colfunType)) $this->colfunType = 'pengaduan';
 		$this->columnFunc = $colfun[$this->colfunType];
 	}
 
