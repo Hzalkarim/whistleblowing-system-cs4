@@ -6,7 +6,7 @@ include "class/wb_model.php";
 $pages = Array(
     'home' => 'Sistem Pengaduan Kampus',
     'pelapor' => 'Submit Pengaduan',
-    'hasilPelapor' => 'Histori Pengaduan',
+    'hasil_pelapor' => 'Histori Pengaduan',
     'pegawai' => 'Daftar Pengaduan',
     'pegawai_regis' => 'Registrasi Pegawai',
     'mhs_regis' => 'Registrasi Mahasiswa',

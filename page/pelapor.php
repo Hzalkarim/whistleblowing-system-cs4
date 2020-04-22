@@ -4,7 +4,7 @@
         <hr />
 
         <div class="jumbotron">
-            <form method="post" action="index.php?view=hasilPelapor">
+            <form method="post" action="index.php?view=hasil_pelapor">
                 <div class="form-group">
                     <label for="pelapor">Pelapor :</label><br>
                     <!-- <input type="text" class="form-control" placeholder="Pelapor" id="pelapor" name="pelapor"> -->
