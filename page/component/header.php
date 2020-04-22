@@ -33,6 +33,9 @@
                             <li class="nav-item">
                                 <a href="index.php?view=pelapor">Ajukan Pelaporan</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="index.php?view=hasil_pelapor">Histori Pelaporan</a>
+                            </li>
                         <?php elseif (strtolower($_COOKIE['user_role']) == 'administrator'): ?>
                             <li class="nav-item">
                                 <a href="index.php?view=pegawai">Admin View</a>
