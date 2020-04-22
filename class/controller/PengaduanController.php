@@ -31,20 +31,37 @@ class PengaduanController extends WbController {
     }
 
     public function select(){
-        $model = $this->getModel();
-        $model->setColumnFuncType($this->table_view);
-        $sql = "SELECT * FROM {$this->table_view} WHERE {$model->getConditions()}";
-        $resultOne = mysqli_query($this->connection, $sql);
+        $condition = $this->getPrimaryKeyCondition();
+        $condition = is_null($condition) ? 1 : $condition;
+        $sql = "SELECT * FROM {$this->table_view} WHERE {$condition}";
+        $result = mysqli_query($this->connection, $sql);
 
-        if (mysqli_num_rows($resultOne) == 1) {
-            // $this->hasil = true;
-            $data = mysqli_fetch_assoc($resultOne);
-            $model->setAllValues($data);
+        // $model = new Pengaduan();
+        // if (mysqli_num_rows($resultOne) == 1) {
+        //     // $this->hasil = true;
+        //     $data = mysqli_fetch_assoc($resultOne);
+        //     $model->setAllValues($data);
+        //
+        //     return $model;
+        // } else {
+        //     return NULL;
+        // }
 
-            return $model;
-        } else {
-            return NULL;
+        $arrResult = Array();
+        $count = 0;
+        if (mysqli_num_rows($result) > 0){
+            while ($data = mysqli_fetch_array($result)){
+
+                $pengaduan = new Pengaduan();
+                $pengaduan->setColumnFuncType($this->table_view);
+                $pengaduan->setAllValues($data);
+
+                $arrResult[$count] = $pengaduan;
+                $count++;
+            }
         }
+
+        return $arrResult;
     }
 
     public function getCount(){
