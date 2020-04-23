@@ -1,7 +1,7 @@
 <?php
 
 class User extends WbModel{
-	
+
 	private $user_id;
 	private $email;
 	private $password;
@@ -10,6 +10,18 @@ class User extends WbModel{
 	private $gender;
 	private $alamat;
 	private $no_telp;
+
+	public function getPrimaryKey() {
+		return $this->getUserId();
+	}
+
+	protected function setTableName() {
+		$this->tableName = 'user';
+	}
+
+	protected function setForeignKeys() {
+		
+	}
 
 	protected function setColumnFunc() {
 		$colfun = Array(

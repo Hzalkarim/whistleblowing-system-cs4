@@ -4,6 +4,19 @@ class Mahasiswa extends WbModel{
 	private $user_id;
 	private $prodi;
 
+	public function setTableName(){
+		$this->tableName = 'mahasiswa';
+	}
+
+	public function setForeignKeys() {
+		$fk = Array(
+			'user' => 'user_id',
+			'program_studi' => 'kode_prodi'
+		);
+
+		$this->foreignKeys = $fk;
+	}
+
 	protected function setColumnFunc(){
 		$colfun = Array(
 			"nim" => "Nim",
@@ -12,6 +25,10 @@ class Mahasiswa extends WbModel{
 		);
 
 		$this->columnFunc = $colfun;
+	}
+
+	public function getPrimaryKey() {
+		return $this->getNim();
 	}
 
 	public function getNim(){

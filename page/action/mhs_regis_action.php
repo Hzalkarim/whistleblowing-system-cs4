@@ -32,6 +32,8 @@ if (!is_null($user)) {
 
     setcookie('user_nama', $user->getNama(), 0, "/");
     setcookie('user_id', $user->getUserId(), 0, "/");
+    setcookie('user_role', $user->getRole(), 0, "/");
+    
 } else {
     echo '<script>alert("Gagal")</script>';
 }
