@@ -39,7 +39,7 @@ $katCt = new KategoriController();
 				<tr>
 					<th></th>
 					<th>Judul</th>
-					<th>Tanggal Pelaporan</th>
+					<th>Tanggal Pengaduan</th>
 					<th>Kategori</th>
 					<th>Status</th>
 				</tr>
