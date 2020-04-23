@@ -28,15 +28,23 @@ $katCt = new KategoriController();
 // }
 // die;
 
+$label = Array(
+	'Tertunda' => 'danger',
+	'Sedang diproses' => 'warning',
+	'Selesai' => 'success'
+);
+
+$count = 1;
 ?>
 
 <div class="row">
 	<div class="col-12">
 		<h1>Riwayat Pengaduan</h1>
 		<hr />
-		<table class="table table-striped">
+		<table class="table">
 			<thead>
 				<tr>
+					<th>No</th>
 					<th></th>
 					<th>Judul</th>
 					<th>Tanggal Pengaduan</th>
@@ -47,12 +55,13 @@ $katCt = new KategoriController();
 			<tbody>
 			<?php if (count($p) == 0): ?>
 				<tr>
-					<td colspan="5" class="h1 text-center">Belum ada submit pengaduan</td>
+					<td colspan="6" class="h1 text-center">Belum ada submit pengaduan</td>
 				</tr>
 			<?php else: ?>
 			<?php foreach($p as $pengaduan): ?>
 				<tr>
-					<td align="right">
+					<td align="center" width="20px"><?php echo $count++ ?></td>
+					<td align="center" width="20px">
 						<button class="btn btn-secondary wb-content-toggle" data-toggle="collapse" data-target="#p-<?php echo $pengaduan->getId() ?>">
 							<span class="glyphicon glyphicon-chevron-down"></span>
 						</button>
@@ -60,15 +69,19 @@ $katCt = new KategoriController();
 					<td><?php echo $pengaduan->getJudul() ?></td>
 					<td><?php echo $pengaduan->getTanggalPengaduan() ?></td>
 					<td><?php echo $pengaduan->getIdKategori() ?></td>
-					<td><span class="label label-warning"><?php echo $pengaduan->getStatus() ?></span></td>
+					<td>
+						<span class="label label-<?php echo $label[$pengaduan->getStatus()] ?>">
+							<?php echo $pengaduan->getStatus() ?>
+						</span>
+					</td>
 				</tr>
 				<tr></tr>
 				<tr>
-					<td colspan="5" class="wb-hidden-row">
+					<td colspan="6" class="wb-hidden-row">
 						<div class="wb-content-hidden collapse" id="p-<?php echo $pengaduan->getId() ?>">
 							<div class="wb-content-show">
 								<b>Isi:</b><br>
-								<?php echo $pengaduan->getIsi() ?><br><br>
+								<?php echo $pengaduan->getIsi() ?><br><br><hr>
 								<b>Bukti:</b><br>
 								<?php echo $pengaduan->getBukti() ?>
 							</div>
