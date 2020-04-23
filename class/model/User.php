@@ -2,7 +2,7 @@
 
 class User extends WbModel{
 
-	private $user_id;
+	private $id;
 	private $email;
 	private $password;
 	private $role;
@@ -12,7 +12,7 @@ class User extends WbModel{
 	private $no_telp;
 
 	public function getPrimaryKey() {
-		return $this->getUserId();
+		return $this->getId();
 	}
 
 	protected function setTableName() {
@@ -20,12 +20,12 @@ class User extends WbModel{
 	}
 
 	protected function setForeignKeys() {
-		
+
 	}
 
 	protected function setColumnFunc() {
 		$colfun = Array(
-			"id" => "UserId",
+			"id" => "Id",
 			"email" => "Email",
 			"password" => "Password",
 			"role" => "Role",
@@ -38,12 +38,12 @@ class User extends WbModel{
 		$this->columnFunc = $colfun;
 	}
 
-	function setUserId($user_id){
-		$this->user_id = $user_id;
+	function setId($id){
+		$this->id = $id;
 	}
 
-	function getUserId(){
-		return $this->user_id;
+	function getId(){
+		return $this->id;
 	}
 
 	function setEmail($email){

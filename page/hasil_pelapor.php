@@ -10,7 +10,7 @@ require_once "class/model/Kategori.php";
 require_once "class/controller/KategoriController.php";
 
 $user = new User();
-$user->setUserId($_COOKIE['user_id']);
+$user->setId($_COOKIE['user_id']);
 
 $mCt = new MahasiswaController();
 $mhs = $mCt->where($user)->select();

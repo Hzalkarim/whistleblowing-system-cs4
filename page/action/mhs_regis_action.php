@@ -14,7 +14,7 @@ $user->setRole("Mahasiswa");
 $userCt = new UserController();
 $i = 0;
 do {
-    $user->setUserId(rand(1, 10000));
+    $user->setId(rand(1, 10000));
 } while (!$userCt->insert($user) && ++$i < 3);
 
 $userEmail = new User();
@@ -25,15 +25,15 @@ $user = $userCt->where($userEmail)->select();
 if (!is_null($user)) {
     $mhs = new Mahasiswa();
     $mhs->setAllValues($_POST);
-    $mhs->setUserId($user->getUserId());
+    $mhs->setUserId($user->getId());
 
     $mhsCt = new MahasiswaController();
     $mhsCt->insert($mhs);
 
     setcookie('user_nama', $user->getNama(), 0, "/");
-    setcookie('user_id', $user->getUserId(), 0, "/");
+    setcookie('user_id', $user->getId(), 0, "/");
     setcookie('user_role', $user->getRole(), 0, "/");
-    
+
 } else {
     echo '<script>alert("Gagal")</script>';
 }
