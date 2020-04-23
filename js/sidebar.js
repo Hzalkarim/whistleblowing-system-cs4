@@ -19,4 +19,11 @@ $(document).ready(function(){
             khususPLanjut.removeClass("collapse");
         }
     });
+
+    $('.wb-content-hidden').on('show.bs.collapse', function () {
+    $(this).closest("table")
+        .find(".collapse.in")
+        .not(this)
+        //.collapse('toggle')
+    });
 })

@@ -68,6 +68,19 @@ aside {
     margin-bottom: 100px;
 }
 
+.wb-content-hidden {
+    margin: 0px;
+}
+
+.wb-content-show {
+    padding: 10px;
+    height: 150px;
+}
+
+.wb-hidden-row {
+    padding: 0 0px !important;
+}
+
 footer {
     z-index: 20;
     /* background: linear-gradient(107deg, rgba(153, 151, 249, 0) 8%, rgba(149, 142, 247, 1) 35%, rgba(129, 104, 240, 1) 50%, rgba(166, 192, 251, 1) 65%, rgba(175, 213, 254, 1) 100%); */

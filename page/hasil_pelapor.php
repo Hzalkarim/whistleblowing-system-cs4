@@ -37,28 +37,43 @@ $katCt = new KategoriController();
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th></th>
+					<th>Judul</th>
 					<th>Tanggal Pelaporan</th>
 					<th>Kategori</th>
-					<th>Judul</th>
-					<th>Pengaduan</th>
-					<th>Bukti</th>
 					<th>Status</th>
 				</tr>
 			</thead>
 			<tbody>
 			<?php if (count($p) == 0): ?>
 				<tr>
-					<td colspan="6" class="h1 text-center">Belum ada submit pengaduan</td>
+					<td colspan="5" class="h1 text-center">Belum ada submit pengaduan</td>
 				</tr>
 			<?php else: ?>
 			<?php foreach($p as $pengaduan): ?>
 				<tr>
+					<td align="right">
+						<button class="btn btn-secondary wb-content-toggle" data-toggle="collapse" data-target="#p-<?php echo $pengaduan->getId() ?>">
+							<span class="glyphicon glyphicon-chevron-down"></span>
+						</button>
+					</td>
+					<td><?php echo $pengaduan->getJudul() ?></td>
 					<td><?php echo $pengaduan->getTanggalPengaduan() ?></td>
 					<td><?php echo $pengaduan->getIdKategori() ?></td>
-					<td><?php echo $pengaduan->getJudul() ?></td>
-					<td><?php echo $pengaduan->getIsi() ?></td>
-					<td><?php echo $pengaduan->getBukti() ?></td>
-					<td><?php echo $pengaduan->getStatus() ?></td>
+					<td><span class="label label-warning"><?php echo $pengaduan->getStatus() ?></span></td>
+				</tr>
+				<tr></tr>
+				<tr>
+					<td colspan="5" class="wb-hidden-row">
+						<div class="wb-content-hidden collapse" id="p-<?php echo $pengaduan->getId() ?>">
+							<div class="wb-content-show">
+								<b>Isi:</b><br>
+								<?php echo $pengaduan->getIsi() ?><br><br>
+								<b>Bukti:</b><br>
+								<?php echo $pengaduan->getBukti() ?>
+							</div>
+						</div>
+					</td>
 				</tr>
 			<?php endforeach;endif; ?>
 			</tbody>
