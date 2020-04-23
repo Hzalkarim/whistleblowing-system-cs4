@@ -33,19 +33,12 @@ class PengaduanController extends WbController {
     public function select(){
         $condition = $this->getPrimaryKeyCondition();
         $condition = is_null($condition) ? 1 : $condition;
-        $sql = "SELECT * FROM {$this->table_view} WHERE {$condition}";
-        $result = mysqli_query($this->connection, $sql);
 
-        // $model = new Pengaduan();
-        // if (mysqli_num_rows($resultOne) == 1) {
-        //     // $this->hasil = true;
-        //     $data = mysqli_fetch_assoc($resultOne);
-        //     $model->setAllValues($data);
-        //
-        //     return $model;
-        // } else {
-        //     return NULL;
-        // }
+        $p = new Pengaduan();
+        $col = implode(', ', $p->getColumns());
+
+        $sql = "SELECT {$col} FROM {$this->table_view} WHERE {$condition}";
+        $result = mysqli_query($this->connection, $sql);
 
         $arrResult = Array();
         if (!$result) return $arrResult;

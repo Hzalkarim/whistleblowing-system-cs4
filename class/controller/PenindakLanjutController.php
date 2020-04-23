@@ -18,7 +18,11 @@ class PenindakLanjutController extends WbController {
 
         $condition = $this->getPrimaryKeyCondition();
         $condition = is_null($condition) ? 1 : $condition;
-        $sql = "SELECT * FROM penindak_lanjut WHERE {$condition}";
+
+        $pl = new PenindakLanjut();
+        $col = implode(', ', $pl->getColumns());
+
+        $sql = "SELECT {$col} FROM penindak_lanjut WHERE {$condition}";
         $result = mysqli_query($this->connection, $sql);
 
         $arrResult = Array();

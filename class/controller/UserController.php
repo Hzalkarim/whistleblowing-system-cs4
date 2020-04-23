@@ -24,18 +24,30 @@ class UserController extends WbController {
     }
 
     public function select(){
-        $model = $this->getModel();
-        $sql = "SELECT * FROM user WHERE {$model->getConditions()}";
-        $resultOne = mysqli_query($this->connection, $sql);
 
-        if (mysqli_num_rows($resultOne) == 1) {
-            // $this->hasil = true;
-            $data = mysqli_fetch_assoc($resultOne);
-            $model->setAllValues($data);
+        $condition = $this->getPrimaryKeyCondition();
+        $condition = is_null($condition) ? 1 : $condition;
 
-            return $model;
-        } else {
-            return NULL;
+        $user = new User();
+        $col = implode(', ', $user->getColumns());
+
+        $sql = "SELECT {$col} FROM user WHERE {$condition}";
+
+        $result = mysqli_query($this->connection, $sql);
+        $arrResult = Array();
+        if (!$result) return $arrResult;
+        $count = 0;
+        if (mysqli_num_rows($result) > 0){
+            while ($data = mysqli_fetch_array($result)){
+
+                $user = new User();
+                $user->setAllValues($data);
+
+                $arrResult[$count] = $user;
+                $count++;
+            }
         }
+
+        return $arrResult;
     }
 }

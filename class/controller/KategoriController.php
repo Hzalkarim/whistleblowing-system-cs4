@@ -15,9 +15,14 @@ class KategoriController extends WbController {
     }
 
     public function select(){
+
         $condition = $this->getPrimaryKeyCondition();
         $condition = is_null($condition) ? 1 : $condition;
-        $sql = "SELECT * FROM kategori WHERE {$condition}";
+
+        $kt = new Kategori();
+        $col = implode(', ', $kt->getColumns());
+
+        $sql = "SELECT {$col} FROM kategori WHERE {$condition}";
         $result = mysqli_query($this->connection, $sql);
         $arrResult = Array();
         if (!$result) return $arrResult;

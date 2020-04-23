@@ -15,7 +15,15 @@ class ProgramStudiController extends WbController {
     }
 
     public function select(){
-        $sql = "SELECT * FROM program_studi";
+
+        $condition = $this->getPrimaryKeyCondition();
+        $condition = is_null($condition) ? 1 : $condition;
+
+        $pr = new ProgramStudi();
+        $col = implode(', ', $pr->getColumns());
+
+        $sql = "SELECT {$col} FROM program_studi WHERE {$condition}";
+
         $result = mysqli_query($this->connection, $sql);
         $arrResult = Array();
         if (!$result) return $arrResult;

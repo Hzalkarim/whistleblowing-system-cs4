@@ -24,21 +24,31 @@ class MahasiswaController extends WbController {
     }
 
     public function select(){
+
         $condition = $this->getPrimaryKeyCondition();
         $condition = is_null($condition) ? 1 : $condition;
-        $sql = "SELECT * FROM mahasiswa WHERE {$condition}";
-        $resultOne = mysqli_query($this->connection, $sql);
 
-        $model = new Mahasiswa();
-        if (mysqli_num_rows($resultOne) == 1) {
-            // $this->hasil = true;
-            $data = mysqli_fetch_assoc($resultOne);
-            $model->setAllValues($data);
+        $mhs = new Mahasiswa();
+        $col = implode(', ' $mhs->getColumns());
 
-            return $model;
-        } else {
-            return NULL;
+        $sql = "SELECT {$col} FROM mahasiswa WHERE {$condition}";
+        $result = mysqli_query($this->connection, $sql);
+
+        $arrResult = Array();
+        if (!$result) return $arrResult;
+        $count = 0;
+        if (mysqli_num_rows($result) > 0){
+            while ($data = mysqli_fetch_array($result)){
+
+                $mhs = new Mahasiswa();
+                $mhs->setAllValues($data);
+
+                $arrResult[$count] = $mhs;
+                $count++;
+            }
         }
+
+        return $arrResult;
     }
 
     public function getNimFromUserId($user_id) {
