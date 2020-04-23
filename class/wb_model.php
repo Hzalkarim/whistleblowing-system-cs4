@@ -12,9 +12,30 @@ abstract class WbModel {
         $this->setForeignKeys();
     }
 
+    /**
+    *
+    *@return obj return the value of the primary key of the table
+    **/
     abstract public function getPrimaryKey();
+
+    /**
+    *
+    * set the $this->columnFunc in format of Array() {$dbColumnName => $setter/getter}
+    * $setter/getter without the set/get prefix
+    **/
     abstract protected function setColumnFunc();
+
+    /**
+    *
+    * provide table name of the model to $this->tableName
+    **/
     abstract protected function setTableName();
+
+    /**
+    *
+    * provide an array of Array () { $respectiveTableName => $foreignKeyInModel}
+    * to $this->foreignKeys
+    **/
     abstract protected function setForeignKeys();
 
     protected function getColumnFunc() {
