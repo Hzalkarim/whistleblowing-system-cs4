@@ -35,7 +35,7 @@
                             </li>
                         <?php elseif (strtolower($_COOKIE['user_role']) == 'administrator'): ?>
                             <li class="nav-item">
-                                <a href="index.php?view=pegawai">Admin View</a>
+                                <a href="#">Admin View</a>
                             </li>
                         <?php elseif (strtolower($_COOKIE['user_role']) == 'penindak lanjut'): ?>
                             <li class="nav-item">
