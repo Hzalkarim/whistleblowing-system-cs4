@@ -1,12 +1,12 @@
 <?php
 
-class KategoriController extends WbController {
+class PenindakLanjutController extends WbController {
 
-    public function insert($model){
+    public function insert($newModel){
 
     }
 
-    public function update($model){
+    public function update($newModel){
 
     }
 
@@ -15,20 +15,22 @@ class KategoriController extends WbController {
     }
 
     public function select(){
+
         $condition = $this->getPrimaryKeyCondition();
         $condition = is_null($condition) ? 1 : $condition;
-        $sql = "SELECT * FROM kategori WHERE {$condition}";
+        $sql = "SELECT * FROM penindak_lanjut WHERE {$condition}";
         $result = mysqli_query($this->connection, $sql);
+
         $arrResult = Array();
         if (!$result) return $arrResult;
         $count = 0;
         if (mysqli_num_rows($result) > 0){
             while ($data = mysqli_fetch_array($result)){
 
-                $kategori = new Kategori();
-                $kategori->setAllValues($data);
+                $pLanjut = new PenindakLanjut();
+                $pLanjut->setAllValues($data);
 
-                $arrResult[$count] = $kategori;
+                $arrResult[$count] = $pLanjut;
                 $count++;
             }
         }

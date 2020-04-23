@@ -18,6 +18,7 @@ class ProgramStudiController extends WbController {
         $sql = "SELECT * FROM program_studi";
         $result = mysqli_query($this->connection, $sql);
         $arrResult = Array();
+        if (!$result) return $arrResult;
         $count = 0;
         if (mysqli_num_rows($result) > 0){
             while ($data = mysqli_fetch_array($result)){
