@@ -20,7 +20,7 @@ class User extends WbModel{
 	}
 
 	protected function setForeignKeys() {
-
+		return NULL;
 	}
 
 	protected function setColumnFunc() {

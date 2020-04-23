@@ -14,7 +14,7 @@ class ProgramStudi extends WbModel {
     }
 
     protected function setForeignKeys() {
-        
+        return NULL;
     }
 
     protected function setColumnFunc() {
