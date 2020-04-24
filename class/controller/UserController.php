@@ -14,7 +14,24 @@ class UserController extends WbController {
     }
 
     public function update($newModel){
+        $colArr = $newModel->getColumns();
+        $valArr = $newModel->getAllValues();
+        $setterArr = array_map(
+            function ($col, $val) {
+                $v = $val == "NULL" ? $val : "'" . $val . "'";
+                return "{$col} = {$v}";
+            }, $colArr, $valArr
+        );
 
+        array_shift($setterArr);
+
+        $setter = implode(", ", $setterArr);
+
+        $condition = 0;
+        if (!is_null($this->getModel()))
+            $condition = $this->getModel()->getConditions();
+
+        return WbController::executeUpdateQuery('user', $setter, $condition);
     }
 
     public function delete(){
