@@ -11,7 +11,8 @@ $pages = Array(
     'pegawai_regis' => 'Registrasi Pegawai',
     'mhs_regis' => 'Registrasi Mahasiswa',
     'admin_pengaduan' => 'Administrator - List Pengaduan',
-    'admin_penugasan' => 'Administrator - Penugasan'
+    'admin_penugasan' => 'Administrator - Penugasan',
+    'admin_daftarkan' => 'Administrator - Tambah Anggota'
 );
 
 if (!isset($_GET['view'])) $_GET['view'] = 'home';
