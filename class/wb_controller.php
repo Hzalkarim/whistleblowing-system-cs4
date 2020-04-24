@@ -32,7 +32,7 @@ abstract class WbController
 
     public function selectOne(){
         $result = $this->select();
-        if (count($result) > 0)
+        if (!is_null($result) && count($result) > 0)
             return $result[0];
     }
 
