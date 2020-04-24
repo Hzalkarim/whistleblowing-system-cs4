@@ -3,7 +3,14 @@
 class PenindakLanjutController extends WbController {
 
     public function insert($newModel){
+        $col = implode(", ", $newModel->getColumns());
+        $valArr = array_map(
+            function ($x) { return $x == "NULL" ? $x : "'" . $x . "'"; },
+            $newModel->getAllValues()
+        );
+        $val = implode(", ", $valArr);
 
+        return WbController::executeInsertQuery('penindak_lanjut', $col, $val);
     }
 
     public function update($newModel){
