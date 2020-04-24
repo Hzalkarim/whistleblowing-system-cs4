@@ -1,32 +1,58 @@
+<?php
+
+if (isset($_GET['p']) && isset($_GET['e'])){
+    require_once "class/wb_controller.php";
+    require_once "class/wb_model.php";
+    require_once "class/controller/UserController.php";
+    require_once "class/model/User.php";
+
+    $user = new User();
+    $userCt = new UserController();
+
+    $user->setRole('NULL');
+    $user = $userCt->where($user)->select();
+
+    $selectUser = NULL;
+    foreach ($user as $u){
+        if ($u->getPassword() == $_GET['p']){
+            $selectUser = $u;
+            break;
+        }
+    }
+} else {
+    header("Location: index.php");
+}
+?>
+
 <div class="row">
-    <div class="col"></div>
-    <div class="col-sm-12 col-md-8 col-lg-6 bg-light mt-5 rounded">
+    <div class="col-sm-0 col-md-2 col-lg-3"></div>
+    <div class="col-sm-12 col-md-8 col-lg-6 bg-light mt-5">
         <div class="text-center my-4">
             <h4>Form Pendaftaran Pegawai</h4>
         </div>
         <form class="safe-open">
             <div class="form-group">
-                <label for="nama-lengkap">Nama Lengkap</label>
-                <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama">
+                <label for="nama">Nama Lengkap</label>
+                <input type="text" name="nama" class="form-control">
             </div>
             <div class="form-group">
-                <label for="alamat-email">Alamat Email</label>
-                <input type="email" name="email" class="form-control" placeholder="Masukkan Email">
+                <label for="email">Alamat Email</label>
+                <input type="email" name="email" class="form-control" value="<?php echo $selectUser->getEmail() ?>" readonly>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Password">
+                <input type="password" name="password" class="form-control" placeholder="Ubah password...">
             </div>
             <div class="form-group my-3">
                 <label class="mr-5" for="jenis-kel">Jenis Kelamin</label>
                 <div class="form-check-inline">
                     <label for="pria">
-                        <input type="radio" name="jk" value="l"> Laki - Laki
+                        <input type="radio" name="gender" value="l" checked> Laki - Laki
                     </label>
                 </div>
                 <div class="form-check-inline">
                     <label for="wanita">
-                        <input type="radio" name="jk" value="p"> Perempuan
+                        <input type="radio" name="gender" value="p"> Perempuan
                     </label>
                 </div>
             </div>
@@ -36,24 +62,24 @@
             </div>
             <div class="form-group">
                 <label for="no-telp">Nomor Telepon</label>
-                <input type="number" name="no-telp" class="form-control" placeholder="Masukkan no Telepon">
+                <input type="number" name="no_telp" class="form-control">
             </div>
             <div class="form-group my-3">
-                <label class="mr-5" for="jenis-kel">Peran</label>
+                <label class="mr-5" for="role">Peran</label>
                 <div class="form-check-inline">
-                    <label for="wanita">
-                        <input type="radio" id="admin" name="peran" value="admin" checked> Administrator
+                    <label for="Administrator">
+                        <input type="radio" id="admin" name="role" value="Administrator" checked> Administrator
                     </label>
                 </div>
                 <div class="form-check-inline">
-                    <label for="pria">
-                        <input type="radio" id="p-lanjut" name="peran" value="p-lanjut"> Penindak Lanjut
+                    <label for="Penindak Lanjut">
+                        <input type="radio" id="p-lanjut" name="role" value="Penindak Lanjut"> Penindak Lanjut
                     </label>
                 </div>
             </div>
             <div class="form-group p-lanjut-field collapse">
-                <label for="nama-lengkap">ID Pegawai</label>
-                <input type="text" name="id-pegawai" class="form-control" placeholder="Masukkan ID Pegawai">
+                <label for="id_pegawai">ID Pegawai</label>
+                <input type="text" name="id_pegawai" class="form-control">
             </div>
             <div class="form-group p-lanjut-field collapse">
                 <label for="bidang">Bidang</label>
@@ -69,5 +95,5 @@
             <button type="reset" class="btn btn-danger mb-4">Hapus</button>
         </form>
     </div>
-    <div class="col"></div>
+    <div class="col-sm-0 col-md-2 col-lg-3"></div>
 </div>
