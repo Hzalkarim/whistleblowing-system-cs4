@@ -10,6 +10,7 @@ $pages = Array(
     'pegawai' => 'Daftar Pengaduan',
     'pegawai_regis' => 'Registrasi Pegawai',
     'mhs_regis' => 'Registrasi Mahasiswa',
+    'admin_pengaduan' => 'Administrator - List Pengaduan'
 );
 
 if (!isset($_GET['view'])) $_GET['view'] = 'home';
