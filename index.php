@@ -15,6 +15,10 @@ $pages = Array(
     'admin_daftarkan' => 'Administrator - Tambah Anggota'
 );
 
+$needNotAuth = Array(
+    'home'
+);
+
 if (!isset($_GET['view'])) $_GET['view'] = 'home';
 
 $page_title = '';
@@ -35,6 +39,9 @@ require "page/component/header.php";
     if (!$page_exist){
         echo '<div class="display-1">404 Not Found</div>';
     } else {
+        if (!in_array($_GET['view'], $needNotAuth)){
+            require "page/component/login_validator.php";
+        }
         require 'page/' . $_GET['view'] . '.php';
     }
     ?>

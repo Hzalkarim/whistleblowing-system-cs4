@@ -7,10 +7,7 @@ require_once "class/model/User.php";
 require_once "class/controller/UserController.php";
 
 $user = new User();
-
-if (isset($_COOKIE['user_id'])){
-	$user->setId($_COOKIE['user_id']);
-}
+$user->setId($_COOKIE['user_id']);
 
 $userCt = new UserController();
 $user = $userCt->where($user)->selectOne();
