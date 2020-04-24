@@ -83,7 +83,7 @@ $count = 1;
 								<b>Bukti:</b><br>
 								<?php echo $p->getBukti() ?>
                                 <br><hr>
-                                <a href="#" class="btn btn-primary wb-tugaskan">Tugaskan</a>
+                                <a href="index.php?view=admin_penugasan&id_pgd=<?php echo $p->getId() ?>" class="btn btn-primary wb-tugaskan">Tugaskan</a>
 							</div>
 						</div>
 					</td>
