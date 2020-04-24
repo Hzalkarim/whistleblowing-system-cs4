@@ -82,7 +82,11 @@ abstract class WbModel {
             $conditions[] = "{$col} = '{$val}'";
         }
 
-        return implode(", ", $conditions);
+        $wrongNull = Array("= 'NULL'");
+        $rightNull = Array("IS NULL");
+        $rightCond = str_replace($wrongNull, $rightNull, $conditions);
+
+        return implode(", ", $rightCond);
     }
 
     public function getAllValues() {
