@@ -23,7 +23,7 @@ $total = $pengaduanCt->getCount();
         <h1 class="home-title">Whistleblowing System</h1>
     </div>
     <div class="col-12 text-center">
-        <h2 class="my-4">Jumlah Laporan: <?php echo $total ?></h2>
+        <h2 class="my-4">Jumlah Laporan: <?php echo $total ?>K</h2>
         <img src="asset/img/flow.svg" id="flow" alt="Flow">
     </div>
   </div>
