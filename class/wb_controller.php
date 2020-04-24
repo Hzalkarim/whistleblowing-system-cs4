@@ -80,4 +80,23 @@ abstract class WbController
         $sql = "UPDATE {$update} SET {$set} WHERE {$where}";
         return mysqli_query(WbController::$stConnection, $sql);
     }
+
+    public static function getArrayFromQueryResult($result, $className) {
+
+        if (!$result) return NULL;
+        $arrResult = Array();
+        $count = 0;
+        if (mysqli_num_rows($result) > 0){
+            while ($data = mysqli_fetch_array($result)){
+
+                $mhs = new $className();
+                $mhs->setAllValues($data);
+
+                $arrResult[$count] = $mhs;
+                $count++;
+            }
+        }
+
+        return $arrResult;
+    }
 }
