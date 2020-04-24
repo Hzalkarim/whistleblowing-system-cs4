@@ -48,7 +48,7 @@ $count = 1;
 				</tr>
 			</thead>
 			<tbody>
-			<?php if (count($pengaduan) == 0): ?>
+			<?php if (is_null($pengaduan)): ?>
 				<tr>
 					<td colspan="7" class="h1 text-center">Belum ada submit pengaduan</td>
 				</tr>
