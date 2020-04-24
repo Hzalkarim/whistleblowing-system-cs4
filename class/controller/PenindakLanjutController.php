@@ -22,8 +22,7 @@ class PenindakLanjutController extends WbController {
         $pl = new PenindakLanjut();
         $col = implode(', ', $pl->getColumns());
 
-        $sql = "SELECT {$col} FROM penindak_lanjut WHERE {$condition}";
-        $result = mysqli_query($this->connection, $sql);
+        $result = WbController::executeSelectQuery($col, 'penindak_lanjut', $condition);
 
         $arrResult = Array();
         if (!$result) return $arrResult;

@@ -22,9 +22,8 @@ class ProgramStudiController extends WbController {
         $pr = new ProgramStudi();
         $col = implode(', ', $pr->getColumns());
 
-        $sql = "SELECT {$col} FROM program_studi WHERE {$condition}";
+        $result = WbController::executeSelectQuery($col, 'program_studi', $condition);
 
-        $result = mysqli_query($this->connection, $sql);
         $arrResult = Array();
         if (!$result) return $arrResult;
         $count = 0;

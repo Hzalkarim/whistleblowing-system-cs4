@@ -10,10 +10,10 @@ $user = new User();
 $user->setId($_COOKIE['user_id']);
 
 $userCt = new UserController();
-$user = $userCt->where($user)->select();
+$user = $userCt->where($user)->selectOne();
 
 $pLanjutCt = new PenindakLanjutController();
-$pLanjut = $pLanjutCt->where($user)->select()[0];
+$pLanjut = $pLanjutCt->where($user)->selectOne();
 
 $pengaduanCt = new PengaduanController();
 $pengaduan = $pengaduanCt->setTableOrView('pengaduan')->where($pLanjut)->select();

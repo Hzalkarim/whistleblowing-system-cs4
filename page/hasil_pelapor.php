@@ -13,11 +13,11 @@ $user = new User();
 $user->setId($_COOKIE['user_id']);
 
 $mCt = new MahasiswaController();
-$mhs = $mCt->where($user)->select();
+$mhs = $mCt->where($user)->selectOne();
 
 $pCt = new PengaduanController();
 $p = $pCt->where($mhs)->setTableOrView('basic_pengaduan')->select();
-
+;
 $kat = new Kategori();
 $katCt = new KategoriController();
 // foreach ($p as $pengaduan){

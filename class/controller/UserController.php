@@ -10,9 +10,7 @@ class UserController extends WbController {
         );
         $val = implode(", ", $valArr);
 
-        $sql = "INSERT INTO user ($col) VALUES ($val)";
-
-        return mysqli_query($this->connection, $sql);
+        return WbController::executeInsertQuery('user', $col, $val);
     }
 
     public function update($newModel){
@@ -31,9 +29,8 @@ class UserController extends WbController {
         $user = new User();
         $col = implode(', ', $user->getColumns());
 
-        $sql = "SELECT {$col} FROM user WHERE {$condition}";
+        $result = WbController::executeSelectQuery($col, 'user', $condition);
 
-        $result = mysqli_query($this->connection, $sql);
         $arrResult = Array();
         if (!$result) return $arrResult;
         $count = 0;

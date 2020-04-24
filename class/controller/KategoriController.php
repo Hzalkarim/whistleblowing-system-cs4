@@ -22,8 +22,10 @@ class KategoriController extends WbController {
         $kt = new Kategori();
         $col = implode(', ', $kt->getColumns());
 
-        $sql = "SELECT {$col} FROM kategori WHERE {$condition}";
-        $result = mysqli_query($this->connection, $sql);
+        $ktTable = $kt->getTableName();
+
+        $result = WbController::executeSelectQuery($col, $ktTable, $condition);
+
         $arrResult = Array();
         if (!$result) return $arrResult;
         $count = 0;

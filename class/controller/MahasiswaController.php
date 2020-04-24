@@ -10,9 +10,7 @@ class MahasiswaController extends WbController {
         );
         $val = implode(", ", $valArr);
 
-        $sql = "INSERT INTO mahasiswa ($col) VALUES ($val)";
-
-        return mysqli_query($this->connection, $sql);
+        return WbController::executeInsertQuery('mahasiswa', $col, $val);
     }
 
     public function update($model){
@@ -29,10 +27,9 @@ class MahasiswaController extends WbController {
         $condition = is_null($condition) ? 1 : $condition;
 
         $mhs = new Mahasiswa();
-        $col = implode(', ' $mhs->getColumns());
+        $col = implode(', ', $mhs->getColumns());
 
-        $sql = "SELECT {$col} FROM mahasiswa WHERE {$condition}";
-        $result = mysqli_query($this->connection, $sql);
+        $result = WbController::executeSelectQuery($col, 'mahasiswa', $condition);
 
         $arrResult = Array();
         if (!$result) return $arrResult;
@@ -51,10 +48,12 @@ class MahasiswaController extends WbController {
         return $arrResult;
     }
 
-    public function getNimFromUserId($user_id) {
-        $sql = "SELECT nim FROM mahasiswa WHERE user_id = '{$user_id}'";
+    public function selectOne() {
+        return $this->select()[0];
+    }
 
-        $resultOne = mysqli_query($this->connection, $sql);
+    public function getNimFromUserId($user_id) {
+        $resultOne = WbController::executeSelectQuery('nim', 'mahasiswa', "user_id = '{$user_id}'");
 
         if (mysqli_num_rows($resultOne) == 1) {
             // $this->hasil = true;

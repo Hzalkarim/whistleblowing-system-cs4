@@ -9,10 +9,29 @@ abstract class WbController
     private $model;
     public $connection;
 
+    protected static $stConnection;
+
     function __construct(){
-        $conn = mysqli_connect($this->host, $this->user, $this->password);
-        $dbselect = mysqli_select_db($conn, $this->dbname);
-        $this->connection = $conn;
+        // $conn = mysqli_connect($this->host, $this->user, $this->password);
+        // $dbselect = mysqli_select_db($conn, $this->dbname);
+        // $this->connection = $conn;
+        if (is_null(WbController::$stConnection))
+            WbController::createWBSys();
+    }
+
+    public static function createWBSys(){
+        $conn = mysqli_connect('localhost', 'root', '');
+        $dbselect = mysqli_select_db($conn, 'whistleblowing_system_2');
+        WbController::$stConnection = $conn;
+    }
+
+    public abstract function insert($model);
+    public abstract function update($model);
+    public abstract function delete();
+    public abstract function select();
+
+    public function selectOne(){
+        return $this->select()[0];
     }
 
     protected function getModel(){
@@ -43,8 +62,16 @@ abstract class WbController
         }
     }
 
-    public abstract function insert($model);
-    public abstract function update($model);
-    public abstract function delete();
-    public abstract function select();
+    public static function executeSelectQuery($col, $from, $where) {
+
+        $sql = "SELECT {$col} FROM {$from} WHERE {$where}";
+        $result = mysqli_query(WbController::$stConnection, $sql);
+        return $result;
+    }
+
+    public static function executeInsertQuery($into, $col, $val) {
+
+        $sql = "INSERT INTO {$into} ({$col}) VALUES ({$val})";
+        return mysqli_query(WbController::$stConnection, $sql);
+    }
 }
