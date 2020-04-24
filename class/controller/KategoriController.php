@@ -17,7 +17,7 @@ class KategoriController extends WbController {
     public function select(){
 
         $condition = $this->getPrimaryKeyCondition();
-        $condition = is_null($condition) ? 0 : $condition;
+        $condition = is_null($condition) ? 1 : $condition;
 
         $kt = new Kategori();
         $col = implode(', ', $kt->getColumns());
@@ -26,19 +26,7 @@ class KategoriController extends WbController {
 
         $result = WbController::executeSelectQuery($col, $ktTable, $condition);
 
-        if (!$result) return NULL;
-        $arrResult = Array();
-        $count = 0;
-        if (mysqli_num_rows($result) > 0){
-            while ($data = mysqli_fetch_array($result)){
-
-                $kategori = new Kategori();
-                $kategori->setAllValues($data);
-
-                $arrResult[$count] = $kategori;
-                $count++;
-            }
-        }
+        $arrResult = WbController::getArrayFromQueryResult($result, 'Kategori');
 
         return $arrResult;
     }

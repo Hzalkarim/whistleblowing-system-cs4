@@ -17,7 +17,7 @@ class ProgramStudiController extends WbController {
     public function select(){
 
         $condition = $this->getPrimaryKeyCondition();
-        $condition = is_null($condition) ? 0 : $condition;
+        $condition = is_null($condition) ? 1 : $condition;
 
         $pr = new ProgramStudi();
         $col = implode(', ', $pr->getColumns());
