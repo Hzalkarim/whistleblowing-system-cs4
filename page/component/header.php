@@ -37,6 +37,9 @@
                             <li class="nav-item">
                                 <a href="index.php?view=admin_pengaduan">Admin View</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="index.php?view=pegawai_regis">Daftarkan</a>
+                            </li>
                         <?php elseif (strtolower($_COOKIE['user_role']) == 'penindak lanjut'): ?>
                             <li class="nav-item">
                                 <a href="index.php?view=pegawai">Laporan View</a>
