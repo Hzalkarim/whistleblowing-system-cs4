@@ -24,7 +24,7 @@ class MahasiswaController extends WbController {
     public function select(){
 
         $condition = $this->getPrimaryKeyCondition();
-        $condition = is_null($condition) ? 1 : $condition;
+        $condition = is_null($condition) ? 0 : $condition;
 
         $mhs = new Mahasiswa();
         $col = implode(', ', $mhs->getColumns());
@@ -46,10 +46,6 @@ class MahasiswaController extends WbController {
         }
 
         return $arrResult;
-    }
-
-    public function selectOne() {
-        return $this->select()[0];
     }
 
     public function getNimFromUserId($user_id) {

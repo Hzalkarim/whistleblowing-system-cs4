@@ -32,7 +32,7 @@ class PengaduanController extends WbController {
 
     public function select(){
         $condition = $this->getPrimaryKeyCondition();
-        $condition = is_null($condition) ? 1 : $condition;
+        $condition = is_null($condition) ? 0 : $condition;
 
         $p = new Pengaduan();
         $p->setColumnFuncType($this->table_view);

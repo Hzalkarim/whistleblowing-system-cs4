@@ -17,7 +17,7 @@ class KategoriController extends WbController {
     public function select(){
 
         $condition = $this->getPrimaryKeyCondition();
-        $condition = is_null($condition) ? 1 : $condition;
+        $condition = is_null($condition) ? 0 : $condition;
 
         $kt = new Kategori();
         $col = implode(', ', $kt->getColumns());
