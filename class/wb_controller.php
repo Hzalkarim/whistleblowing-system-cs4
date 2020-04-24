@@ -75,4 +75,9 @@ abstract class WbController
         $sql = "INSERT INTO {$into} ({$col}) VALUES ({$val})";
         return mysqli_query(WbController::$stConnection, $sql);
     }
+
+    public static function executeUpdateQuery($update, $set, $where){
+        $sql = "UPDATE {$update} SET {$set} WHERE {$where}";
+        return mysqli_query(WbController::$stConnection, $sql);
+    }
 }
