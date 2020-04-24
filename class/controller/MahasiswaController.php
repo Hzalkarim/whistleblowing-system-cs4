@@ -24,7 +24,7 @@ class MahasiswaController extends WbController {
     public function select(){
 
         $condition = $this->getPrimaryKeyCondition();
-        $condition = is_null($condition) ? 0 : $condition;
+        $condition = is_null($condition) ? 1 : $condition;
 
         $mhs = new Mahasiswa();
         $col = implode(', ', $mhs->getColumns());
