@@ -26,7 +26,7 @@ $pengaduan = $pengaduanCt->setTableOrView('pengaduan')->where($pLanjut)->select(
     <div class="col-12">
         <div class="well well-lg my-3">
             <h3 class="display-4">Daftar Pengaduan</h1><hr>
-            <h4>Bidang: Layanan Kedisiplinan</h4>
+            <h4>Bidang: <?php echo $pLanjut->getBidang() ?></h4>
         </div>
     </div>
     <!-- <div class="col-12">
