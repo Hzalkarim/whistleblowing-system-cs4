@@ -19,6 +19,8 @@ if (isset($_GET['p']) && isset($_GET['e'])){
             break;
         }
     }
+
+    if (is_null($selectUser)) header("Location: index.php");
 } else {
     header("Location: index.php");
 }
