@@ -86,7 +86,7 @@ abstract class WbModel {
         $rightNull = Array("IS NULL");
         $rightCond = str_replace($wrongNull, $rightNull, $conditions);
 
-        return implode(", ", $rightCond);
+        return implode(" AND ", $rightCond);
     }
 
     public function getAllValues() {
