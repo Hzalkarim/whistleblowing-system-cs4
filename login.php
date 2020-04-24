@@ -25,7 +25,7 @@ require "page/component/header.php";
 
 <?php
 
-if (isset($_POST['btn-submit'])) {
+if (isset($_POST['btn-submit']) && isset($_POST['email']) && isset($_POST['password'])) {
 
     require_once "class/wb_controller.php";
     require_once "class/wb_model.php";

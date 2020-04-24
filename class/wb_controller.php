@@ -31,7 +31,9 @@ abstract class WbController
     public abstract function select();
 
     public function selectOne(){
-        return $this->select()[0];
+        $result = $this->select();
+        if (count($result) > 0)
+            return $result[0];
     }
 
     protected function getModel(){
