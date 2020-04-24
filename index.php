@@ -16,7 +16,7 @@ $pages = Array(
 );
 
 $needNotAuth = Array(
-    'home'
+    'home', 'pegawai_regis'
 );
 
 if (!isset($_GET['view'])) $_GET['view'] = 'home';
