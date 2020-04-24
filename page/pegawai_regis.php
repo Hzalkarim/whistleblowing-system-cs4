@@ -32,7 +32,7 @@ if (isset($_GET['p']) && isset($_GET['e'])){
         <div class="text-center my-4">
             <h4>Form Pendaftaran Pegawai</h4>
         </div>
-        <form class="safe-open">
+        <form class="safe-open" method="post" action="page/action/pegawai_regis_action.php">
             <div class="form-group">
                 <label for="nama">Nama Lengkap</label>
                 <input type="text" name="nama" class="form-control">
@@ -49,12 +49,12 @@ if (isset($_GET['p']) && isset($_GET['e'])){
                 <label class="mr-5" for="jenis-kel">Jenis Kelamin</label>
                 <div class="form-check-inline">
                     <label for="pria">
-                        <input type="radio" name="gender" value="l" checked> Laki - Laki
+                        <input type="radio" name="gender" value="L" checked> Laki - Laki
                     </label>
                 </div>
                 <div class="form-check-inline">
                     <label for="wanita">
-                        <input type="radio" name="gender" value="p"> Perempuan
+                        <input type="radio" name="gender" value="P"> Perempuan
                     </label>
                 </div>
             </div>
@@ -85,15 +85,9 @@ if (isset($_GET['p']) && isset($_GET['e'])){
             </div>
             <div class="form-group p-lanjut-field collapse">
                 <label for="bidang">Bidang</label>
-                <select class="form-control" name="bidang">
-                    <option>Layanan Kedisiplinan</option>
-                    <option>Layanan Akedemik</option>
-                    <option>Layanan Sarana Prasarana</option>
-                    <option>Layanan Keuangan</option>
-                    <option>Layanan Perpustakaan</option>
-                </select>
+                <input type="text" name="bidang" class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary mb-4">Registrasi</button>
+            <button type="submit" class="btn btn-primary mb-4" name="btn-submit">Registrasi</button>
             <button type="reset" class="btn btn-danger mb-4">Hapus</button>
         </form>
     </div>
