@@ -10,14 +10,16 @@ require_once "class/model/Kategori.php";
 require_once "class/controller/KategoriController.php";
 
 $user = new User();
-$user->setId($_COOKIE['user_id']);
+
+if (isset($_COOKIE['user_id'])){
+	$user->setId($_COOKIE['user_id']);
+}
 
 $mCt = new MahasiswaController();
 $mhs = $mCt->where($user)->selectOne();
 
 $pengaduanCt = new PengaduanController();
 $pengaduan = $pengaduanCt->where($mhs)->setTableOrView('basic_pengaduan')->select();
-;
 $kat = new Kategori();
 $katCt = new KategoriController();
 // foreach ($p as $pengaduan){
