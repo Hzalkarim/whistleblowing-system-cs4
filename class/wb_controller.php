@@ -67,8 +67,7 @@ abstract class WbController
     public static function executeSelectQuery($col, $from, $where) {
 
         $sql = "SELECT {$col} FROM {$from} WHERE {$where}";
-        $result = mysqli_query(WbController::$stConnection, $sql);
-        return $result;
+        return mysqli_query(WbController::$stConnection, $sql);
     }
 
     public static function executeInsertQuery($into, $col, $val) {
