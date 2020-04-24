@@ -15,8 +15,8 @@ $user->setId($_COOKIE['user_id']);
 $mCt = new MahasiswaController();
 $mhs = $mCt->where($user)->selectOne();
 
-$pCt = new PengaduanController();
-$p = $pCt->where($mhs)->setTableOrView('basic_pengaduan')->select();
+$pengaduanCt = new PengaduanController();
+$pengaduan = $pengaduanCt->where($mhs)->setTableOrView('basic_pengaduan')->select();
 ;
 $kat = new Kategori();
 $katCt = new KategoriController();
@@ -53,37 +53,37 @@ $count = 1;
 				</tr>
 			</thead>
 			<tbody>
-			<?php if (count($p) == 0): ?>
+			<?php if (count($pengaduan) == 0): ?>
 				<tr>
 					<td colspan="6" class="h1 text-center">Belum ada submit pengaduan</td>
 				</tr>
 			<?php else: ?>
-			<?php foreach($p as $pengaduan): ?>
+			<?php foreach($pengaduan as $p): ?>
 				<tr>
 					<td align="center" width="20px"><?php echo $count++ ?></td>
 					<td align="center" width="20px">
-						<button class="btn btn-secondary wb-content-toggle" data-toggle="collapse" data-target="#p-<?php echo $pengaduan->getId() ?>">
+						<button class="btn btn-secondary wb-content-toggle" data-toggle="collapse" data-target="#p-<?php echo $p->getId() ?>">
 							<span class="glyphicon glyphicon-chevron-down"></span>
 						</button>
 					</td>
-					<td><?php echo $pengaduan->getJudul() ?></td>
-					<td><?php echo $pengaduan->getTanggalPengaduan() ?></td>
-					<td><?php echo $pengaduan->getIdKategori() ?></td>
+					<td><?php echo $p->getJudul() ?></td>
+					<td><?php echo $p->getTanggalPengaduan() ?></td>
+					<td><?php echo $p->getIdKategori() ?></td>
 					<td>
-						<span class="label label-<?php echo $label[$pengaduan->getStatus()] ?>">
-							<?php echo $pengaduan->getStatus() ?>
+						<span class="label label-<?php echo $label[$p->getStatus()] ?>">
+							<?php echo $p->getStatus() ?>
 						</span>
 					</td>
 				</tr>
 				<tr></tr>
 				<tr>
 					<td colspan="6" class="wb-hidden-row">
-						<div class="wb-content-hidden collapse" id="p-<?php echo $pengaduan->getId() ?>">
+						<div class="wb-content-hidden collapse" id="p-<?php echo $p->getId() ?>">
 							<div class="wb-content-show">
 								<b>Isi:</b><br>
-								<?php echo $pengaduan->getIsi() ?><br><br><hr>
+								<?php echo $p->getIsi() ?><br><br><hr>
 								<b>Bukti:</b><br>
-								<?php echo $pengaduan->getBukti() ?>
+								<?php echo $p->getBukti() ?>
 							</div>
 						</div>
 					</td>
