@@ -51,7 +51,7 @@ $pengaduan = $pengaduanCt->setTableOrView('pengaduan')->where($pLanjut)->select(
                 <b><?php echo $p->getJudul() ?></b><span style="position: absolute; right:5%;">oleh:
                 <span class="label label-info"><?php echo $p->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $p->getNimMahasiswa() ?></span></span>
             </div>
-            <div class="panel-body">
+            <div class="panel-body wb-panel-content">
                 <?php echo $p->getIsi() ?>
             </div>
             <div class="panel-footer">

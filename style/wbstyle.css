@@ -83,7 +83,7 @@ aside {
     padding: 0 0px !important;
 }
 
-div.panel-body {
+div.wb-panel-content {
     min-height: 150px;
 }
 
