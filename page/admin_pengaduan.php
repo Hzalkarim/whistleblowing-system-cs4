@@ -83,7 +83,24 @@ $count = 1;
 								<b>Bukti:</b><br>
 								<?php echo $p->getBukti() ?>
                                 <br><hr>
-                                <a href="index.php?view=admin_penugasan&id_pgd=<?php echo $p->getId() ?>" class="btn btn-primary wb-tugaskan">Tugaskan</a>
+							<?php
+							switch ($p->getStatus()):
+								case 'Tertunda':
+							?>
+                                <a href="index.php?view=admin_penugasan&id_pgd=<?php echo $p->getId() ?>" class="btn btn-danger wb-tugaskan">Tugaskan</a>
+							<?php
+								break;
+								case 'Sedang diproses':
+							?>
+								<a class="btn btn-warning wb-tugaskan">Lihat Progress</a>
+								<a class="btn btn-success wb-tugaskan">Finalisasi</a>
+							<?php
+								break;
+								case 'Selesai':
+							?>
+								<a class="btn btn-success wb-tugaskan">Deskripsi Tindak Lanjut</a>
+								<a class="btn btn-danger wb-tugaskan">Tarik Status</a>
+							<?php break; endswitch ?>
 							</div>
 						</div>
 					</td>
