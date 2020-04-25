@@ -74,13 +74,20 @@ aside {
 }
 
 .wb-content-show {
-    padding: 10px;
-    min-height: 160px;
+    min-height: 140px;
+}
+
+.wb-content-show a {
+    margin-bottom: 10px;
 }
 
 .wb-hidden-row {
     border: 0 !important;
     padding: 0 0px !important;
+}
+
+td {
+    vertical-align: baseline !important;
 }
 
 div.wb-panel-content {
