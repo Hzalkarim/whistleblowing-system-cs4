@@ -6,16 +6,16 @@ $total = $pengaduanCt->getCount();
 ?>
 
 <div class="row">
-<?php if (isset($_COOKIE['submit_berhasil'])): ?>
+<?php if (isset($_COOKIE['submit-berhasil'])): ?>
     <div class="col-12">
         <div class="alert alert-success">
-            <b>Success!</b> Pengaduan berhasil disubmit.
+            <b>Berhasil!</b> <?php echo $_COOKIE['submit-pesan'] ?>
         </div>
     </div>
-<?php elseif (isset($_COOKIE['submit_gagal'])): ?>
+<?php elseif (isset($_COOKIE['submit-gagal'])): ?>
     <div class="col-12">
         <div class="alert alert-danger">
-            <b>Danger!</b> Pengaduan gagal disubmit.
+            <b>Gagal!</b> <?php echo $_COOKIE['submit-pesan'] ?>
         </div>
     </div>
 <?php endif; ?>
