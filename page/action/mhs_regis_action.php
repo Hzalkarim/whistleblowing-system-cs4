@@ -6,6 +6,9 @@ require_once "../../class/controller/UserController.php";
 require_once "../../class/model/Mahasiswa.php";
 require_once "../../class/controller/MahasiswaController.php";
 
+$_POST['alamat'] = $_POST['alamat'] == '' ? 'NULL' : $_POST['alamat'];
+$_POST['no_telp'] = $_POST['no_telp'] == '' ? 'NULL' : $_POST['no_telp'];
+
 $user = new User();
 $user->setAllValues($_POST);
 $user->setPassword(md5($_POST['password']));
