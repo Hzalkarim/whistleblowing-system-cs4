@@ -3,11 +3,16 @@
 class UserController extends WbController {
 
     public function insert($newModel){
-        $col = implode(", ", $newModel->getColumns());
+        $colArr = $newModel->getColumns();
         $valArr = array_map(
             function ($x) { return $x == "NULL" ? $x : "'" . $x . "'"; },
             $newModel->getAllValues()
         );
+
+        array_shift($valArr);
+        array_shift($colArr);
+
+        $col = implode(", ", $colArr);
         $val = implode(", ", $valArr);
 
         return WbController::executeInsertQuery('user', $col, $val);
