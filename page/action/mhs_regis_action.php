@@ -27,7 +27,7 @@ if ($result) {
     $userEmail = new User();
     $userEmail->setEmail($user->getEmail());
 
-    $user = $userCt->where($userEmail)->select();
+    $user = $userCt->where($userEmail)->selectOne();
 
     $mhs = new Mahasiswa();
     $mhs->setAllValues($_POST);
