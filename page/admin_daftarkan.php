@@ -31,6 +31,16 @@ $link = "?view=pegawai_regis{$getParam}";
     </div>
     <div class="col-xs-0 col-md-2"></div>
 </div>
+<?php else: ?>
+<div class="row">
+    <div class="col-xs-0 col-md-2"></div>
+    <div class="col-xs-12 col-md-8">
+        <div class="alert alert-danger" style="overflow-x: auto">
+            <b>Gagal!</b> Pendaftaran user baru tidak berhasil.
+        </div>
+    </div>
+    <div class="col-xs-0 col-md-2"></div>
+</div>
 <?php endif ?>
 
 
