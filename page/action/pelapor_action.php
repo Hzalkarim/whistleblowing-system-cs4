@@ -10,6 +10,9 @@ if (isset($_POST['btn-submit'])) {
     $mhsCt = new MahasiswaController();
     $nimMhs = $mhsCt->getNimFromUserId($_COOKIE['user_id']);
 
+    $_POST['isi'] = $_POST['isi'] == '' ? 'NULL' : $_POST['isi'];
+    $_POST['judul'] = $_POST['judul'] == '' ? 'NULL' : $_POST['judul'];
+
     $pengaduan = new Pengaduan();
     $pengaduan->setAllValues($_POST);
     $pengaduan->setNimMahasiswa($nimMhs);

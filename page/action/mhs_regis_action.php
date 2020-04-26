@@ -6,6 +6,10 @@ require_once "../../class/controller/UserController.php";
 require_once "../../class/model/Mahasiswa.php";
 require_once "../../class/controller/MahasiswaController.php";
 
+$_POST['nama'] = $_POST['nama'] == '' ? 'NULL' : $_POST['nama'];
+$_POST['nim'] = $_POST['nim'] == '' ? 'NULL' : $_POST['nim'];
+$_POST['email'] = $_POST['email'] == '' ? 'NULL' : $_POST['email'];
+$_POST['password'] = $_POST['password'] == '' ? 'NULL' : $_POST['password'];
 $_POST['alamat'] = $_POST['alamat'] == '' ? 'NULL' : $_POST['alamat'];
 $_POST['no_telp'] = $_POST['no_telp'] == '' ? 'NULL' : $_POST['no_telp'];
 
