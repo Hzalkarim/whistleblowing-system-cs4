@@ -1,10 +1,10 @@
 <?php
-require_once "../class/wb_model.php";
-require_once "../class/wb_controller.php";
-require_once "../class/model/User.php";
-require_once "../class/controller/UserController.php";
-require_once "../class/model/Mahasiswa.php";
-require_once "../class/controller/MahasiswaController.php";
+require_once "../../class/wb_model.php";
+require_once "../../class/wb_controller.php";
+require_once "../../class/model/User.php";
+require_once "../../class/controller/UserController.php";
+require_once "../../class/model/Mahasiswa.php";
+require_once "../../class/controller/MahasiswaController.php";
 
 $user = new User();
 $user->setAllValues($_POST);
