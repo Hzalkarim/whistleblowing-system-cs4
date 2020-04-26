@@ -31,7 +31,7 @@ $link = "?view=pegawai_regis{$getParam}";
     </div>
     <div class="col-xs-0 col-md-2"></div>
 </div>
-<?php else: ?>
+<?php elseif (isset($_POST['btn-submit']) && !$result) : ?>
 <div class="row">
     <div class="col-xs-0 col-md-2"></div>
     <div class="col-xs-12 col-md-8">
