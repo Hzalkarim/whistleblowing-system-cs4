@@ -11,15 +11,15 @@ $user->setAllValues($_POST);
 $user->setPassword(md5($_POST['password']));
 $user->setRole("Mahasiswa");
 
-$userCt = new UserController();
-$i = 0;
-do {
-    $user->setId(rand(1, 10000));
-} while (!$userCt->insert($user) && ++$i < 3);
+// $i = 0;
+// do {
+//     $user->setId(rand(1, 10000));
+// } while (!$userCt->insert($user) && ++$i < 3);
 
 $userEmail = new User();
 $userEmail->setEmail($user->getEmail());
 
+$userCt = new UserController();
 $user = $userCt->where($userEmail)->select();
 
 if (!is_null($user)) {
