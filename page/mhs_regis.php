@@ -4,7 +4,7 @@
         <div class="text-center my-4">
             <h4>Form Pendaftaran Akun Mahasiswa</h4>
         </div>
-        <form class="m-4" method="post" action="page/mhs_regis_action.php">
+        <form class="m-4" method="post" action="page/action/mhs_regis_action.php">
             <div class="form-group">
                 <label for="nama-lengkap">Nama Lengkap</label>
                 <input type="text" name="nama" class="form-control">
