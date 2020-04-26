@@ -16,13 +16,16 @@ $user->setRole("Mahasiswa");
 //     $user->setId(rand(1, 10000));
 // } while (!$userCt->insert($user) && ++$i < 3);
 
-$userEmail = new User();
-$userEmail->setEmail($user->getEmail());
-
 $userCt = new UserController();
-$user = $userCt->where($userEmail)->select();
+$result = $userCt->insert($user);
 
-if (!is_null($user)) {
+date_default_timezone_set("Asia/Bangkok");
+if ($result) {
+    $userEmail = new User();
+    $userEmail->setEmail($user->getEmail());
+
+    $user = $userCt->where($userEmail)->select();
+
     $mhs = new Mahasiswa();
     $mhs->setAllValues($_POST);
     $mhs->setUserId($user->getId());
