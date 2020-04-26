@@ -70,12 +70,15 @@ aside {
 
 .wb-content-hidden {
     margin: 0px;
-    padding-left: 10%;
+    padding: 0 10%;
 }
 
 .wb-content-show {
-    padding: 10px;
-    height: 150px;
+    min-height: 140px;
+}
+
+.wb-content-show a {
+    margin-bottom: 10px;
 }
 
 .wb-hidden-row {
@@ -83,7 +86,11 @@ aside {
     padding: 0 0px !important;
 }
 
-div.panel-body {
+td {
+    vertical-align: baseline !important;
+}
+
+div.wb-panel-content {
     min-height: 150px;
 }
 

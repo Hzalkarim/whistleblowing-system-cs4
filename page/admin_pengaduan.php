@@ -9,14 +9,9 @@ require_once "class/controller/UserController.php";
 require_once "class/model/Kategori.php";
 require_once "class/controller/KategoriController.php";
 
-$user = new User();
-$user->setId($_COOKIE['user_id']);
-
-$mCt = new MahasiswaController();
-$mhs = $mCt->where($user)->selectOne();
-
 $pengaduanCt = new PengaduanController();
-$pengaduan = $pengaduanCt->where($mhs)->setTableOrView('basic_pengaduan')->select();
+$pengaduan = $pengaduanCt->setTableOrView('basic_pengaduan')->select();
+
 $kat = new Kategori();
 $katCt = new KategoriController();
 // foreach ($p as $pengaduan){
@@ -38,7 +33,7 @@ $count = 1;
 
 <div class="row">
 	<div class="col-12">
-		<h1>Riwayat Pengaduan</h1>
+		<h1>Daftar Pengaduan</h1>
 		<hr />
 		<table class="table">
 			<thead>
@@ -46,6 +41,7 @@ $count = 1;
 					<th>No</th>
 					<th></th>
 					<th>Judul</th>
+                    <th>Pelapor</th>
 					<th>Tanggal Pengaduan</th>
 					<th>Kategori</th>
 					<th>Status</th>
@@ -54,7 +50,7 @@ $count = 1;
 			<tbody>
 			<?php if (is_null($pengaduan)): ?>
 				<tr>
-					<td colspan="6" class="h1 text-center">Belum ada submit pengaduan</td>
+					<td colspan="7" class="h1 text-center">Belum ada submit pengaduan</td>
 				</tr>
 			<?php else: ?>
 			<?php foreach($pengaduan as $p): ?>
@@ -65,24 +61,46 @@ $count = 1;
 							<span class="glyphicon glyphicon-chevron-down"></span>
 						</button>
 					</td>
-					<td><?php echo $p->getJudul() ?></td>
+                    <td width="20%" style="overflow-x: hidden"><?php echo $p->getJudul() ?></td>
+					<td><?php echo $p->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $p->getNimMahasiswa() ?></td>
 					<td><?php echo $p->getTanggalPengaduan() ?></td>
 					<td><?php echo $p->getIdKategori() ?></td>
 					<td>
-						<span class="label label-<?php echo $label[$p->getStatus()] ?>">
+                        <span class="label label-<?php echo $label[$p->getStatus()] ?>">
 							<?php echo $p->getStatus() ?>
 						</span>
 					</td>
 				</tr>
 				<tr></tr>
 				<tr>
-					<td colspan="6" class="wb-hidden-row">
+					<td colspan="7" class="wb-hidden-row">
 						<div class="wb-content-hidden collapse" id="p-<?php echo $p->getId() ?>">
 							<div class="wb-content-show">
+                                <b>Judul:</b><br>
+								<?php echo $p->getJudul() ?><br><br>
 								<b>Isi:</b><br>
 								<?php echo $p->getIsi() ?><br><br><hr>
 								<b>Bukti:</b><br>
 								<?php echo $p->getBukti() ?>
+                                <br><hr>
+							<?php
+							switch ($p->getStatus()):
+								case 'Tertunda':
+							?>
+                                <a href="index.php?view=admin_penugasan&id_pgd=<?php echo $p->getId() ?>" class="btn btn-danger wb-tugaskan">Tugaskan</a>
+							<?php
+								break;
+								case 'Sedang diproses':
+							?>
+								<a class="btn btn-warning wb-tugaskan">Lihat Progress</a>
+								<a class="btn btn-success wb-tugaskan">Finalisasi</a>
+							<?php
+								break;
+								case 'Selesai':
+							?>
+								<a class="btn btn-success wb-tugaskan">Deskripsi Tindak Lanjut</a>
+								<a class="btn btn-danger wb-tugaskan">Tarik Status</a>
+							<?php break; endswitch ?>
 							</div>
 						</div>
 					</td>

@@ -10,9 +10,7 @@ class MahasiswaController extends WbController {
         );
         $val = implode(", ", $valArr);
 
-        $sql = "INSERT INTO mahasiswa ($col) VALUES ($val)";
-
-        return mysqli_query($this->connection, $sql);
+        return WbController::executeInsertQuery('mahasiswa', $col, $val);
     }
 
     public function update($model){
@@ -24,27 +22,34 @@ class MahasiswaController extends WbController {
     }
 
     public function select(){
+
         $condition = $this->getPrimaryKeyCondition();
         $condition = is_null($condition) ? 1 : $condition;
-        $sql = "SELECT * FROM mahasiswa WHERE {$condition}";
-        $resultOne = mysqli_query($this->connection, $sql);
 
-        $model = new Mahasiswa();
-        if (mysqli_num_rows($resultOne) == 1) {
-            // $this->hasil = true;
-            $data = mysqli_fetch_assoc($resultOne);
-            $model->setAllValues($data);
+        $mhs = new Mahasiswa();
+        $col = implode(', ', $mhs->getColumns());
 
-            return $model;
-        } else {
-            return NULL;
+        $result = WbController::executeSelectQuery($col, 'mahasiswa', $condition);
+
+        if (!$result) return NULL;
+        $arrResult = Array();
+        $count = 0;
+        if (mysqli_num_rows($result) > 0){
+            while ($data = mysqli_fetch_array($result)){
+
+                $mhs = new Mahasiswa();
+                $mhs->setAllValues($data);
+
+                $arrResult[$count] = $mhs;
+                $count++;
+            }
         }
+
+        return $arrResult;
     }
 
     public function getNimFromUserId($user_id) {
-        $sql = "SELECT nim FROM mahasiswa WHERE user_id = '{$user_id}'";
-
-        $resultOne = mysqli_query($this->connection, $sql);
+        $resultOne = WbController::executeSelectQuery('nim', 'mahasiswa', "user_id = '{$user_id}'");
 
         if (mysqli_num_rows($resultOne) == 1) {
             // $this->hasil = true;

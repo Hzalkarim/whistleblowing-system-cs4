@@ -15,23 +15,18 @@ class KategoriController extends WbController {
     }
 
     public function select(){
+
         $condition = $this->getPrimaryKeyCondition();
         $condition = is_null($condition) ? 1 : $condition;
-        $sql = "SELECT * FROM kategori WHERE {$condition}";
-        $result = mysqli_query($this->connection, $sql);
-        $arrResult = Array();
-        if (!$result) return $arrResult;
-        $count = 0;
-        if (mysqli_num_rows($result) > 0){
-            while ($data = mysqli_fetch_array($result)){
 
-                $kategori = new Kategori();
-                $kategori->setAllValues($data);
+        $kt = new Kategori();
+        $col = implode(', ', $kt->getColumns());
 
-                $arrResult[$count] = $kategori;
-                $count++;
-            }
-        }
+        $ktTable = $kt->getTableName();
+
+        $result = WbController::executeSelectQuery($col, $ktTable, $condition);
+
+        $arrResult = WbController::getArrayFromQueryResult($result, 'Kategori');
 
         return $arrResult;
     }

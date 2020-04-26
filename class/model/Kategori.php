@@ -8,7 +8,7 @@ class Kategori extends WbModel{
 	}
 
 	protected function setForeignKeys() {
-
+		return NULL;
 	}
 
 	protected function setColumnFunc(){

@@ -10,6 +10,9 @@ if (isset($_POST['btn-submit'])) {
     $mhsCt = new MahasiswaController();
     $nimMhs = $mhsCt->getNimFromUserId($_COOKIE['user_id']);
 
+    $_POST['isi'] = $_POST['isi'] == '' ? 'NULL' : $_POST['isi'];
+    $_POST['judul'] = $_POST['judul'] == '' ? 'NULL' : $_POST['judul'];
+
     $pengaduan = new Pengaduan();
     $pengaduan->setAllValues($_POST);
     $pengaduan->setNimMahasiswa($nimMhs);
@@ -19,9 +22,11 @@ if (isset($_POST['btn-submit'])) {
 
     date_default_timezone_set("Asia/Bangkok");
     if ($result == '1') {
-        setcookie('submit_berhasil', 'hasil', time() + 2, "/");
+        setcookie('submit-berhasil', 'hasil', time() + 2, "/");
+        setcookie('submit-pesan', 'Pengaduan berhasil disubmit', time() + 2, "/");
     } else {
-        setcookie('submit_gagal', 'gagal', time()+2, "/");
+        setcookie('submit-gagal', 'gagal', time()+2, "/");
+        setcookie('submit-pesan', 'Pengaduan gagal disubmit', time() + 2, "/");
     }
 
     header("Location: ../../index.php?view=home");

@@ -3,7 +3,14 @@
 class PenindakLanjutController extends WbController {
 
     public function insert($newModel){
+        $col = implode(", ", $newModel->getColumns());
+        $valArr = array_map(
+            function ($x) { return $x == "NULL" ? $x : "'" . $x . "'"; },
+            $newModel->getAllValues()
+        );
+        $val = implode(", ", $valArr);
 
+        return WbController::executeInsertQuery('penindak_lanjut', $col, $val);
     }
 
     public function update($newModel){
@@ -18,11 +25,14 @@ class PenindakLanjutController extends WbController {
 
         $condition = $this->getPrimaryKeyCondition();
         $condition = is_null($condition) ? 1 : $condition;
-        $sql = "SELECT * FROM penindak_lanjut WHERE {$condition}";
-        $result = mysqli_query($this->connection, $sql);
 
+        $pl = new PenindakLanjut();
+        $col = implode(', ', $pl->getColumns());
+
+        $result = WbController::executeSelectQuery($col, 'penindak_lanjut', $condition);
+
+        if (!$result) return NULL;
         $arrResult = Array();
-        if (!$result) return $arrResult;
         $count = 0;
         if (mysqli_num_rows($result) > 0){
             while ($data = mysqli_fetch_array($result)){

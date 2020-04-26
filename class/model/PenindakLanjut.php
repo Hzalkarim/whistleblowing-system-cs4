@@ -8,7 +8,7 @@ class PenindakLanjut extends WbModel{
 		return $this->getIdPegawai();
 	}
 
-  protected function setColumnFunc(){
+  	protected function setColumnFunc(){
 		$colfun = Array(
 			'id_pegawai' => 'IdPegawai',
 			'user_id' => 'UserId',
@@ -18,11 +18,11 @@ class PenindakLanjut extends WbModel{
 		$this->columnFunc = $colfun;
 	}
 
-  protected function setTableName(){
+  	protected function setTableName(){
 		$this->tableName = "penindak_lanjut";
 	}
 
-  protected function setForeignKeys(){
+  	protected function setForeignKeys(){
 		$fk = Array(
 			'user' => 'user_id'
 		);

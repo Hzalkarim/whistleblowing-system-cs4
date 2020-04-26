@@ -10,6 +10,13 @@ $pages = Array(
     'pegawai' => 'Daftar Pengaduan',
     'pegawai_regis' => 'Registrasi Pegawai',
     'mhs_regis' => 'Registrasi Mahasiswa',
+    'admin_pengaduan' => 'Administrator - List Pengaduan',
+    'admin_penugasan' => 'Administrator - Penugasan',
+    'admin_daftarkan' => 'Administrator - Tambah Anggota'
+);
+
+$needNotAuth = Array(
+    'home', 'pegawai_regis', 'mhs_regis'
 );
 
 if (!isset($_GET['view'])) $_GET['view'] = 'home';
@@ -32,6 +39,9 @@ require "page/component/header.php";
     if (!$page_exist){
         echo '<div class="display-1">404 Not Found</div>';
     } else {
+        if (!in_array($_GET['view'], $needNotAuth)){
+            require "page/component/login_validator.php";
+        }
         require 'page/' . $_GET['view'] . '.php';
     }
     ?>

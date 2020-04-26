@@ -17,9 +17,9 @@ class PengaduanController extends WbController {
             $newModel->getAllValues()
         );
         $val = implode(", ", $valArr);
-        $sql = "INSERT INTO basic_pengaduan ($col) VALUES ($val)";
 
-        return mysqli_query($this->connection, $sql);
+
+        return WbController::executeInsertQuery('basic_pengaduan', $col, $val);
     }
 
     public function update($model){
@@ -33,22 +33,15 @@ class PengaduanController extends WbController {
     public function select(){
         $condition = $this->getPrimaryKeyCondition();
         $condition = is_null($condition) ? 1 : $condition;
-        $sql = "SELECT * FROM {$this->table_view} WHERE {$condition}";
-        $result = mysqli_query($this->connection, $sql);
 
-        // $model = new Pengaduan();
-        // if (mysqli_num_rows($resultOne) == 1) {
-        //     // $this->hasil = true;
-        //     $data = mysqli_fetch_assoc($resultOne);
-        //     $model->setAllValues($data);
-        //
-        //     return $model;
-        // } else {
-        //     return NULL;
-        // }
+        $p = new Pengaduan();
+        $p->setColumnFuncType($this->table_view);
+        $col = implode(', ', $p->getColumns());
 
+        $result = WbController::executeSelectQuery($col, $this->table_view, $condition);
+
+        if (!$result) return NULL;
         $arrResult = Array();
-        if (!$result) return $arrResult;
         $count = 0;
         if (mysqli_num_rows($result) > 0){
             while ($data = mysqli_fetch_array($result)){
@@ -67,7 +60,7 @@ class PengaduanController extends WbController {
 
     public function getCount(){
         $sql = "CALL `get_pengaduan_count`()";
-        $resultOne = mysqli_query($this->connection, $sql);
+        $resultOne = mysqli_query(WbController::$stConnection, $sql);
         $data = mysqli_fetch_assoc($resultOne);
 
         return $data['total'];

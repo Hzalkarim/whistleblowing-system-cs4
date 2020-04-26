@@ -11,9 +11,8 @@ $(document).ready(function(){
 
     var khususPLanjut = $(".p-lanjut-field");
 
-    $('[name="peran"]').click(function(){
-        var hehe;
-        if ($(this).val() == "admin"){
+    $('[name="role"]').click(function(){
+        if ($(this).val() == "Administrator"){
             khususPLanjut.addClass("collapse");
         } else {
             khususPLanjut.removeClass("collapse");

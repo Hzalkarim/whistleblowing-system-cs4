@@ -3,20 +3,40 @@
 class UserController extends WbController {
 
     public function insert($newModel){
-        $col = implode(", ", $newModel->getColumns());
+        $colArr = $newModel->getColumns();
         $valArr = array_map(
             function ($x) { return $x == "NULL" ? $x : "'" . $x . "'"; },
             $newModel->getAllValues()
         );
+
+        array_shift($valArr);
+        array_shift($colArr);
+
+        $col = implode(", ", $colArr);
         $val = implode(", ", $valArr);
 
-        $sql = "INSERT INTO user ($col) VALUES ($val)";
-
-        return mysqli_query($this->connection, $sql);
+        return WbController::executeInsertQuery('user', $col, $val);
     }
 
     public function update($newModel){
+        $colArr = $newModel->getColumns();
+        $valArr = $newModel->getAllValues();
+        $setterArr = array_map(
+            function ($col, $val) {
+                $v = $val == "NULL" ? $val : "'" . $val . "'";
+                return "{$col} = {$v}";
+            }, $colArr, $valArr
+        );
 
+        array_shift($setterArr);
+
+        $setter = implode(", ", $setterArr);
+
+        $condition = 0;
+        if (!is_null($this->getModel()))
+            $condition = $this->getModel()->getConditions();
+
+        return WbController::executeUpdateQuery('user', $setter, $condition);
     }
 
     public function delete(){
@@ -24,18 +44,29 @@ class UserController extends WbController {
     }
 
     public function select(){
-        $model = $this->getModel();
-        $sql = "SELECT * FROM user WHERE {$model->getConditions()}";
-        $resultOne = mysqli_query($this->connection, $sql);
 
-        if (mysqli_num_rows($resultOne) == 1) {
-            // $this->hasil = true;
-            $data = mysqli_fetch_assoc($resultOne);
-            $model->setAllValues($data);
+        $condition = $this->getPrimaryKeyCondition();
+        $condition = is_null($condition) ? 1 : $condition;
 
-            return $model;
-        } else {
-            return NULL;
+        $user = new User();
+        $col = implode(', ', $user->getColumns());
+
+        $result = WbController::executeSelectQuery($col, 'user', $condition);
+
+        if (!$result) return NULL;
+        $arrResult = Array();
+        $count = 0;
+        if (mysqli_num_rows($result) > 0){
+            while ($data = mysqli_fetch_array($result)){
+
+                $user = new User();
+                $user->setAllValues($data);
+
+                $arrResult[$count] = $user;
+                $count++;
+            }
         }
+
+        return $arrResult;
     }
 }

@@ -9,10 +9,31 @@ abstract class WbController
     private $model;
     public $connection;
 
+    protected static $stConnection;
+
     function __construct(){
-        $conn = mysqli_connect($this->host, $this->user, $this->password);
-        $dbselect = mysqli_select_db($conn, $this->dbname);
-        $this->connection = $conn;
+        // $conn = mysqli_connect($this->host, $this->user, $this->password);
+        // $dbselect = mysqli_select_db($conn, $this->dbname);
+        // $this->connection = $conn;
+        if (is_null(WbController::$stConnection))
+            WbController::createWBSys();
+    }
+
+    public static function createWBSys(){
+        $conn = mysqli_connect('localhost', 'root', '');
+        $dbselect = mysqli_select_db($conn, 'whistleblowing_system_2');
+        WbController::$stConnection = $conn;
+    }
+
+    public abstract function insert($model);
+    public abstract function update($model);
+    public abstract function delete();
+    public abstract function select();
+
+    public function selectOne(){
+        $result = $this->select();
+        if (!is_null($result) && count($result) > 0)
+            return $result[0];
     }
 
     protected function getModel(){
@@ -43,8 +64,39 @@ abstract class WbController
         }
     }
 
-    public abstract function insert($model);
-    public abstract function update($model);
-    public abstract function delete();
-    public abstract function select();
+    public static function executeSelectQuery($col, $from, $where) {
+
+        $sql = "SELECT {$col} FROM {$from} WHERE {$where}";
+        return mysqli_query(WbController::$stConnection, $sql);
+    }
+
+    public static function executeInsertQuery($into, $col, $val) {
+
+        $sql = "INSERT INTO {$into} ({$col}) VALUES ({$val})";
+        return mysqli_query(WbController::$stConnection, $sql);
+    }
+
+    public static function executeUpdateQuery($update, $set, $where){
+        $sql = "UPDATE {$update} SET {$set} WHERE {$where}";
+        return mysqli_query(WbController::$stConnection, $sql);
+    }
+
+    public static function getArrayFromQueryResult($result, $className) {
+
+        if (!$result) return NULL;
+        $arrResult = Array();
+        $count = 0;
+        if (mysqli_num_rows($result) > 0){
+            while ($data = mysqli_fetch_array($result)){
+
+                $mhs = new $className();
+                $mhs->setAllValues($data);
+
+                $arrResult[$count] = $mhs;
+                $count++;
+            }
+        }
+
+        return $arrResult;
+    }
 }
