@@ -31,6 +31,10 @@ if (isset($_POST['btn-submit'])) {
         $pLanjutCt = new PenindakLanjutController();
         $pLanjutCt->insert($pLanjut);
     }
+    
+    date_default_timezone_set("Asia/Bangkok");
+    setcookie('submit-berhasil', 'hasil', time() + 2, "/");
+    setcookie('submit-pesan', 'Pendaftaran Akun Mahasiswa berhasil. Silakan Login.', time() + 2, "/");
 
     header("Location: ../../index.php?view=home");
 }

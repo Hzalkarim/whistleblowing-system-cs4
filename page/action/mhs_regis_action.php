@@ -33,22 +33,19 @@ if ($result) {
     $mhsCt = new MahasiswaController();
     $mhsCt->insert($mhs);
 
-    setcookie('user_nama', $user->getNama(), 0, "/");
-    setcookie('user_id', $user->getId(), 0, "/");
-    setcookie('user_role', $user->getRole(), 0, "/");
+    // setcookie('user_nama', $user->getNama(), 0, "/");
+    // setcookie('user_id', $user->getId(), 0, "/");
+    // setcookie('user_role', $user->getRole(), 0, "/");
+
+    setcookie('submit-berhasil', 'hasil', time() + 2, "/");
+    setcookie('submit-pesan', 'Pendaftaran Akun Mahasiswa berhasil. Silakan Login.', time() + 2, "/");
+
 
 } else {
-    echo '<script>alert("Gagal")</script>';
+    setcookie('submit-gagal', 'gagal', time()+2, "/");
+    setcookie('submit-pesan', 'Pendaftaran Akun Mahasiswa gagal.', time() + 2, "/");
 }
 
-
-// if ($userCt->insert($user)){
-//     setcookie('user_nama', $user->getNama(), 0, "/");
-//     setcookie('user_id', $user->getUserId(), 0, "/");
-// } else {
-//     echo '<script>alert("Gagal")</script>';
-// }
-
-header("Location: ../index.php");
+header("Location: ../../index.php?view=home");
 
 ?>
