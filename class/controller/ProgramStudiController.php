@@ -24,19 +24,7 @@ class ProgramStudiController extends WbController {
 
         $result = WbController::executeSelectQuery($col, 'program_studi', $condition);
 
-        if (!$result) return NULL;
-        $arrResult = Array();
-        $count = 0;
-        if (mysqli_num_rows($result) > 0){
-            while ($data = mysqli_fetch_array($result)){
-
-                $prodi = new ProgramStudi();
-                $prodi->setAllValues($data);
-
-                $arrResult[$count] = $prodi;
-                $count++;
-            }
-        }
+        $arrResult = WbController::getArrayFromQueryResult($result, 'ProgramStudi');
 
         return $arrResult;
     }

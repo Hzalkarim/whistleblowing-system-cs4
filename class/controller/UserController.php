@@ -53,19 +53,7 @@ class UserController extends WbController {
 
         $result = WbController::executeSelectQuery($col, 'user', $condition);
 
-        if (!$result) return NULL;
-        $arrResult = Array();
-        $count = 0;
-        if (mysqli_num_rows($result) > 0){
-            while ($data = mysqli_fetch_array($result)){
-
-                $user = new User();
-                $user->setAllValues($data);
-
-                $arrResult[$count] = $user;
-                $count++;
-            }
-        }
+        $arrResult = WbController::getArrayFromQueryResult($result, 'User');
 
         return $arrResult;
     }

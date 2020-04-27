@@ -31,19 +31,8 @@ class MahasiswaController extends WbController {
 
         $result = WbController::executeSelectQuery($col, 'mahasiswa', $condition);
 
-        if (!$result) return NULL;
-        $arrResult = Array();
-        $count = 0;
-        if (mysqli_num_rows($result) > 0){
-            while ($data = mysqli_fetch_array($result)){
+        $arrResult = WbController::getArrayFromQueryResult($result, 'Mahasiswa');
 
-                $mhs = new Mahasiswa();
-                $mhs->setAllValues($data);
-
-                $arrResult[$count] = $mhs;
-                $count++;
-            }
-        }
 
         return $arrResult;
     }

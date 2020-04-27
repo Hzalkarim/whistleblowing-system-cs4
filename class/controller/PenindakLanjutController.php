@@ -31,19 +31,7 @@ class PenindakLanjutController extends WbController {
 
         $result = WbController::executeSelectQuery($col, 'penindak_lanjut', $condition);
 
-        if (!$result) return NULL;
-        $arrResult = Array();
-        $count = 0;
-        if (mysqli_num_rows($result) > 0){
-            while ($data = mysqli_fetch_array($result)){
-
-                $pLanjut = new PenindakLanjut();
-                $pLanjut->setAllValues($data);
-
-                $arrResult[$count] = $pLanjut;
-                $count++;
-            }
-        }
+        $arrResult = WbController::getArrayFromQueryResult($result, 'PenindakLanjut');
 
         return $arrResult;
     }

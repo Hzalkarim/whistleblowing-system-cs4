@@ -40,20 +40,8 @@ class PengaduanController extends WbController {
 
         $result = WbController::executeSelectQuery($col, $this->table_view, $condition);
 
-        if (!$result) return NULL;
-        $arrResult = Array();
-        $count = 0;
-        if (mysqli_num_rows($result) > 0){
-            while ($data = mysqli_fetch_array($result)){
+        $arrResult = WbController::getArrayFromQueryResult($result, 'Pengaduan');
 
-                $pengaduan = new Pengaduan();
-                $pengaduan->setColumnFuncType($this->table_view);
-                $pengaduan->setAllValues($data);
-
-                $arrResult[$count] = $pengaduan;
-                $count++;
-            }
-        }
 
         return $arrResult;
     }
