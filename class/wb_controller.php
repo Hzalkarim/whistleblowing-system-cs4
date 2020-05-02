@@ -46,6 +46,7 @@ abstract class WbController
         return $this;
     }
 
+    #static function region
     public static function executeSelectQuery($col, $from, $where) {
 
         $sql = "SELECT {$col} FROM {$from} WHERE {$where}";
@@ -75,6 +76,42 @@ abstract class WbController
                 $mhs->setAllValues($data);
 
                 $arrResult[$count] = $mhs;
+                $count++;
+            }
+        }
+
+        return $arrResult;
+    }
+
+    public static function getArrayWithForeignModelFromQueryResult($result, $modelClassNameArray) {
+
+        if (!$result) return NULL;
+
+        $arrResult = Array();
+        $count = 0;
+        if (mysqli_num_rows($result) > 0){
+            while ($data = mysqli_fetch_array($result)){
+
+                $modelClass = Array();
+                $dataSlice = Array();
+                $start = 0;
+                foreach ($modelClassNameArray as $className => $colCount) {
+                    $modelClass[] = new $className();
+                    $dataSlice[] = array_slice($data, $start, $colCount);
+                    $start += $colCount;
+                }
+
+                $fkArray = Array();
+                for ($i = 0; $i < count($modelArray); $i++) {
+                    $modelClass[$i]->setAllValues($dataSlice[$i]);
+                    if ($i > 0) {
+                        $fkArray[get_class($modelClass[$i])] = $modelClass[$i];
+                    }
+                }
+
+                $modelClass[0]->setForeignModel($fkModel);
+
+                $arrResult[$count] = $modelClass[0];
                 $count++;
             }
         }
