@@ -41,9 +41,14 @@ if (isset($_POST['btn-submit']) && isset($_POST['email']) && isset($_POST['passw
 
     // echo implode(", ", $user->getValues()) . md5($_POST['password']);die;
     if (!is_null($user) && !is_null($user->getRole()) && $user->getPassword() == md5($_POST['password'])){
-        setcookie('user_nama', $user->getNama(), 0, "/");
-        setcookie('user_id', $user->getId(), 0, "/");
-        setcookie('user_role', $user->getRole(), 0, "/");
+        session_start();
+        $_SESSION['user_nama'] = $user->getNama();
+        $_SESSION['user_id'] = $user->getId();
+        $_SESSION['user_role'] = $user->getRole();
+
+        // setcookie('user_nama', $user->getNama(), 0, "/");
+        // setcookie('user_id', $user->getId(), 0, "/");
+        // setcookie('user_role', $user->getRole(), 0, "/");
         header("Location: index.php");
     } elseif (!is_null($user) && is_null($user->getRole()) && $user->getPassword() == md5($_POST['password'])){
         $getParam = "&p=" . $user->getPassword() . "&e=" . md5($user->getEmail());

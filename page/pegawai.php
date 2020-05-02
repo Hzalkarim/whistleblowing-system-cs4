@@ -1,4 +1,6 @@
 <?php
+include "page/component/auth_validator/pegawai_validator.php";
+
 require_once "class/model/Pengaduan.php";
 require_once "class/controller/PengaduanController.php";
 require_once "class/model/PenindakLanjut.php";

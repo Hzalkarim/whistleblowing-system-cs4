@@ -1,7 +1,5 @@
 <?php
-setcookie('user_nama', '', time() - 3600, "/");
-setcookie('user_id', '', time() - 3600, "/");
-setcookie('user_role', '', time() - 3600, "/");
-
+if (!isset($_SESSION)) session_start();
+session_destroy();
 header('Location: http://localhost/whistleblowing_system/');
 ?>
