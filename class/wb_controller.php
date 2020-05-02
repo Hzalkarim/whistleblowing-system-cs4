@@ -16,10 +16,10 @@ abstract class WbController
         // $dbselect = mysqli_select_db($conn, $this->dbname);
         // $this->connection = $conn;
         if (is_null(WbController::$stConnection))
-            WbController::createWBSys();
+            WbController::create();
     }
 
-    public static function createWBSys(){
+    public static function create(){
         $conn = mysqli_connect('localhost', 'root', '');
         $dbselect = mysqli_select_db($conn, 'whistleblowing_system_2');
         WbController::$stConnection = $conn;
