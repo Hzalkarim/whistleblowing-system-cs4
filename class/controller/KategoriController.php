@@ -16,15 +16,12 @@ class KategoriController extends WbController {
 
     public function select(){
 
-        $condition = $this->getModel()->getConditions();
-        $condition = is_null($condition) ? 1 : $condition;
-
         $kt = new Kategori();
         $col = implode(', ', $kt->getColumns());
 
         $ktTable = $kt->getTableName();
 
-        $result = WbController::executeSelectQuery($col, $ktTable, $condition);
+        $result = WbController::executeSelectQuery($col, $ktTable, 1);
 
         $arrResult = WbController::getArrayFromQueryResult($result, 'Kategori');
 

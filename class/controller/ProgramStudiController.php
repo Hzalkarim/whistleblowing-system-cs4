@@ -16,13 +16,9 @@ class ProgramStudiController extends WbController {
 
     public function select(){
 
-        $condition = $this->getModel()->getConditions();
-        $condition = is_null($condition) ? 1 : $condition;
-
         $pr = new ProgramStudi();
         $col = implode(', ', $pr->getColumns());
-
-        $result = WbController::executeSelectQuery($col, 'program_studi', $condition);
+        $result = WbController::executeSelectQuery($col, 'program_studi', 1);
 
         $arrResult = WbController::getArrayFromQueryResult($result, 'ProgramStudi');
 
