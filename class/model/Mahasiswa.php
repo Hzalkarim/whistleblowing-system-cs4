@@ -1,26 +1,17 @@
 <?php
 class Mahasiswa extends WbModel{
 	private $nim;
-	private $user_id;
+	private $user;
 	private $prodi;
 
 	public function setTableName(){
 		$this->tableName = 'mahasiswa';
 	}
 
-	public function setForeignKeys() {
-		$fk = Array(
-			'user' => 'user_id',
-			'program_studi' => 'kode_prodi'
-		);
-
-		$this->foreignKeys = $fk;
-	}
-
 	protected function setColumnFunc(){
 		$colfun = Array(
 			"nim" => "Nim",
-			"user_id" => "UserId",
+			"user" => "User",
 			"kode_prodi" => "Prodi"
 		);
 
@@ -35,16 +26,16 @@ class Mahasiswa extends WbModel{
 	    return $this->nim;
 	}
 
-	    public function setNim($nim) {
+    public function setNim($nim) {
 	    $this->nim = $nim;
 	}
 
-	public function getUserId(){
-	    return $this->user_id;
+	public function getUser(){
+	    return $this->user;
 	}
 
-	public function setUserId($user_id) {
-	    $this->user_id = $user_id;
+	public function setUser($user) {
+	    $this->user = $user;
 	}
 
 	public function getProdi(){

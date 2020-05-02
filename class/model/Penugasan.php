@@ -22,16 +22,6 @@ class Penugasan extends WbModel{
 		$this->tableName = 'penugasan';
 	}
 
-	protected function setForeignKeys() {
-		$fk = Array(
-			'user' => 'user_id_admin',
-			'penindak_lanjut' => 'id_pegawai',
-			'pengaduan' => 'id_pengaduan'
-		);
-
-		$this->foreignKeys = $fk;
-	}
-
 	public function getUserIdAdmin(){
 		return $this->user_id_admin;
 	}

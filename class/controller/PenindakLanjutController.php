@@ -23,7 +23,7 @@ class PenindakLanjutController extends WbController {
 
     public function select(){
 
-        $condition = $this->getPrimaryKeyCondition();
+        $condition = $this->getModel()->getConditions();
         $condition = is_null($condition) ? 1 : $condition;
 
         $pl = new PenindakLanjut();

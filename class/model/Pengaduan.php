@@ -1,7 +1,7 @@
 <?php
 class Pengaduan extends WbModel{
 	private $id;
-	private $nim_mahasiswa;
+	private $mahasiswa;
 	private $tanggal_pengaduan;
 	private $judul;
 	private $isi;
@@ -23,17 +23,6 @@ class Pengaduan extends WbModel{
 
 	protected function setTableName() {
 		$this->tableName = 'pengaduan';
-	}
-
-	protected function setForeignKeys() {
-		$fk = Array(
-			'mahasiswa' => 'nim_mahasiswa',
-			'kategori' => 'id_kategori',
-			'user' => 'user_id_admin_verifikator',
-			'penindak_lanjut' => 'id_pegawai_penindak_lanjut'
-		);
-
-		$this->foreignKeys = $fk;
 	}
 
 	protected function setColumnFunc() {

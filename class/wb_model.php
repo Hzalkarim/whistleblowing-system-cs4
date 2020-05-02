@@ -4,12 +4,10 @@ abstract class WbModel {
 
     protected $columnFunc;
     protected $tableName;
-    protected $foreignKeys;
 
     function __construct(){
         $this->setColumnFunc();
         $this->setTableName();
-        $this->setForeignKeys();
     }
 
     /**
@@ -31,23 +29,12 @@ abstract class WbModel {
     **/
     abstract protected function setTableName();
 
-    /**
-    *
-    * provide an array of Array () { $respectiveTableName => $foreignKeyInModel}
-    * to $this->foreignKeys
-    **/
-    abstract protected function setForeignKeys();
-
     protected function getColumnFunc() {
         return $this->columnFunc;
     }
 
     public function getTableName() {
         return $this->tableName;
-    }
-
-    public function getForeignKeys() {
-        return $this->foreignKeys;
     }
 
     public function setAllValues($data) {

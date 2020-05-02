@@ -22,15 +22,6 @@ class PenindakLanjut extends WbModel{
 		$this->tableName = "penindak_lanjut";
 	}
 
-  	protected function setForeignKeys(){
-		$fk = Array(
-			'user' => 'user_id'
-		);
-
-		$this->foreignKeys = $fk;
-	}
-
-
 	public function getIdPegawai(){
 		return $this->id_pegawai;
 	}

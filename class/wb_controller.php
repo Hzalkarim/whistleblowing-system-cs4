@@ -46,24 +46,6 @@ abstract class WbController
         return $this;
     }
 
-    public function getPrimaryKeyCondition() {
-        if (is_null($this->getModel())) return NULL;
-
-        $modelClassName = explode("Controller", get_class($this))[0];
-
-        if ($this->getModel() instanceof $modelClassName) {
-            return $this->getModel()->getConditions();
-        } else {
-            $model = new $modelClassName();
-            $model_fk = $model->getForeignKeys();
-
-            $col = $model_fk[$this->getModel()->getTableName()];
-
-            $condition = "{$col} = '{$this->getModel()->getPrimaryKey()}'";
-            return $condition;
-        }
-    }
-
     public static function executeSelectQuery($col, $from, $where) {
 
         $sql = "SELECT {$col} FROM {$from} WHERE {$where}";

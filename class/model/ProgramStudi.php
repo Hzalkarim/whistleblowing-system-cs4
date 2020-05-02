@@ -13,10 +13,6 @@ class ProgramStudi extends WbModel {
         $this->tableName = 'program_studi';
     }
 
-    protected function setForeignKeys() {
-        return NULL;
-    }
-
     protected function setColumnFunc() {
         $colfun = Array(
             "kode" => "Kode",

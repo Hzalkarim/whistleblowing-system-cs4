@@ -7,10 +7,6 @@ class Kategori extends WbModel{
 		$this->tableName = 'kategori';
 	}
 
-	protected function setForeignKeys() {
-		return NULL;
-	}
-
 	protected function setColumnFunc(){
 		$colfun = Array(
 			'id' => 'Id',
