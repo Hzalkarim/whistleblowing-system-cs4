@@ -10,6 +10,7 @@ class Penugasan extends WbModel{
 
 	protected function setColumnFunc() {
 		$colfun = Array(
+			//fk
 			"user_id_admin" => "UserIdAdmin",
 			"id_pegawai" => "IdPegawai",
 			"id_pengaduan" => "IdPengaduan"

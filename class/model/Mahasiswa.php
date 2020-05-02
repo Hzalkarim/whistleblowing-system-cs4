@@ -1,7 +1,7 @@
 <?php
 class Mahasiswa extends WbModel{
 	private $nim;
-	private $user;
+	private $user_id;
 	private $prodi;
 
 	public function setTableName(){
@@ -11,7 +11,8 @@ class Mahasiswa extends WbModel{
 	protected function setColumnFunc(){
 		$colfun = Array(
 			"nim" => "Nim",
-			"user" => "User",
+			//fk
+			"user_id" => "UserId",
 			"kode_prodi" => "Prodi"
 		);
 
@@ -30,12 +31,12 @@ class Mahasiswa extends WbModel{
 	    $this->nim = $nim;
 	}
 
-	public function getUser(){
-	    return $this->user;
+	public function getUserId(){
+	    return $this->user_id;
 	}
 
-	public function setUser($user) {
-	    $this->user = $user;
+	public function setUserId($user_id) {
+	    $this->user_id = $user_id;
 	}
 
 	public function getProdi(){

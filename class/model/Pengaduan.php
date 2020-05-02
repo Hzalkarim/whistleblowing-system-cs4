@@ -1,7 +1,7 @@
 <?php
 class Pengaduan extends WbModel{
 	private $id;
-	private $mahasiswa;
+	private $nim_mahasiswa;
 	private $tanggal_pengaduan;
 	private $judul;
 	private $isi;
@@ -30,30 +30,32 @@ class Pengaduan extends WbModel{
 
 		$colfun['pengaduan'] = Array(
 			'id' => 'Id',
-			'nim_mahasiswa' => 'NimMahasiswa',
 			'tanggal_pengaduan' => 'TanggalPengaduan',
 			'judul' => 'Judul',
 			'isi' => 'Isi',
 			'bukti' => 'Bukti',
 			'status' => 'Status',
-			'id_kategori' => 'IdKategori',
 			'privasi_pengadu' => 'PrivasiPengadu',
-			'user_id_admin_verifikator' => 'UserIdAdminVerifikator',
 			'deskripsi_tindak_lanjut' => 'DeskripsiTindakLanjut',
 			'tanggal_tindak_lanjut' => 'TanggalTindakLanjut',
+			//fk
+			'nim_mahasiswa' => 'NimMahasiswa',
+			'id_kategori' => 'IdKategori',
+			'user_id_admin_verifikator' => 'UserIdAdminVerifikator',
 			'id_pegawai_penindak_lanjut' => 'IdPegawaiPenindakLanjut'
 		);
 
 		$colfun['basic_pengaduan'] = Array(
 			'id' => 'Id',
-			'nim_mahasiswa' => 'NimMahasiswa',
 			'tanggal_pengaduan' => 'TanggalPengaduan',
 			'judul' => 'Judul',
 			'isi' => 'Isi',
 			'bukti' => 'Bukti',
 			'status' => 'Status',
-			'id_kategori' => 'IdKategori',
 			'privasi_pengadu' => 'PrivasiPengadu'
+			//fk
+			'nim_mahasiswa' => 'NimMahasiswa',
+			'id_kategori' => 'IdKategori',
 		);
 
 		$colfun['basic_pengaduan_insert'] = Array(
