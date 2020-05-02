@@ -1,5 +1,7 @@
 <?php
 
+include "page/component/auth_validator/mhs_validator.php";
+
 require_once "class/model/Kategori.php";
 require_once "class/controller/KategoriController.php";
 

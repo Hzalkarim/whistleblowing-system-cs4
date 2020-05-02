@@ -1,5 +1,7 @@
 <?php
 
+include "page/component/auth_validator/admin_validator.php";
+
 require_once "class/model/Mahasiswa.php";
 require_once "class/controller/MahasiswaController.php";
 require_once "class/model/Pengaduan.php";

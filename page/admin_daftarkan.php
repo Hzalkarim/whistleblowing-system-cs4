@@ -1,4 +1,7 @@
 <?php
+
+include "page/component/auth_validator/admin_validator.php";
+
 $result = false;
 if (isset($_POST['btn-submit']) && $_POST['email'] != '' && $_POST['password'] != ''){
     require_once "class/controller/UserController.php";

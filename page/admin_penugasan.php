@@ -1,5 +1,7 @@
 <?php
 
+include "page/component/auth_validator/admin_validator.php";
+
 if (isset($_GET['id_pgd'])){
 
     require_once "class/model/Pengaduan.php";

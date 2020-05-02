@@ -1,6 +1,6 @@
 <?php
 
-if (!isset($_COOKIE['user_id']) && isset($_GET['p']) && isset($_GET['e'])){
+if (!isset($_SESSION) && isset($_GET['p']) && isset($_GET['e'])){
     require_once "class/wb_controller.php";
     require_once "class/wb_model.php";
     require_once "class/controller/UserController.php";
