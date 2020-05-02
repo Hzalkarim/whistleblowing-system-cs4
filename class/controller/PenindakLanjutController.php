@@ -23,10 +23,7 @@ class PenindakLanjutController extends WbController {
 
     public function select(){
 
-        if (!is_null($this->getModel()))
-            $condition = $this->getModel()->getConditions();
-        else
-            $condition = 1;
+        $condition = !is_null($this->getModel()) ? $this->getModel()->getConditions() : 1;
 
         $pl = new PenindakLanjut();
         $col = implode(', ', $pl->getColumns());

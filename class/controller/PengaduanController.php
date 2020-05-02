@@ -31,10 +31,7 @@ class PengaduanController extends WbController {
     }
 
     public function select(){
-        if (!is_null($this->getModel()))
-            $condition = $this->getModel()->getConditions();
-        else
-            $condition = 1;
+        $condition = !is_null($this->getModel()) ? $this->getModel()->getConditions() : 1;
 
         $p = new Pengaduan();
         $p->setColumnFuncType($this->table_view);
