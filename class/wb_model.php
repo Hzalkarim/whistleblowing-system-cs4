@@ -39,20 +39,23 @@ abstract class WbModel {
     }
 
     public function getForeignModel($modelName) {
-        return $this->$foreignModelArray[$modelName];
+        return $this->foreignModelArray[$modelName];
     }
 
     public function setForeignModel($modelArray) {
-        $this->$foreignModelArray = $modelArray;
+        $this->foreignModelArray = $modelArray;
     }
 
-    public function setAllValues($data) {
+    public function setAllValues($data, $start = 0) {
         $colfun = $this->getColumnFunc();
 
+        $i = $start - 1;
         foreach ($colfun as $col => $fun){
-            if (!isset($data[$col])) continue;
+            // if (!isset($data[$col])) continue;
+            $i++;
+            if (!isset($data[$i])) continue;
             $act = "set" . $fun;
-            $this->$act($data[$col]);
+            $this->$act($data[$i]);
         }
     }
 
@@ -60,30 +63,30 @@ abstract class WbModel {
         return array_keys($this->columnFunc);
     }
 
-    public function getConditions() {
-        $colfun = $this->getColumnFunc();
-        // $db_wb_user = Array();
-        //
-        // foreach ($colfun as $col => $fun) {
-        //     $act = "get" . $fun;
-        //     $db_wb_user[$col] = $this->$act();
-        // }
-
-        $conditions = Array();
-        foreach ($colfun as $col => $fun) {
-            $act = "get" . $fun;
-            $val = $this->$act();
-            if (is_null($val)) continue;
-
-            $conditions[] = "{$col} = '{$val}'";
-        }
-
-        $wrongNull = Array("= 'NULL'");
-        $rightNull = Array("IS NULL");
-        $rightCond = str_replace($wrongNull, $rightNull, $conditions);
-
-        return implode(" AND ", $rightCond);
-    }
+    // public function getConditions() {
+    //     $colfun = $this->getColumnFunc();
+    //     // $db_wb_user = Array();
+    //     //
+    //     // foreach ($colfun as $col => $fun) {
+    //     //     $act = "get" . $fun;
+    //     //     $db_wb_user[$col] = $this->$act();
+    //     // }
+    //
+    //     $conditions = Array();
+    //     foreach ($colfun as $col => $fun) {
+    //         $act = "get" . $fun;
+    //         $val = $this->$act();
+    //         if (is_null($val) || $val = '') continue;
+    //
+    //         $conditions[] = "{$col} = '{$val}'";
+    //     }
+    //
+    //     $wrongNull = Array("= 'NULL'");
+    //     $rightNull = Array("IS NULL");
+    //     $rightCond = str_replace($wrongNull, $rightNull, $conditions);
+    //
+    //     return implode(" AND ", $rightCond);
+    // }
 
     public function getAllValues() {
         $colfun = $this->getColumnFunc();
