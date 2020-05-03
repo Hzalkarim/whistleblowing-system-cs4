@@ -97,7 +97,7 @@ abstract class WbController
                     if ($start == 0)
                         $modelClass = $model;
                     else
-                        $fkArray[] = $model;
+                        $fkArray[$className] = $model;
 
                     $start += ($colCount * 2);
                 }
