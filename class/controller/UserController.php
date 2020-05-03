@@ -45,7 +45,7 @@ class UserController extends WbController {
 
     public function select(){
 
-        $condition = !is_null($this->getModel()) ? $this->getModel()->getConditions() : 1;
+        $condition = !is_null($this->condition) ? $this->condition : 1;
 
         $user = new User();
         $col = implode(', ', $user->getColumns());
