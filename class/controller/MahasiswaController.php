@@ -42,15 +42,15 @@ class MahasiswaController extends WbController {
         $prodi = new ProgramStudi();
 
         $colMhs = array_map(
-            function($x) { return 'mahasiswa.'.$x; },
+            function($x) { return 'mahasiswa.'.$x.' as m_'.$x; },
             array_slice($mhs->getColumns(), 0, 1)
         );
         $colUser = array_map(
-            function($x) { return 'user.'.$x; },
+            function($x) { return 'user.'.$x.' as u_'.$x; },
             $user->getColumns()
         );
         $colProdi = array_map(
-            function($x) { return 'program_studi.'.$x; },
+            function($x) { return 'program_studi.'.$x.' as p_'.$x; },
             $prodi->getColumns()
         );
         $colArr = array_merge($colMhs, $colUser, $colProdi);
