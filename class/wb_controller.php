@@ -87,24 +87,22 @@ abstract class WbController
         $count = 0;
         if (mysqli_num_rows($result) > 0){
             while ($data = mysqli_fetch_array($result)){
-
                 $modelClass = NULL;
                 $fkArray = Array();
                 $start = 0;
                 foreach ($modelClassNameArray as $className => $colCount) {
                     $model = new $className();
-                    $dataSlice = array_slice($data, $start, $colCount);
+                    $dataSlice = array_slice($data, $start, ($colCount * 2));
                     $model->setAllValues($dataSlice);
-
                     if ($start == 0)
                         $modelClass = $model;
                     else
                         $fkArray[] = $model;
 
-                    $start += $colCount;
+                    $start += ($colCount * 2);
                 }
 
-                $modelClass->setForeignModel($fkModel);
+                $modelClass->setForeignModel($fkArray);
 
                 $arrResult[$count] = $modelClass;
                 $count++;
