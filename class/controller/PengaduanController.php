@@ -44,6 +44,43 @@ class PengaduanController extends WbController {
         return $arrResult;
     }
 
+    public function joinSelect() {
+        $condition = !is_null($this->condition) ? $this->condition : 1;
+
+        $pgd = new Pengaduan();
+        $mhs = new Mahasiswa();
+        $kat = new Kategori();
+
+        $colPgd = array_map(
+            function($x) { return 'pengaduan.'.$x.' as p_'.$x; },
+            array_slice($pgd->getColumns(), 0, 9)
+        );
+        $colMhs = array_map(
+            function($x) { return 'mahasiswa.'.$x.' as m_'.$x; },
+            $mhs->getColumns()
+        );
+        $colKat = array_map(
+            function($x) { return 'kategori.'.$x.' as k_'.$x; },
+            $kat->getColumns()
+        );
+        $colArr = array_merge($colPgd, $colMhs, $colKat);
+        $col = implode(", ", $colArr);
+
+        $table = "(pengaduan LEFT JOIN mahasiswa ON pengaduan.nim_mahasiswa = mahasiswa.nim)
+                    LEFT JOIN kategori ON pengaduan.id_kategori = kategori.id";
+
+        $result = WbController::executeSelectQuery($col, $table, $condition);
+
+        $modelClassArr = Array(
+            "Pengaduan" => count($colPgd),
+            "Mahasiswa" => count($colMhs),
+            "Kategori" => count($colKat)
+        );
+
+        $resultArr = WbController::getArrayWithForeignModelFromQueryResult($result, $modelClassArr);
+        return $resultArr;
+    }
+
     public function getCount(){
         $sql = "CALL `get_pengaduan_count`()";
         $resultOne = mysqli_query(WbController::$stConnection, $sql);
