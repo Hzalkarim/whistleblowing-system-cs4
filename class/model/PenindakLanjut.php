@@ -11,9 +11,9 @@ class PenindakLanjut extends WbModel{
   	protected function setColumnFunc(){
 		$colfun = Array(
 			'id_pegawai' => 'IdPegawai',
-			'bidang' => 'Bidang'
+			'bidang' => 'Bidang',
 			//fk
-			'user_id' => 'UserId',
+			'user_id' => 'UserId'
 		);
 
 		$this->columnFunc = $colfun;
