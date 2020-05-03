@@ -14,7 +14,7 @@ $_POST['alamat'] = $_POST['alamat'] == '' ? 'NULL' : $_POST['alamat'];
 $_POST['no_telp'] = $_POST['no_telp'] == '' ? 'NULL' : $_POST['no_telp'];
 
 $user = new User();
-$user->setAllValues($_POST);
+$user->setAllValues($_POST, true);
 $user->setPassword(md5($_POST['password']));
 $user->setRole("Mahasiswa");
 
@@ -34,7 +34,7 @@ if ($result) {
     $user = $userCt->where($userEmail)->selectOne();
 
     $mhs = new Mahasiswa();
-    $mhs->setAllValues($_POST);
+    $mhs->setAllValues($_POST, true);
     $mhs->setUserId($user->getId());
 
     $mhsCt = new MahasiswaController();

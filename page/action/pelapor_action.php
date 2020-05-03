@@ -14,7 +14,7 @@ if (isset($_POST['btn-submit'])) {
     $_POST['judul'] = $_POST['judul'] == '' ? 'NULL' : $_POST['judul'];
 
     $pengaduan = new Pengaduan();
-    $pengaduan->setAllValues($_POST);
+    $pengaduan->setAllValues($_POST, true);
     $pengaduan->setNimMahasiswa($nimMhs);
 
     $pengaduanCt = new PengaduanController();

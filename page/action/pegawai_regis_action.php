@@ -15,7 +15,7 @@ if (isset($_POST['btn-submit'])) {
     $userCt = new UserController();
     $findUser = $userCt->where($user)->selectOne();
 
-    $findUser->setAllValues($_POST);
+    $findUser->setAllValues($_POST, true);
     $findUser->setPassword(md5($_POST['password']));
 
     $user->setEmail(NULL);
@@ -25,7 +25,7 @@ if (isset($_POST['btn-submit'])) {
 
     if ($findUser->getRole() == "Penindak Lanjut"){
         $pLanjut = new PenindakLanjut();
-        $pLanjut->setAllValues($_POST);
+        $pLanjut->setAllValues($_POST, true);
         $pLanjut->setUserId($user->getId());
 
         $pLanjutCt = new PenindakLanjutController();
