@@ -6,7 +6,7 @@ abstract class WbController
     private $user = "root";
     private $password = "";
     private $dbname = "whistleblowing_system_2";
-    private $model;
+    protected $condition;
     public $connection;
 
     protected static $stConnection;
@@ -36,13 +36,9 @@ abstract class WbController
             return $result[0];
     }
 
-    protected function getModel(){
-        return $this->model;
-    }
-
     #set model for conditions
-    public function where($model){
-        $this->model = $model;
+    public function where($condition){
+        $this->condition = $condition;
         return $this;
     }
 
