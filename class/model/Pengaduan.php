@@ -52,7 +52,7 @@ class Pengaduan extends WbModel{
 			'isi' => 'Isi',
 			'bukti' => 'Bukti',
 			'status' => 'Status',
-			'privasi_pengadu' => 'PrivasiPengadu'
+			'privasi_pengadu' => 'PrivasiPengadu',
 			//fk
 			'nim_mahasiswa' => 'NimMahasiswa',
 			'id_kategori' => 'IdKategori',
