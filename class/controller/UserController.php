@@ -33,8 +33,8 @@ class UserController extends WbController {
         $setter = implode(", ", $setterArr);
 
         $condition = 0;
-        if (!is_null($this->getModel()))
-            $condition = $this->getModel()->getConditions();
+        if (!is_null($this->condition))
+            $condition = $this->condition;
 
         return WbController::executeUpdateQuery('user', $setter, $condition);
     }
