@@ -46,16 +46,19 @@ abstract class WbModel {
         $this->foreignModelArray = $modelArray;
     }
 
-    public function setAllValues($data, $start = 0) {
+    public function setAllValues($data, $assoc = false) {
         $colfun = $this->getColumnFunc();
 
-        $i = $start - 1;
+        $i = -1;
         foreach ($colfun as $col => $fun){
-            // if (!isset($data[$col])) continue;
             $i++;
-            if (!isset($data[$i])) continue;
-            $act = "set" . $fun;
-            $this->$act($data[$i]);
+            if ($assoc && isset($data[$col])) {
+                $act = "set" . $fun;
+                $this->$act($data[$col]);
+            } elseif (!$assoc && isset($data[$i])) {
+                $act = "set" . $fun;
+                $this->$act($data[$i]);
+            }
         }
     }
 
