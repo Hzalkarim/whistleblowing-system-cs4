@@ -9,17 +9,9 @@ require_once "class/model/User.php";
 require_once "class/controller/UserController.php";
 
 $user = new User();
-$user->setId($_COOKIE['user_id']);
+$user->setId($_SESSION['user_id']);
 
-$userCt = new UserController();
-$user = $userCt->where($user)->selectOne();
-
-$pLanjutCt = new PenindakLanjutController();
-$pLanjut = $pLanjutCt->where($user)->selectOne();
-
-$pengaduanCt = new PengaduanController();
-$pengaduan = $pengaduanCt->setTableOrView('pengaduan')->where($pLanjut)->select();
-
+echo "<h2>Under Construction</h2>";die;
 
 ?>
 
