@@ -32,11 +32,8 @@ if (isset($_POST['btn-submit']) && isset($_POST['email']) && isset($_POST['passw
     require_once "class/controller/UserController.php";
     require_once "class/model/User.php";
 
-    $user = new User();
     $userCt = new UserController();
-
-    $user->setEmail($_POST['email']);
-    $user = $userCt->where($user)->selectOne();
+    $user = $userCt->where("email = '".$_POST['email']."'")->selectOne();
 
 
     // echo implode(", ", $user->getValues()) . md5($_POST['password']);die;
