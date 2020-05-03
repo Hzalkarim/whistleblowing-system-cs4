@@ -35,7 +35,6 @@ if (isset($_POST['btn-submit']) && isset($_POST['email']) && isset($_POST['passw
     $userCt = new UserController();
     $user = $userCt->where("email = '".$_POST['email']."'")->selectOne();
 
-
     // echo implode(", ", $user->getValues()) . md5($_POST['password']);die;
     if (!is_null($user) && !is_null($user->getRole()) && $user->getPassword() == md5($_POST['password'])){
         session_start();
