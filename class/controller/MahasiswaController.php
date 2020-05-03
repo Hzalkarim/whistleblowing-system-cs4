@@ -23,7 +23,7 @@ class MahasiswaController extends WbController {
 
     public function select(){
 
-        $condition = !is_null($this->getModel()) ? $this->getModel()->getConditions() : 1;
+        $condition = !is_null($this->condition) ? $this->condition : 1;
 
         $mhs = new Mahasiswa();
         $col = implode(', ', $mhs->getColumns());
@@ -35,23 +35,29 @@ class MahasiswaController extends WbController {
     }
 
     public function joinSelect() {
-        $condition = !is_null($this->getModel()) ? $this->getModel()->getConditions() : 1;
+        $condition = !is_null($this->condition) ? $this->condition : 1;
 
         $mhs = new Mahasiswa();
         $user = new User();
         $prodi = new ProgramStudi();
 
         $colMhs = array_map(
-            function($x) { return 'a.' . $x },
+            function($x) { return 'mahasiswa.'.$x; },
             array_slice($mhs->getColumns(), 0, 1)
         );
-        $colUser = array_map(function($x) { return 'b.' . $x }, $user->getColumns());
-        $colProdi = array_map(function($x) { return 'c.' . $x }, $user->getColumns());
+        $colUser = array_map(
+            function($x) { return 'user.'.$x; },
+            $user->getColumns()
+        );
+        $colProdi = array_map(
+            function($x) { return 'program_studi.'.$x; },
+            $prodi->getColumns()
+        );
         $colArr = array_merge($colMhs, $colUser, $colProdi);
         $col = implode(", ", $colArr);
 
-        $table = "(mahasiswa a LEFT JOIN user b ON a.user_id = b.id)
-                    LEFT JOIN program_studi c ON a.kode_prodi = c.kode";
+        $table = "(mahasiswa LEFT JOIN user ON mahasiswa.user_id = user.id)
+                    LEFT JOIN program_studi ON mahasiswa.kode_prodi = program_studi.kode";
 
         $result = WbController::executeSelectQuery($col, $table, $condition);
 
@@ -62,7 +68,6 @@ class MahasiswaController extends WbController {
         );
 
         $resultArr = WbController::getArrayWithForeignModelFromQueryResult($result, $modelClassArr);
-
         return $resultArr;
     }
 
