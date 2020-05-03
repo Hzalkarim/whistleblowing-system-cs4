@@ -2,10 +2,10 @@
 
 abstract class WbController
 {
-    private $host = "localhost";
-    private $user = "root";
-    private $password = "";
-    private $dbname = "whistleblowing_system_3";
+    // private $host = "localhost";
+    // private $user = "root";
+    // private $password = "";
+    // private $dbname = "whistleblowing_system_3";
     protected $condition;
     public $connection;
 
@@ -21,7 +21,7 @@ abstract class WbController
 
     public static function create(){
         $conn = mysqli_connect('localhost', 'root', '');
-        $dbselect = mysqli_select_db($conn, 'whistleblowing_system_2');
+        $dbselect = mysqli_select_db($conn, 'whistleblowing_system_3');
         WbController::$stConnection = $conn;
     }
 
