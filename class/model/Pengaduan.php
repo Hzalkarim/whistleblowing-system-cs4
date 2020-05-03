@@ -9,10 +9,8 @@ class Pengaduan extends WbModel{
 	private $status;
 	private $id_kategori;
 	private $privasi_pengadu;
-	private $user_id_admin_verifikator;
 	private $deskripsi_tindak_lanjut;
 	private $tanggal_tindak_lanjut;
-	private $id_pegawai_penindak_lanjut;
 
 	private $colfunType = 'pengaduan';
 
@@ -40,22 +38,7 @@ class Pengaduan extends WbModel{
 			'tanggal_tindak_lanjut' => 'TanggalTindakLanjut',
 			//fk
 			'nim_mahasiswa' => 'NimMahasiswa',
-			'id_kategori' => 'IdKategori',
-			'user_id_admin_verifikator' => 'UserIdAdminVerifikator',
-			'id_pegawai_penindak_lanjut' => 'IdPegawaiPenindakLanjut'
-		);
-
-		$colfun['basic_pengaduan'] = Array(
-			'id' => 'Id',
-			'tanggal_pengaduan' => 'TanggalPengaduan',
-			'judul' => 'Judul',
-			'isi' => 'Isi',
-			'bukti' => 'Bukti',
-			'status' => 'Status',
-			'privasi_pengadu' => 'PrivasiPengadu',
-			//fk
-			'nim_mahasiswa' => 'NimMahasiswa',
-			'id_kategori' => 'IdKategori',
+			'id_kategori' => 'IdKategori'
 		);
 
 		$colfun['basic_pengaduan_insert'] = Array(
@@ -65,14 +48,6 @@ class Pengaduan extends WbModel{
 			'bukti' => 'Bukti',
 			'id_kategori' => 'IdKategori',
 			'privasi_pengadu' => 'PrivasiPengadu'
-		);
-
-		$colfun['basic_tindak_lanjut'] = Array(
-			'id_pengaduan' => 'Id',
-			'user_id_admin_verifikator' => 'UserIdAdminVerifikator',
-			'deskripsi_tindak_lanjut' => 'DeskripsiTindakLanjut',
-			'tanggal_tindak_lanjut' => 'TanggalTindakLanjut',
-			'id_pegawai_penindak_lanjut' => 'IdPegawaiPenindakLanjut'
 		);
 
 		if (is_null($this->colfunType)) $this->colfunType = 'pengaduan';
@@ -156,14 +131,6 @@ class Pengaduan extends WbModel{
 		$this->privasi_pengadu = $privasi_pengadu;
 	}
 
-	public function getUserIdAdminVerifikator(){
-		return $this->user_id_admin_verifikator;
-	}
-
-	public function setUserIdAdminVerifikator($user_id_admin_verifikator) {
-		$this->user_id_admin_verifikator = $user_id_admin_verifikator;
-	}
-
 	public function getDeskripsiTindakLanjut(){
 		return $this->deskripsi_tindak_lanjut;
 	}
@@ -178,14 +145,6 @@ class Pengaduan extends WbModel{
 
 	public function setTanggalTindakLanjut($tanggal_tindak_lanjut) {
 		$this->tanggal_tindak_lanjut = $tanggal_tindak_lanjut;
-	}
-
-	public function getIdPegawaiPenindakLanjut(){
-		return $this->id_pegawai_penindak_lanjut;
-	}
-
-	public function setIdPegawaiPenindakLanjut($id_pegawai_penindak_lanjut) {
-		$this->id_pegawai_penindak_lanjut = $id_pegawai_penindak_lanjut;
 	}
 
 }
