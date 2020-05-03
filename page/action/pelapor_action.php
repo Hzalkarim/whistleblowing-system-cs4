@@ -1,4 +1,6 @@
 <?php
+include "../component/auth_validator/mhs_validator.php";
+
 require_once "../../class/wb_controller.php";
 require_once "../../class/wb_model.php";
 require_once "../../class/controller/PengaduanController.php";
@@ -8,7 +10,7 @@ require_once "../../class/model/Mahasiswa.php";
 
 if (isset($_POST['btn-submit'])) {
     $mhsCt = new MahasiswaController();
-    $nimMhs = $mhsCt->getNimFromUserId($_COOKIE['user_id']);
+    $nimMhs = $mhsCt->getNimFromUserId($_SESSION['user_id']);
 
     $_POST['isi'] = $_POST['isi'] == '' ? 'NULL' : $_POST['isi'];
     $_POST['judul'] = $_POST['judul'] == '' ? 'NULL' : $_POST['judul'];
