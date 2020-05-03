@@ -13,7 +13,6 @@ $pengaduanCt = new PengaduanController();
 $c = "mahasiswa.user_id = {$_SESSION['user_id']}";
 $pengaduan = $pengaduanCt->where($c)->joinSelect();
 
-
 $label = Array(
 	'Tertunda' => 'danger',
 	'Sedang diproses' => 'warning',
