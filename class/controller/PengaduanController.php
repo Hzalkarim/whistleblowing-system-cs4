@@ -19,7 +19,7 @@ class PengaduanController extends WbController {
         $val = implode(", ", $valArr);
 
 
-        return WbController::executeInsertQuery('basic_pengaduan', $col, $val);
+        return WbController::executeInsertQuery('pengaduan', $col, $val);
     }
 
     public function update($model){
