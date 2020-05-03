@@ -1,17 +1,15 @@
 <?php
 
-if (!isset($_SESSION) && isset($_GET['p']) && isset($_GET['e'])){
+if (!isset($_SESSION['user_id']) && isset($_GET['p']) && isset($_GET['e'])){
     require_once "class/wb_controller.php";
     require_once "class/wb_model.php";
     require_once "class/controller/UserController.php";
     require_once "class/model/User.php";
 
-    $user = new User();
     $userCt = new UserController();
-
-    $user->setRole('NULL');
-    $user = $userCt->where($user)->select();
-
+    $c = "role IS NULL";
+    $user = $userCt->where($c)->select();
+    
     $selectUser = NULL;
     foreach ($user as $u){
         if ($u->getPassword() == $_GET['p']){

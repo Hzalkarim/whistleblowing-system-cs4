@@ -28,10 +28,10 @@ $result = $userCt->insert($user);
 
 date_default_timezone_set("Asia/Bangkok");
 if ($result) {
-    $userEmail = new User();
-    $userEmail->setEmail($user->getEmail());
-
-    $user = $userCt->where($userEmail)->selectOne();
+    // $userEmail = new User();
+    // $userEmail->setEmail($user->getEmail());
+    $c = "email = '{$user->getEmail()}'";
+    $user = $userCt->where($c)->selectOne();
 
     $mhs = new Mahasiswa();
     $mhs->setAllValues($_POST, true);
