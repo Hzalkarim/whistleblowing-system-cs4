@@ -3,32 +3,16 @@
 include "page/component/auth_validator/mhs_validator.php";
 
 require_once "class/model/Mahasiswa.php";
-require_once "class/controller/MahasiswaController.php";
 require_once "class/model/ProgramStudi.php";
-require_once "class/controller/ProgramStudiController.php";
 require_once "class/model/Pengaduan.php";
 require_once "class/controller/PengaduanController.php";
 require_once "class/model/User.php";
-require_once "class/controller/UserController.php";
 require_once "class/model/Kategori.php";
-require_once "class/controller/KategoriController.php";
-
-$mCt = new MahasiswaController();
-$c = "user.id = {$_SESSION['user_id']}";
-
-$mhs = $mCt->where($c)->joinSelectOne();
 
 $pengaduanCt = new PengaduanController();
-$pengaduan = $pengaduanCt->where("nim_mahasiswa = '".$mhs->getNim()."'")->setTableOrView('basic_pengaduan')->select();
-$kat = new Kategori();
-$katCt = new KategoriController();
-// foreach ($p as $pengaduan){
-// 	$kat->setId($pengaduan->getIdKategori());
-// 	$katArr = $katCt->where($kat)->select();
-// 	$pengaduan->setIdKategori($katArr[0]->getNama());
-// 	print_r($pengaduan->getAllValues());
-// }
-// die;
+$c = "mahasiswa.user_id = {$_SESSION['user_id']}";
+$pengaduan = $pengaduanCt->where($c)->joinSelect();
+
 
 $label = Array(
 	'Tertunda' => 'danger',
