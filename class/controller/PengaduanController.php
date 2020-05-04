@@ -2,7 +2,7 @@
 
 class PengaduanController extends WbController {
 
-    private $table_view;
+    private $table_view = "pengaduan";
 
     public function setTableOrView($table_view) {
         $this->table_view = $table_view;
