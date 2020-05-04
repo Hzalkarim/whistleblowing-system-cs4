@@ -9,10 +9,10 @@ if (!isset($_SESSION['user_id']) && isset($_GET['p']) && isset($_GET['e'])){
     $userCt = new UserController();
     $c = "role IS NULL";
     $user = $userCt->where($c)->select();
-    
+
     $selectUser = NULL;
     foreach ($user as $u){
-        if ($u->getPassword() == $_GET['p']){
+        if (md5($u->getPassword()) == $_GET['p']){
             $selectUser = $u;
             break;
         }

@@ -9,7 +9,8 @@ if (isset($_POST['btn-submit']) && $_POST['email'] != '' && $_POST['password'] !
 
     $user = new User();
     $user->setEmail($_POST['email']);
-    $user->setPassword(md5($_POST['password']));
+    $pw = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $user->setPassword($pw);
 
     $userCt = new UserController();
     $result = $userCt->insert($user);
@@ -17,7 +18,7 @@ if (isset($_POST['btn-submit']) && $_POST['email'] != '' && $_POST['password'] !
 
 if ($result):
 
-$getParam = "&p=" . md5($_POST['password']) . "&e=" . md5($_POST['email']);
+$getParam = "&p=" . md5($pw) . "&e=" . md5($_POST['email']);
 $link = "?view=pegawai_regis{$getParam}";
 
 ?>

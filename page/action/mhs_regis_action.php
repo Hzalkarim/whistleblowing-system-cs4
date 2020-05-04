@@ -15,7 +15,7 @@ $_POST['no_telp'] = $_POST['no_telp'] == '' ? 'NULL' : $_POST['no_telp'];
 
 $user = new User();
 $user->setAllValues($_POST, true);
-$user->setPassword(md5($_POST['password']));
+$user->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
 $user->setRole("Mahasiswa");
 
 // $i = 0;
