@@ -54,9 +54,9 @@ $count = 1;
 						</button>
 					</td>
                     <td width="20%" style="overflow-x: hidden"><?php echo $p->getJudul() ?></td>
-					<td><?php echo $p->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $p->getForeignModel("Mahasiswa")->getNim() ?></td>
+					<td><?php echo $p->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $p->getChildModel("Mahasiswa")->getNim() ?></td>
 					<td><?php echo $p->getTanggalPengaduan() ?></td>
-					<td><?php echo $p->getForeignModel("Kategori")->getNama() ?></td>
+					<td><?php echo $p->getChildModel("Kategori")->getNama() ?></td>
 					<td>
                         <span class="label label-<?php echo $label[$p->getStatus()] ?>">
 							<?php echo $p->getStatus() ?>

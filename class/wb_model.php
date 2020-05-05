@@ -4,7 +4,7 @@ abstract class WbModel {
 
     protected $columnFunc;
     protected $tableName;
-    protected $foreignModelArray;
+    protected $childModelArray;
 
     function __construct(){
         $this->setColumnFunc();
@@ -38,12 +38,12 @@ abstract class WbModel {
         return $this->tableName;
     }
 
-    public function getForeignModel($modelName) {
-        return $this->foreignModelArray[$modelName];
+    public function getChildModel($modelName) {
+        return $this->childModelArray[$modelName];
     }
 
-    public function setForeignModel($modelArray) {
-        $this->foreignModelArray = $modelArray;
+    public function setChildModel($modelArray) {
+        $this->childModelArray = $modelArray;
     }
 
     public function setAllValues($data, $assoc = false) {

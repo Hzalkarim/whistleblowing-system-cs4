@@ -102,7 +102,7 @@ abstract class WbController
                     $start += ($colCount * 2);
                 }
 
-                $modelClass->setForeignModel($fkArray);
+                $modelClass->setChildModel($fkArray);
 
                 $arrResult[$count] = $modelClass;
                 $count++;

@@ -53,7 +53,7 @@ $count = 1;
 					</td>
 					<td><?php echo $p->getJudul() ?></td>
 					<td><?php echo $p->getTanggalPengaduan() ?></td>
-					<td><?php echo $p->getForeignModel("Kategori")->getNama() ?></td>
+					<td><?php echo $p->getChildModel("Kategori")->getNama() ?></td>
 					<td>
 						<span class="label label-<?php echo $label[$p->getStatus()] ?>">
 							<?php echo $p->getStatus() ?>
