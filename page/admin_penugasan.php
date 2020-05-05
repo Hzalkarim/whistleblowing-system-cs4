@@ -4,37 +4,22 @@ include "page/component/auth_validator/admin_validator.php";
 
 if (isset($_GET['id_pgd'])){
 
-    require_once "class/model/Pengaduan.php";
     require_once "class/controller/PengaduanController.php";
-
-    require_once "class/model/Kategori.php";
-    require_once "class/controller/KategoriController.php";
-
-    require_once "class/model/PenindakLanjut.php";
     require_once "class/controller/PenindakLanjutController.php";
-
+    require_once "class/model/Pengaduan.php";
+    require_once "class/model/Mahasiswa.php";
+    require_once "class/model/Kategori.php";
+    require_once "class/model/PenindakLanjut.php";
     require_once "class/model/User.php";
-    require_once "class/controller/UserController.php";
+    require_once "class/model/Penugasan.php";
 
-    $katCt = new KategoriController();
-    $katArr = $katCt->select();
-
-    $kate = Array();
-    foreach ($katArr as $k){
-        $kate[$k->getId()] = $k->getNama();
-    }
 
     $pengaduanCt = new PengaduanController();
-    $pengaduanCari = new Pengaduan();
-    $pengaduanCari->setId($_GET['id_pgd']);
-
-    $pengaduan = $pengaduanCt->setTableOrView('basic_pengaduan')->where($pengaduanCari)->selectOne();
-
+    $c = "pengaduan.id = '".$_GET['id_pgd']."'";
+    $pengaduan = $pengaduanCt->where($c)->joinSelectOne();
+    // echo "<pre>";print_r($pengaduan);die;
     $pLanjutCt = new PenindakLanjutController();
-    $pLanjut = $pLanjutCt->select();
-
-    $userCt = new UserController();
-
+    $pLanjut = $pLanjutCt->joinSelect();
 }
 
 ?>
@@ -49,7 +34,7 @@ if (isset($_GET['id_pgd'])){
                 <span class="label label-success"><?php echo $pengaduan->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $pengaduan->getNimMahasiswa() ?></span></span>
             </div>
             <div class="panel-body bg-success">
-                Kategori: <i><?php echo $kate[$pengaduan->getIdKategori()] ?></i>
+                Kategori: <i><?php echo $pengaduan->getChildModel("Kategori")->getNama() ?></i>
             </div>
             <div class="panel-body wb-panel-content">
                 <?php echo $pengaduan->getIsi() ?><br><br><br><hr>
@@ -95,14 +80,10 @@ if (isset($_GET['id_pgd'])){
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <?php foreach ($pLanjut as $p):
-                        $u = new User();
-                        $u->setId($p->getUserId());
-                        $u = $userCt->where($u)->selectOne();
-                        ?>
+                    <?php foreach ($pLanjut as $p):?>
                         <tr>
                             <td><?php echo $p->getIdPegawai() ?></td>
-                            <td><?php echo $u->getNama() ?></td>
+                            <td><?php echo $p->getChildModel("User")->getNama() ?></td>
                             <td><?php echo $p->getBidang() ?></td>
                             <td>
                                 <a href="#" class="btn btn-primary">
