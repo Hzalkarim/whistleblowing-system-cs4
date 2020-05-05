@@ -81,6 +81,12 @@ class PengaduanController extends WbController {
         return $resultArr;
     }
 
+    public function joinSelectOne(){
+        $result = $this->joinSelect();
+        if (!is_null($result) && count($result) > 0)
+            return $result[0];
+    }
+
     public function getCount(){
         $sql = "CALL `get_pengaduan_count`()";
         $resultOne = mysqli_query(WbController::$stConnection, $sql);
