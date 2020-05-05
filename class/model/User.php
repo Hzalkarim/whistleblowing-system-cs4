@@ -19,10 +19,6 @@ class User extends WbModel{
 		$this->tableName = 'user';
 	}
 
-	protected function setForeignKeys() {
-		return NULL;
-	}
-
 	protected function setColumnFunc() {
 		$colfun = Array(
 			"id" => "Id",

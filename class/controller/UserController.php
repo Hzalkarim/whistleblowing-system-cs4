@@ -33,8 +33,8 @@ class UserController extends WbController {
         $setter = implode(", ", $setterArr);
 
         $condition = 0;
-        if (!is_null($this->getModel()))
-            $condition = $this->getModel()->getConditions();
+        if (!is_null($this->condition))
+            $condition = $this->condition;
 
         return WbController::executeUpdateQuery('user', $setter, $condition);
     }
@@ -45,27 +45,14 @@ class UserController extends WbController {
 
     public function select(){
 
-        $condition = $this->getPrimaryKeyCondition();
-        $condition = is_null($condition) ? 1 : $condition;
+        $condition = !is_null($this->condition) ? $this->condition : 1;
 
         $user = new User();
         $col = implode(', ', $user->getColumns());
 
         $result = WbController::executeSelectQuery($col, 'user', $condition);
 
-        if (!$result) return NULL;
-        $arrResult = Array();
-        $count = 0;
-        if (mysqli_num_rows($result) > 0){
-            while ($data = mysqli_fetch_array($result)){
-
-                $user = new User();
-                $user->setAllValues($data);
-
-                $arrResult[$count] = $user;
-                $count++;
-            }
-        }
+        $arrResult = WbController::getArrayFromQueryResult($result, 'User');
 
         return $arrResult;
     }

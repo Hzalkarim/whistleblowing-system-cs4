@@ -32,21 +32,22 @@ if (isset($_POST['btn-submit']) && isset($_POST['email']) && isset($_POST['passw
     require_once "class/controller/UserController.php";
     require_once "class/model/User.php";
 
-    $user = new User();
     $userCt = new UserController();
-
-    $user->setEmail($_POST['email']);
-    $user = $userCt->where($user)->selectOne();
-
+    $user = $userCt->where("email = '".$_POST['email']."'")->selectOne();
 
     // echo implode(", ", $user->getValues()) . md5($_POST['password']);die;
-    if (!is_null($user) && !is_null($user->getRole()) && $user->getPassword() == md5($_POST['password'])){
-        setcookie('user_nama', $user->getNama(), 0, "/");
-        setcookie('user_id', $user->getId(), 0, "/");
-        setcookie('user_role', $user->getRole(), 0, "/");
+    if (!is_null($user) && !is_null($user->getRole()) && password_verify($_POST['password'], $user->getPassword())){
+        session_start();
+        $_SESSION['user_nama'] = $user->getNama();
+        $_SESSION['user_id'] = $user->getId();
+        $_SESSION['user_role'] = $user->getRole();
+
+        // setcookie('user_nama', $user->getNama(), 0, "/");
+        // setcookie('user_id', $user->getId(), 0, "/");
+        // setcookie('user_role', $user->getRole(), 0, "/");
         header("Location: index.php");
-    } elseif (!is_null($user) && is_null($user->getRole()) && $user->getPassword() == md5($_POST['password'])){
-        $getParam = "&p=" . $user->getPassword() . "&e=" . md5($user->getEmail());
+    } elseif (!is_null($user) && is_null($user->getRole()) && password_verify($_POST['password'], $user->getPassword())){
+        $getParam = "&p=" . md5($user->getPassword()) . "&e=" . md5($user->getEmail());
         header("Location: index.php?view=pegawai_regis{$getParam}");
     } else {
         echo '<script>alert("Email atau Password salah")</script>';

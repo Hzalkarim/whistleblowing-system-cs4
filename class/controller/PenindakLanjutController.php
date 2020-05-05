@@ -23,29 +23,52 @@ class PenindakLanjutController extends WbController {
 
     public function select(){
 
-        $condition = $this->getPrimaryKeyCondition();
-        $condition = is_null($condition) ? 1 : $condition;
+        $condition = !is_null($this->condition) ? $this->condition : 1;
 
         $pl = new PenindakLanjut();
         $col = implode(', ', $pl->getColumns());
 
         $result = WbController::executeSelectQuery($col, 'penindak_lanjut', $condition);
 
-        if (!$result) return NULL;
-        $arrResult = Array();
-        $count = 0;
-        if (mysqli_num_rows($result) > 0){
-            while ($data = mysqli_fetch_array($result)){
-
-                $pLanjut = new PenindakLanjut();
-                $pLanjut->setAllValues($data);
-
-                $arrResult[$count] = $pLanjut;
-                $count++;
-            }
-        }
+        $arrResult = WbController::getArrayFromQueryResult($result, 'PenindakLanjut');
 
         return $arrResult;
+    }
+
+    public function joinSelect() {
+        $condition = !is_null($this->condition) ? $this->condition : 1;
+
+        $plj = new PenindakLanjut();
+        $user = new User();
+
+        $colPlj = array_map(
+            function($x) { return 'penindak_lanjut.'.$x.' as p_'.$x; },
+            array_slice($plj->getColumns(), 0, 2)
+        );
+        $colUser = array_map(
+            function($x) { return 'user.'.$x.' as u_'.$x; },
+            $user->getColumns()
+        );
+        $colArr = array_merge($colPlj, $colUser);
+        $col = implode(", ", $colArr);
+
+        $table = "penindak_lanjut LEFT JOIN user ON penindak_lanjut.user_id = user.id";
+
+        $result = WbController::executeSelectQuery($col, $table, $condition);
+
+        $modelClassArr = Array(
+            "PenindakLanjut" => count($colPlj),
+            "User" => count($colUser),
+        );
+
+        $resultArr = WbController::getArrayWithForeignModelFromQueryResult($result, $modelClassArr);
+        return $resultArr;
+    }
+
+    public function joinSelectOne() {
+        $result = $this->joinSelect();
+        if (!is_null($result) && count($result) > 0)
+            return $result[0];
     }
 
 }

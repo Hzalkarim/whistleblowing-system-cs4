@@ -8,18 +8,10 @@ class Mahasiswa extends WbModel{
 		$this->tableName = 'mahasiswa';
 	}
 
-	public function setForeignKeys() {
-		$fk = Array(
-			'user' => 'user_id',
-			'program_studi' => 'kode_prodi'
-		);
-
-		$this->foreignKeys = $fk;
-	}
-
 	protected function setColumnFunc(){
 		$colfun = Array(
 			"nim" => "Nim",
+			//fk
 			"user_id" => "UserId",
 			"kode_prodi" => "Prodi"
 		);
@@ -35,7 +27,7 @@ class Mahasiswa extends WbModel{
 	    return $this->nim;
 	}
 
-	    public function setNim($nim) {
+    public function setNim($nim) {
 	    $this->nim = $nim;
 	}
 

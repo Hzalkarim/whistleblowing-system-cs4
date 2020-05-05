@@ -14,8 +14,8 @@ $_POST['alamat'] = $_POST['alamat'] == '' ? 'NULL' : $_POST['alamat'];
 $_POST['no_telp'] = $_POST['no_telp'] == '' ? 'NULL' : $_POST['no_telp'];
 
 $user = new User();
-$user->setAllValues($_POST);
-$user->setPassword(md5($_POST['password']));
+$user->setAllValues($_POST, true);
+$user->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
 $user->setRole("Mahasiswa");
 
 // $i = 0;
@@ -28,13 +28,13 @@ $result = $userCt->insert($user);
 
 date_default_timezone_set("Asia/Bangkok");
 if ($result) {
-    $userEmail = new User();
-    $userEmail->setEmail($user->getEmail());
-
-    $user = $userCt->where($userEmail)->selectOne();
+    // $userEmail = new User();
+    // $userEmail->setEmail($user->getEmail());
+    $c = "email = '{$user->getEmail()}'";
+    $user = $userCt->where($c)->selectOne();
 
     $mhs = new Mahasiswa();
-    $mhs->setAllValues($_POST);
+    $mhs->setAllValues($_POST, true);
     $mhs->setUserId($user->getId());
 
     $mhsCt = new MahasiswaController();

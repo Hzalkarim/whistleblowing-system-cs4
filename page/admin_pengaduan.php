@@ -1,5 +1,7 @@
 <?php
 
+include "page/component/auth_validator/admin_validator.php";
+
 require_once "class/model/Mahasiswa.php";
 require_once "class/controller/MahasiswaController.php";
 require_once "class/model/Pengaduan.php";
@@ -10,17 +12,7 @@ require_once "class/model/Kategori.php";
 require_once "class/controller/KategoriController.php";
 
 $pengaduanCt = new PengaduanController();
-$pengaduan = $pengaduanCt->setTableOrView('basic_pengaduan')->select();
-
-$kat = new Kategori();
-$katCt = new KategoriController();
-// foreach ($p as $pengaduan){
-// 	$kat->setId($pengaduan->getIdKategori());
-// 	$katArr = $katCt->where($kat)->select();
-// 	$pengaduan->setIdKategori($katArr[0]->getNama());
-// 	print_r($pengaduan->getAllValues());
-// }
-// die;
+$pengaduan = $pengaduanCt->joinSelect();
 
 $label = Array(
 	'Tertunda' => 'danger',
@@ -62,9 +54,9 @@ $count = 1;
 						</button>
 					</td>
                     <td width="20%" style="overflow-x: hidden"><?php echo $p->getJudul() ?></td>
-					<td><?php echo $p->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $p->getNimMahasiswa() ?></td>
+					<td><?php echo $p->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $p->getChildModel("Mahasiswa")->getNim() ?></td>
 					<td><?php echo $p->getTanggalPengaduan() ?></td>
-					<td><?php echo $p->getIdKategori() ?></td>
+					<td><?php echo $p->getChildModel("Kategori")->getNama() ?></td>
 					<td>
                         <span class="label label-<?php echo $label[$p->getStatus()] ?>">
 							<?php echo $p->getStatus() ?>

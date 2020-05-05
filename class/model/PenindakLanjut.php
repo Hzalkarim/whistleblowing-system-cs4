@@ -11,8 +11,9 @@ class PenindakLanjut extends WbModel{
   	protected function setColumnFunc(){
 		$colfun = Array(
 			'id_pegawai' => 'IdPegawai',
-			'user_id' => 'UserId',
-			'bidang' => 'Bidang'
+			'bidang' => 'Bidang',
+			//fk
+			'user_id' => 'UserId'
 		);
 
 		$this->columnFunc = $colfun;
@@ -21,15 +22,6 @@ class PenindakLanjut extends WbModel{
   	protected function setTableName(){
 		$this->tableName = "penindak_lanjut";
 	}
-
-  	protected function setForeignKeys(){
-		$fk = Array(
-			'user' => 'user_id'
-		);
-
-		$this->foreignKeys = $fk;
-	}
-
 
 	public function getIdPegawai(){
 		return $this->id_pegawai;

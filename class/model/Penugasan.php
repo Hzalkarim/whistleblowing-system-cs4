@@ -10,6 +10,7 @@ class Penugasan extends WbModel{
 
 	protected function setColumnFunc() {
 		$colfun = Array(
+			//fk
 			"user_id_admin" => "UserIdAdmin",
 			"id_pegawai" => "IdPegawai",
 			"id_pengaduan" => "IdPengaduan"
@@ -20,16 +21,6 @@ class Penugasan extends WbModel{
 
 	protected function setTableName() {
 		$this->tableName = 'penugasan';
-	}
-
-	protected function setForeignKeys() {
-		$fk = Array(
-			'user' => 'user_id_admin',
-			'penindak_lanjut' => 'id_pegawai',
-			'pengaduan' => 'id_pengaduan'
-		);
-
-		$this->foreignKeys = $fk;
 	}
 
 	public function getUserIdAdmin(){

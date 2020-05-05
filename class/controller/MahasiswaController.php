@@ -23,29 +23,58 @@ class MahasiswaController extends WbController {
 
     public function select(){
 
-        $condition = $this->getPrimaryKeyCondition();
-        $condition = is_null($condition) ? 1 : $condition;
+        $condition = !is_null($this->condition) ? $this->condition : 1;
 
         $mhs = new Mahasiswa();
         $col = implode(', ', $mhs->getColumns());
 
         $result = WbController::executeSelectQuery($col, 'mahasiswa', $condition);
-
-        if (!$result) return NULL;
-        $arrResult = Array();
-        $count = 0;
-        if (mysqli_num_rows($result) > 0){
-            while ($data = mysqli_fetch_array($result)){
-
-                $mhs = new Mahasiswa();
-                $mhs->setAllValues($data);
-
-                $arrResult[$count] = $mhs;
-                $count++;
-            }
-        }
+        $arrResult = WbController::getArrayFromQueryResult($result, 'Mahasiswa');
 
         return $arrResult;
+    }
+
+    public function joinSelect() {
+        $condition = !is_null($this->condition) ? $this->condition : 1;
+
+        $mhs = new Mahasiswa();
+        $user = new User();
+        $prodi = new ProgramStudi();
+
+        $colMhs = array_map(
+            function($x) { return 'mahasiswa.'.$x.' as m_'.$x; },
+            array_slice($mhs->getColumns(), 0, 1)
+        );
+        $colUser = array_map(
+            function($x) { return 'user.'.$x.' as u_'.$x; },
+            $user->getColumns()
+        );
+        $colProdi = array_map(
+            function($x) { return 'program_studi.'.$x.' as p_'.$x; },
+            $prodi->getColumns()
+        );
+        $colArr = array_merge($colMhs, $colUser, $colProdi);
+        $col = implode(", ", $colArr);
+
+        $table = "(mahasiswa LEFT JOIN user ON mahasiswa.user_id = user.id)
+                    LEFT JOIN program_studi ON mahasiswa.kode_prodi = program_studi.kode";
+
+        $result = WbController::executeSelectQuery($col, $table, $condition);
+
+        $modelClassArr = Array(
+            "Mahasiswa" => count($colMhs),
+            "User" => count($colUser),
+            "ProgramStudi" => count($colProdi)
+        );
+
+        $resultArr = WbController::getArrayWithForeignModelFromQueryResult($result, $modelClassArr);
+        return $resultArr;
+    }
+
+    public function joinSelectOne() {
+        $result = $this->joinSelect();
+        if (!is_null($result) && count($result) > 0)
+            return $result[0];
     }
 
     public function getNimFromUserId($user_id) {

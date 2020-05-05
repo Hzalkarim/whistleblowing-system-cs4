@@ -2,11 +2,11 @@
 
 abstract class WbController
 {
-    private $host = "localhost";
-    private $user = "root";
-    private $password = "";
-    private $dbname = "whistleblowing_system_2";
-    private $model;
+    // private $host = "localhost";
+    // private $user = "root";
+    // private $password = "";
+    // private $dbname = "whistleblowing_system_3";
+    protected $condition;
     public $connection;
 
     protected static $stConnection;
@@ -16,12 +16,12 @@ abstract class WbController
         // $dbselect = mysqli_select_db($conn, $this->dbname);
         // $this->connection = $conn;
         if (is_null(WbController::$stConnection))
-            WbController::createWBSys();
+            WbController::create();
     }
 
-    public static function createWBSys(){
+    public static function create(){
         $conn = mysqli_connect('localhost', 'root', '');
-        $dbselect = mysqli_select_db($conn, 'whistleblowing_system_2');
+        $dbselect = mysqli_select_db($conn, 'whistleblowing_system_3');
         WbController::$stConnection = $conn;
     }
 
@@ -36,34 +36,13 @@ abstract class WbController
             return $result[0];
     }
 
-    protected function getModel(){
-        return $this->model;
-    }
-
     #set model for conditions
-    public function where($model){
-        $this->model = $model;
+    public function where($condition){
+        $this->condition = $condition;
         return $this;
     }
 
-    public function getPrimaryKeyCondition() {
-        if (is_null($this->getModel())) return NULL;
-
-        $modelClassName = explode("Controller", get_class($this))[0];
-
-        if ($this->getModel() instanceof $modelClassName) {
-            return $this->getModel()->getConditions();
-        } else {
-            $model = new $modelClassName();
-            $model_fk = $model->getForeignKeys();
-
-            $col = $model_fk[$this->getModel()->getTableName()];
-
-            $condition = "{$col} = '{$this->getModel()->getPrimaryKey()}'";
-            return $condition;
-        }
-    }
-
+    #static function region
     public static function executeSelectQuery($col, $from, $where) {
 
         $sql = "SELECT {$col} FROM {$from} WHERE {$where}";
@@ -93,6 +72,39 @@ abstract class WbController
                 $mhs->setAllValues($data);
 
                 $arrResult[$count] = $mhs;
+                $count++;
+            }
+        }
+
+        return $arrResult;
+    }
+
+    public static function getArrayWithForeignModelFromQueryResult($result, $modelClassNameArray) {
+
+        if (!$result) return NULL;
+
+        $arrResult = Array();
+        $count = 0;
+        if (mysqli_num_rows($result) > 0){
+            while ($data = mysqli_fetch_array($result)){
+                $modelClass = NULL;
+                $fkArray = Array();
+                $start = 0;
+                foreach ($modelClassNameArray as $className => $colCount) {
+                    $model = new $className();
+                    $dataSlice = array_slice($data, $start, ($colCount * 2));
+                    $model->setAllValues($dataSlice);
+                    if ($start == 0)
+                        $modelClass = $model;
+                    else
+                        $fkArray[$className] = $model;
+
+                    $start += ($colCount * 2);
+                }
+
+                $modelClass->setChildModel($fkArray);
+
+                $arrResult[$count] = $modelClass;
                 $count++;
             }
         }

@@ -1,31 +1,17 @@
 <?php
 
+include "page/component/auth_validator/mhs_validator.php";
+
 require_once "class/model/Mahasiswa.php";
-require_once "class/controller/MahasiswaController.php";
+require_once "class/model/ProgramStudi.php";
 require_once "class/model/Pengaduan.php";
 require_once "class/controller/PengaduanController.php";
 require_once "class/model/User.php";
-require_once "class/controller/UserController.php";
 require_once "class/model/Kategori.php";
-require_once "class/controller/KategoriController.php";
-
-$user = new User();
-$user->setId($_COOKIE['user_id']);
-
-$mCt = new MahasiswaController();
-$mhs = $mCt->where($user)->selectOne();
 
 $pengaduanCt = new PengaduanController();
-$pengaduan = $pengaduanCt->where($mhs)->setTableOrView('basic_pengaduan')->select();
-$kat = new Kategori();
-$katCt = new KategoriController();
-// foreach ($p as $pengaduan){
-// 	$kat->setId($pengaduan->getIdKategori());
-// 	$katArr = $katCt->where($kat)->select();
-// 	$pengaduan->setIdKategori($katArr[0]->getNama());
-// 	print_r($pengaduan->getAllValues());
-// }
-// die;
+$c = "mahasiswa.user_id = {$_SESSION['user_id']}";
+$pengaduan = $pengaduanCt->where($c)->joinSelect();
 
 $label = Array(
 	'Tertunda' => 'danger',
@@ -67,7 +53,7 @@ $count = 1;
 					</td>
 					<td><?php echo $p->getJudul() ?></td>
 					<td><?php echo $p->getTanggalPengaduan() ?></td>
-					<td><?php echo $p->getIdKategori() ?></td>
+					<td><?php echo $p->getChildModel("Kategori")->getNama() ?></td>
 					<td>
 						<span class="label label-<?php echo $label[$p->getStatus()] ?>">
 							<?php echo $p->getStatus() ?>

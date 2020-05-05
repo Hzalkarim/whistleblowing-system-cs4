@@ -2,7 +2,7 @@
 
 class PengaduanController extends WbController {
 
-    private $table_view;
+    private $table_view = "pengaduan";
 
     public function setTableOrView($table_view) {
         $this->table_view = $table_view;
@@ -19,7 +19,7 @@ class PengaduanController extends WbController {
         $val = implode(", ", $valArr);
 
 
-        return WbController::executeInsertQuery('basic_pengaduan', $col, $val);
+        return WbController::executeInsertQuery('pengaduan', $col, $val);
     }
 
     public function update($model){
@@ -31,31 +31,60 @@ class PengaduanController extends WbController {
     }
 
     public function select(){
-        $condition = $this->getPrimaryKeyCondition();
-        $condition = is_null($condition) ? 1 : $condition;
-
+        $condition = !is_null($this->condition) ? $this->condition : 1;
         $p = new Pengaduan();
         $p->setColumnFuncType($this->table_view);
         $col = implode(', ', $p->getColumns());
 
         $result = WbController::executeSelectQuery($col, $this->table_view, $condition);
 
-        if (!$result) return NULL;
-        $arrResult = Array();
-        $count = 0;
-        if (mysqli_num_rows($result) > 0){
-            while ($data = mysqli_fetch_array($result)){
+        $arrResult = WbController::getArrayFromQueryResult($result, 'Pengaduan');
 
-                $pengaduan = new Pengaduan();
-                $pengaduan->setColumnFuncType($this->table_view);
-                $pengaduan->setAllValues($data);
-
-                $arrResult[$count] = $pengaduan;
-                $count++;
-            }
-        }
 
         return $arrResult;
+    }
+
+    public function joinSelect() {
+        $condition = !is_null($this->condition) ? $this->condition : 1;
+
+        $pgd = new Pengaduan();
+        $mhs = new Mahasiswa();
+        $kat = new Kategori();
+
+        $colPgd = array_map(
+            function($x) { return 'pengaduan.'.$x.' as p_'.$x; },
+            array_slice($pgd->getColumns(), 0, 9)
+        );
+        $colMhs = array_map(
+            function($x) { return 'mahasiswa.'.$x.' as m_'.$x; },
+            $mhs->getColumns()
+        );
+        $colKat = array_map(
+            function($x) { return 'kategori.'.$x.' as k_'.$x; },
+            $kat->getColumns()
+        );
+        $colArr = array_merge($colPgd, $colMhs, $colKat);
+        $col = implode(", ", $colArr);
+
+        $table = "(pengaduan LEFT JOIN mahasiswa ON pengaduan.nim_mahasiswa = mahasiswa.nim)
+                    LEFT JOIN kategori ON pengaduan.id_kategori = kategori.id";
+
+        $result = WbController::executeSelectQuery($col, $table, $condition);
+
+        $modelClassArr = Array(
+            "Pengaduan" => count($colPgd),
+            "Mahasiswa" => count($colMhs),
+            "Kategori" => count($colKat)
+        );
+
+        $resultArr = WbController::getArrayWithForeignModelFromQueryResult($result, $modelClassArr);
+        return $resultArr;
+    }
+
+    public function joinSelectOne(){
+        $result = $this->joinSelect();
+        if (!is_null($result) && count($result) > 0)
+            return $result[0];
     }
 
     public function getCount(){

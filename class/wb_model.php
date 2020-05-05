@@ -4,12 +4,11 @@ abstract class WbModel {
 
     protected $columnFunc;
     protected $tableName;
-    protected $foreignKeys;
+    protected $childModelArray;
 
     function __construct(){
         $this->setColumnFunc();
         $this->setTableName();
-        $this->setForeignKeys();
     }
 
     /**
@@ -31,14 +30,7 @@ abstract class WbModel {
     **/
     abstract protected function setTableName();
 
-    /**
-    *
-    * provide an array of Array () { $respectiveTableName => $foreignKeyInModel}
-    * to $this->foreignKeys
-    **/
-    abstract protected function setForeignKeys();
-
-    protected function getColumnFunc() {
+    public function getColumnFunc() {
         return $this->columnFunc;
     }
 
@@ -46,17 +38,27 @@ abstract class WbModel {
         return $this->tableName;
     }
 
-    public function getForeignKeys() {
-        return $this->foreignKeys;
+    public function getChildModel($modelName) {
+        return $this->childModelArray[$modelName];
     }
 
-    public function setAllValues($data) {
+    public function setChildModel($modelArray) {
+        $this->childModelArray = $modelArray;
+    }
+
+    public function setAllValues($data, $assoc = false) {
         $colfun = $this->getColumnFunc();
 
+        $i = -1;
         foreach ($colfun as $col => $fun){
-            if (!isset($data[$col])) continue;
-            $act = "set" . $fun;
-            $this->$act($data[$col]);
+            $i++;
+            if ($assoc && isset($data[$col])) {
+                $act = "set" . $fun;
+                $this->$act($data[$col]);
+            } elseif (!$assoc && isset($data[$i])) {
+                $act = "set" . $fun;
+                $this->$act($data[$i]);
+            }
         }
     }
 
@@ -64,30 +66,30 @@ abstract class WbModel {
         return array_keys($this->columnFunc);
     }
 
-    public function getConditions() {
-        $colfun = $this->getColumnFunc();
-        // $db_wb_user = Array();
-        //
-        // foreach ($colfun as $col => $fun) {
-        //     $act = "get" . $fun;
-        //     $db_wb_user[$col] = $this->$act();
-        // }
-
-        $conditions = Array();
-        foreach ($colfun as $col => $fun) {
-            $act = "get" . $fun;
-            $val = $this->$act();
-            if (is_null($val)) continue;
-
-            $conditions[] = "{$col} = '{$val}'";
-        }
-
-        $wrongNull = Array("= 'NULL'");
-        $rightNull = Array("IS NULL");
-        $rightCond = str_replace($wrongNull, $rightNull, $conditions);
-
-        return implode(" AND ", $rightCond);
-    }
+    // public function getConditions() {
+    //     $colfun = $this->getColumnFunc();
+    //     // $db_wb_user = Array();
+    //     //
+    //     // foreach ($colfun as $col => $fun) {
+    //     //     $act = "get" . $fun;
+    //     //     $db_wb_user[$col] = $this->$act();
+    //     // }
+    //
+    //     $conditions = Array();
+    //     foreach ($colfun as $col => $fun) {
+    //         $act = "get" . $fun;
+    //         $val = $this->$act();
+    //         if (is_null($val) || $val = '') continue;
+    //
+    //         $conditions[] = "{$col} = '{$val}'";
+    //     }
+    //
+    //     $wrongNull = Array("= 'NULL'");
+    //     $rightNull = Array("IS NULL");
+    //     $rightCond = str_replace($wrongNull, $rightNull, $conditions);
+    //
+    //     return implode(" AND ", $rightCond);
+    // }
 
     public function getAllValues() {
         $colfun = $this->getColumnFunc();
