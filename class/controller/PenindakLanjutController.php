@@ -35,4 +35,40 @@ class PenindakLanjutController extends WbController {
         return $arrResult;
     }
 
+    public function joinSelect() {
+        $condition = !is_null($this->condition) ? $this->condition : 1;
+
+        $plj = new PenindakLanjut();
+        $user = new User();
+
+        $colPlj = array_map(
+            function($x) { return 'penindak_lanjut.'.$x.' as p_'.$x; },
+            array_slice($plj->getColumns(), 0, 2)
+        );
+        $colUser = array_map(
+            function($x) { return 'user.'.$x.' as u_'.$x; },
+            $user->getColumns()
+        );
+        $colArr = array_merge($colPlj, $colUser);
+        $col = implode(", ", $colArr);
+
+        $table = "penindak_lanjut LEFT JOIN user ON penindak_lanjut.user_id = user.id";
+
+        $result = WbController::executeSelectQuery($col, $table, $condition);
+
+        $modelClassArr = Array(
+            "PenindakLanjut" => count($colPlj),
+            "User" => count($colUser),
+        );
+
+        $resultArr = WbController::getArrayWithForeignModelFromQueryResult($result, $modelClassArr);
+        return $resultArr;
+    }
+
+    public function joinSelectOne() {
+        $result = $this->joinSelect();
+        if (!is_null($result) && count($result) > 0)
+            return $result[0];
+    }
+
 }
