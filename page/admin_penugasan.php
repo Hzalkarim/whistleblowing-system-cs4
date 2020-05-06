@@ -31,7 +31,7 @@ if (isset($_GET['id_pgd'])){
             <div class="panel-heading">
                 <b style="font-size: 1.75em;"><?php echo $pengaduan->getJudul() ?></b>
                 <span style="position: absolute; right:5%;">oleh:
-                <span class="label label-success"><?php echo $pengaduan->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $pengaduan->getNimMahasiswa() ?></span></span>
+                <span class="label label-success"><?php echo $pengaduan->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $pengaduan->getChildModel("Mahasiswa")->getNim() ?></span></span>
             </div>
             <div class="panel-body bg-success">
                 Kategori: <i><?php echo $pengaduan->getChildModel("Kategori")->getNama() ?></i>
