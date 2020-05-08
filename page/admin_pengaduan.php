@@ -100,13 +100,15 @@ $count = 1;
 								case 'Sedang diproses':
 							?>
 								<a href="index.php?view=admin_progress&id_prg=<?php echo $p->getId() ?>" class="btn btn-warning wb-tugaskan">Lihat Progress</a>
-								<a type="button" class="btn btn-success wb-tugaskan" data-toggle="modal" data-target="#myModalFinalisasi" name="btn-final">Finalisasi</a>
+								<!-- <a href="#f-<?php echo $p->getId() ?>" class="btn btn-success wb-tugaskan" data-toggle="modal" data-target="#myModalFinalisasi" name="btn-final">Finalisasi</a> -->
+								<a href="page/action/update_status_pengaduan.php?final_id_pgd=<?php echo $p->getId() ?>" class="btn btn-success wb-tugaskan">Finalisasi</a>
 							<?php
 								break;
 								case 'Selesai':
 							?>
 								<a href="index.php?view=admin_deskripsiTL&id_dtl=<?php echo $p->getId() ?>" class="btn btn-success wb-tugaskan">Deskripsi Tindak Lanjut</a>
-								<a type="button" class="btn btn-danger wb-tugaskan" data-toggle="modal" data-target="#myModalTarikStatus" name="btn-tunda">Tarik Status</a>
+								<!-- <a href="#s-<?php echo $p->getId() ?>" class="btn btn-danger wb-tugaskan" data-toggle="modal" data-target="#myModalTarikStatus" name="btn-tunda">Tarik Status</a> -->
+								<a href="page/action/update_status_pengaduan.php?tunda_id_pgd=<?php echo $p->getId() ?>" class="btn btn-danger wb-tugaskan">Tarik Status</a>
 							<?php break; endswitch ?>
 							</div>
 						</div>
@@ -115,44 +117,5 @@ $count = 1;
 			<?php endforeach;endif; ?>
 			</tbody>
 		</table>
-	</div>
-</div>
-
-<pre>
-<!-- Modal -->
-<div class="modal fade" id="myModalFinalisasi" role="dialog">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header alert-success">
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			<h4 class="modal-title">Modal Header</h4>
-			</div>
-			<div class="modal-body">
-			<?php $p->setStatus('Selesai');print_r($p); ?>
-			<p>Laporan pengaduan selesai!!</p>
-			</div>
-			<div class="modal-footer alert-success">
-			<button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModalTarikStatus" role="dialog">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header alert-danger">
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			<h4 class="modal-title">Modal Header</h4>
-			</div>
-			<div class="modal-body">
-			<?php $p->setStatus('Tertunda');print_r($p); ?>
-			<p>Laporan pengaduan ditunda!</p>
-			</div>
-			<div class="modal-footer alert-danger">
-			<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-			</div>
-		</div>
 	</div>
 </div>
