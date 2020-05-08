@@ -65,7 +65,7 @@ $count = 1;
 				</tr>
 				<tr></tr>
 				<tr>
-					<td colspan="7" class="wb-hidden-row" method="get" action="page/action/update_status_pengaduan.php">
+					<td colspan="7" class="wb-hidden-row">
 						<div class="wb-content-hidden collapse" id="p-<?php echo $p->getId() ?>">
 							<div class="wb-content-show">
                                 <b>Judul:</b><br>
