@@ -30,6 +30,7 @@ if (isset($_GET['id_dtl'])){
 <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
+    <h2 align="center">Deskripsi Laporan Tindak Lanjut</h2><br><br>
     <?php if (!is_null($pengaduan)): ?>
         <div class="panel panel-success">
             <div class="panel-heading">
