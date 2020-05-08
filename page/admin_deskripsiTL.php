@@ -14,15 +14,21 @@ if (isset($_GET['id_dtl'])){
     require_once "class/model/User.php";
     require_once "class/model/Penugasan.php";
 
-
-    $pengaduanCt = new PengaduanController();
-    $c = "pengaduan.id = '".$_GET['id_dtl']."'";
-    $pengaduan = $pengaduanCt->where($c)->joinSelectOne();
-    // echo "<pre>";print_r($pengaduan);die;
-    $pLanjutCt = new PenindakLanjutController();
-    $pLanjut = $pLanjutCt->joinSelect();
     $penugasanCt = new PenugasanController();
-    $penugasan = $penugasanCt->where($c)->joinSelect()[0];
+    $c = "id_pengaduan = '".$_GET['id_dtl']."'";
+    $penugasan = $penugasanCt->where($c)->selectOne();
+
+    $pengaduan = NULL;
+    $pLanjut = NULL;
+    if ($penugasan){
+        $pengaduanCt = new PengaduanController();
+        $c = "pengaduan.id = '".$_GET['id_dtl']."'";
+        $pengaduan = $pengaduanCt->where($c)->joinSelectOne();
+        // echo "<pre>";print_r($pengaduan);die;
+        $pLanjutCt = new PenindakLanjutController();
+        $c = "penindak_lanjut.id_pegawai = {$penugasan->getIdPegawai()}";
+        $pLanjut = $pLanjutCt->where($c)->joinSelectOne();
+    }
 }
 
 ?>
@@ -36,7 +42,7 @@ if (isset($_GET['id_dtl'])){
             <div class="panel-heading">
                 <b style="font-size: 1.75em;"><?php echo $pengaduan->getJudul() ?></b>
                 <span style="position: absolute; right:5%;">oleh:
-                <span class="label label-info"><?php echo $pengaduan->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $pengaduan->getNimMahasiswa() ?></span></span>
+                <span class="label label-success"><?php echo $pengaduan->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $pengaduan->getChildModel("Mahasiswa")->getNim() ?></span></span>
             </div>
             <div class="panel-body bg-success">
                 Kategori: <i><?php echo $pengaduan->getChildModel("Kategori")->getNama() ?></i>
@@ -47,7 +53,7 @@ if (isset($_GET['id_dtl'])){
                 <?php echo $pengaduan->getBukti() == '' ? 'Tidak ada' : $pengaduan->getBukti() ?>
             </div>
              <div class="panel-body bg-info">
-                Ditindak lanjuti oleh: <i><?php echo $penugasan->getChildModel("PenindakLanjut")->getBidang();
+                Ditindak lanjuti oleh: <i><?php echo $pLanjut->getChildModel("User")->getNama();
                 ?></i>
             </div>
             <div class="panel-body wb-panel-content">
