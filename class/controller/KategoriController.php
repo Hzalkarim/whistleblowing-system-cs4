@@ -3,7 +3,10 @@
 class KategoriController extends WbController {
 
     public function insert($model){
+        $col = $newModel->getColumns()[1];
+        $val = $newModel->getAllValues()[1];
 
+        return WbController::executeInsertQuery('kategori', $col, $val);
     }
 
     public function update($model){
