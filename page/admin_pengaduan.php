@@ -25,6 +25,21 @@ $count = 1;
 
 <div class="row">
 	<div class="col-12">
+	<?php if (isset($_COOKIE['update-berhasil'])): ?>
+	    <div class="col-12">
+	        <div class="alert alert-success">
+	            <b>Berhasil!</b> <?php echo $_COOKIE['update-pesan'] ?>
+	        </div>
+	    </div>
+	<?php elseif (isset($_COOKIE['update-gagal'])): ?>
+	    <div class="col-12">
+	        <div class="alert alert-danger">
+	            <b>Gagal!</b> <?php echo $_COOKIE['update-pesan'] ?>
+	        </div>
+	    </div>
+	<?php endif; ?>
+	</div>
+	<div class="col-12">
 		<h1>Daftar Pengaduan</h1>
 		<hr />
 		<table class="table">
@@ -84,14 +99,16 @@ $count = 1;
 								break;
 								case 'Sedang diproses':
 							?>
-								<a class="btn btn-warning wb-tugaskan">Lihat Progress</a>
-								<a class="btn btn-success wb-tugaskan">Finalisasi</a>
+								<a href="index.php?view=admin_progress&id_prg=<?php echo $p->getId() ?>" class="btn btn-warning wb-tugaskan">Lihat Progress</a>
+								<!-- <a href="#f-<?php echo $p->getId() ?>" class="btn btn-success wb-tugaskan" data-toggle="modal" data-target="#myModalFinalisasi" name="btn-final">Finalisasi</a> -->
+								<a href="page/action/update_status_pengaduan.php?final_id_pgd=<?php echo $p->getId() ?>" class="btn btn-success wb-tugaskan">Finalisasi</a>
 							<?php
 								break;
 								case 'Selesai':
 							?>
-								<a class="btn btn-success wb-tugaskan">Deskripsi Tindak Lanjut</a>
-								<a class="btn btn-danger wb-tugaskan">Tarik Status</a>
+								<a href="index.php?view=admin_deskripsiTL&id_dtl=<?php echo $p->getId() ?>" class="btn btn-success wb-tugaskan">Deskripsi Tindak Lanjut</a>
+								<!-- <a href="#s-<?php echo $p->getId() ?>" class="btn btn-danger wb-tugaskan" data-toggle="modal" data-target="#myModalTarikStatus" name="btn-tunda">Tarik Status</a> -->
+								<a href="page/action/update_status_pengaduan.php?tunda_id_pgd=<?php echo $p->getId() ?>" class="btn btn-danger wb-tugaskan">Tarik Status</a>
 							<?php break; endswitch ?>
 							</div>
 						</div>
