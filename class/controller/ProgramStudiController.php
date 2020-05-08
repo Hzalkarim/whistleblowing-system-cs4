@@ -3,8 +3,12 @@
 class ProgramStudiController extends WbController {
 
     public function insert($model){
-        $col = $newModel->getColumns()[1];
-        $val = $newModel->getAllValues()[1];
+        $col = implode(", ", $newModel->getColumns());
+        $valArr = array_map(
+            function ($x) { return $x == "NULL" ? $x : "'" . $x . "'"; },
+            $newModel->getAllValues()
+        );
+        $val = implode(", ", $valArr);
 
         return WbController::executeInsertQuery('program_studi', $col, $val);
     }
