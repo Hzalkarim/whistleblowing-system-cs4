@@ -23,7 +23,24 @@ class PengaduanController extends WbController {
     }
 
     public function update($model){
+        $colArr = $newModel->getColumns();
+        $valArr = $newModel->getAllValues();
+        $setterArr = array_map(
+            function ($col, $val) {
+                $v = $val == "NULL" ? $val : "'" . $val . "'";
+                return "{$col} = {$v}";
+            }, $colArr, $valArr
+        );
 
+        array_shift($setterArr);
+
+        $setter = implode(", ", $setterArr);
+
+        $condition = 0;
+        if (!is_null($this->condition))
+            $condition = $this->condition;
+
+        return WbController::executeUpdateQuery('pengaduan', $setter, $condition);
     }
 
     public function delete(){
