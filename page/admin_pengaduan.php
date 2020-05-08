@@ -25,6 +25,21 @@ $count = 1;
 
 <div class="row">
 	<div class="col-12">
+	<?php if (isset($_COOKIE['update-berhasil'])): ?>
+	    <div class="col-12">
+	        <div class="alert alert-success">
+	            <b>Berhasil!</b> <?php echo $_COOKIE['update-pesan'] ?>
+	        </div>
+	    </div>
+	<?php elseif (isset($_COOKIE['update-gagal'])): ?>
+	    <div class="col-12">
+	        <div class="alert alert-danger">
+	            <b>Gagal!</b> <?php echo $_COOKIE['update-pesan'] ?>
+	        </div>
+	    </div>
+	<?php endif; ?>
+	</div>
+	<div class="col-12">
 		<h1>Daftar Pengaduan</h1>
 		<hr />
 		<table class="table">
