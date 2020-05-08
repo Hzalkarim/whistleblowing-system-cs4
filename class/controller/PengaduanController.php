@@ -22,7 +22,7 @@ class PengaduanController extends WbController {
         return WbController::executeInsertQuery('pengaduan', $col, $val);
     }
 
-    public function update($model){
+    public function update($newModel){
         $colArr = $newModel->getColumns();
         $valArr = $newModel->getAllValues();
         $setterArr = array_map(
