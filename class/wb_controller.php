@@ -42,6 +42,13 @@ abstract class WbController
         return $this;
     }
 
+    public static function executeQuery($sql) {
+        WbController::create();
+        $result = mysqli_query(WbController::$stConnection, $sql);
+        mysqli_close(WbController::$stConnection);
+        return $result;
+    }
+
     #static function region
     public static function executeSelectQuery($col, $from, $where) {
 
