@@ -65,6 +65,9 @@ abstract class WbController
         return WbController::executeQuery($sql);
     }
 
+    public static function executeDeleteQuery($from, $where) {
+        $sql = "DELETE FROM {$from} WHERE {$where}";
+        return WbController::executeQuery($sql);
     }
 
     public static function getArrayFromQueryResult($result, $className) {
