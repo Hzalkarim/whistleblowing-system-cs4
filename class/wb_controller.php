@@ -51,20 +51,20 @@ abstract class WbController
 
     #static function region
     public static function executeSelectQuery($col, $from, $where) {
-
         $sql = "SELECT {$col} FROM {$from} WHERE {$where}";
-        return mysqli_query(WbController::$stConnection, $sql);
+        return WbController::executeQuery($sql);
     }
 
     public static function executeInsertQuery($into, $col, $val) {
-
         $sql = "INSERT INTO {$into} ({$col}) VALUES ({$val})";
-        return mysqli_query(WbController::$stConnection, $sql);
+        return WbController::executeQuery($sql);
     }
 
     public static function executeUpdateQuery($update, $set, $where){
         $sql = "UPDATE {$update} SET {$set} WHERE {$where}";
-        return mysqli_query(WbController::$stConnection, $sql);
+        return WbController::executeQuery($sql);
+    }
+
     }
 
     public static function getArrayFromQueryResult($result, $className) {
