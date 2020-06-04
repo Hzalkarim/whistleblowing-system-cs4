@@ -107,7 +107,6 @@ $count = 1;
 							?>
 								<a href="index.php?view=admin_deskripsiTL&id_dtl=<?php echo $p->getId() ?>" class="btn btn-success wb-tugaskan">Deskripsi Tindak Lanjut</a>
 								<!-- <a href="#s-<?php echo $p->getId() ?>" class="btn btn-danger wb-tugaskan" data-toggle="modal" data-target="#myModalTarikStatus" name="btn-tunda">Tarik Status</a> -->
-								<a href="page/action/update_status_pengaduan.php?tunda_id_pgd=<?php echo $p->getId() ?>" class="btn btn-danger wb-tugaskan">Tarik Status</a>
 							<?php break; endswitch ?>
 							</div>
 						</div>

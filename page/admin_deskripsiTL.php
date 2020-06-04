@@ -57,9 +57,10 @@ if (isset($_GET['id_dtl'])){
                 ?></i>
             </div>
             <div class="panel-body wb-panel-content">
-                <i>Laporan:  </i>
+                <i>Laporan:  </i><br>
                 <?php echo $pengaduan->getBukti() == '' ? 'Tidak ada' : $pengaduan->getBukti() ?><br><br><br><hr>
-                Tertanda: <i><?php echo $pengaduan->getStatus() ?></i>
+                Status: <i><?php echo $pengaduan->getStatus() ?></i><br><br>
+                <a href="page/action/update_status_pengaduan.php?tunda_id_pgd=<?php echo $pengaduan->getId() ?>" class="btn btn-danger wb-tugaskan">Tarik Status</a>
             </div>
             <div class="panel-footer">
                 <span class="text-muted" style="font-size:0.75em;"><?php echo $pengaduan->getTanggalPengaduan() ?></span>
