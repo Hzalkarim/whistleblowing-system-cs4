@@ -60,6 +60,11 @@ abstract class WbController
         return mysqli_query(WbController::$stConnection, $sql);
     }
 
+    public static function executeDeleteQuery($from, $where){
+        $sql = "DELETE FROM {$from} WHERE {$where}";
+        return mysqli_query(WbController::$stConnection, $sql);
+    }
+
     public static function getArrayFromQueryResult($result, $className) {
 
         if (!$result) return NULL;
