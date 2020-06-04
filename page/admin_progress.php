@@ -22,25 +22,11 @@ if (isset($_GET['id_prg'])){
     $pLanjutCt = new PenindakLanjutController();
     $pLanjut = $pLanjutCt->joinSelect();
     $penugasanCt = new PenugasanController();
-    $penugasan = $penugasanCt->where($c)->joinSelect()[0];
+    $penugasan = $penugasanCt->where($c)->joinSelectOne();
 }
 
 ?>
 
-<div class="row">
-    <div class="col-sm-2"> </div>
-    <div class="col-sm-8">
-        <h2 align="center">Progress pengaduan saat ini</h2>
-        <br><br>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-                60% Progress
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-2"> </div>
-</div>
-<br><br>
 <div class="row">
     <div class="col-sm-6">
     <?php if (!is_null($pengaduan)): ?>
@@ -48,7 +34,7 @@ if (isset($_GET['id_prg'])){
             <div class="panel-heading">
                 <b style="font-size: 1.75em;"><?php echo $pengaduan->getJudul() ?></b>
                 <span style="position: absolute; right:5%;">oleh:
-                <span class="label label-info"><?php echo $pengaduan->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $pengaduan->getNimMahasiswa() ?></span></span>
+                <span class="label label-info"><?php echo $pengaduan->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $pengaduan->getChildModel("Mahasiswa")->getNim() ?></span></span>
             </div>
             <div class="panel-body bg-info">
                 Kategori: <i><?php echo $pengaduan->getChildModel("Kategori")->getNama() ?></i>
@@ -78,23 +64,20 @@ if (isset($_GET['id_prg'])){
     <div class="col-sm-6">
         <div class="panel panel-warning">
             <div class="panel-heading">
-                <b style="font-size: 1.75em;">Penindak Lanjut</b>
+                <b style="font-size: 1.75em;">Tindakan Lanjut</b>
                 <span style="position: absolute; right:5%;">oleh:
-                <span class="label label-info"><?php echo $pengaduan->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $pengaduan->getNimMahasiswa() ?></span></span>
+                <span class="label label-warning"><?php echo $penugasan->getChildModel("PenindakLanjut")->getIdPegawai() ?></span></span>
             </div>
             <div class="panel-body bg-warning">
                 Bidang: <i><?php echo $penugasan->getChildModel("PenindakLanjut")->getBidang();
                 ?></i>
             </div>
             <div class="panel-body wb-panel-content">
-                Deskripsi progress:<br><br> Pengaduan <?php echo $pengaduan->getStatus() ?><br><br><hr>
-                Id Pengaduan:  
-                <i><?php echo $pengaduan->getId()?></i>
-                  ||  Id Penindak Lanjut:  
-                <i><?php echo $penugasan->getChildModel("PenindakLanjut")->getIdPegawai()?></i>
+                Deskripsi progress:<br><br> <?php echo $pengaduan->getDeskripsiTindakLanjut() ?><br><br><hr>
+                <a href="page/action/update_status_pengaduan.php?final_id_pgd=<?php echo $pengaduan->getId() ?>" class="btn btn-success wb-tugaskan">Finalisasi</a>
             </div>
             <div class="panel-footer">
-                <span class="text-muted" style="font-size:0.75em;"><?php echo $pengaduan->getTanggalPengaduan() ?></span>
+                <span class="text-muted" style="font-size:0.75em;"><?php echo $pengaduan->getTanggalTindakLanjut() ?></span>
             </div>
         </div>
     </div>
