@@ -6,6 +6,8 @@
 	require_once "../../class/wb_model.php";
 	require_once "../../class/model/Pengaduan.php";
     require_once "../../class/controller/PengaduanController.php";
+	require_once "../../class/model/Penugasan.php";
+    require_once "../../class/controller/PenugasanController.php";
 
 	$result = '0';
 	if (isset($_GET['final_id_pgd'])){
@@ -23,6 +25,10 @@
     	$c = "id = '".$_GET['tunda_id_pgd']."'";
     	$pengaduan = $pengaduanCt->where($c)->SelectOne();
     	$pengaduan->setStatus("Tertunda");
+
+		$tugasCt = new PenugasanController();
+		$c = "id_pengaduan = '".$_GET['tunda_id_pgd']."'";
+		$tugasCt->where($c)->delete();
     	$result = $pengaduanCt->update($pengaduan);
 	}
 
