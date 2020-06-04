@@ -101,7 +101,6 @@ $count = 1;
 							?>
 								<a href="index.php?view=admin_progress&id_prg=<?php echo $p->getId() ?>" class="btn btn-warning wb-tugaskan">Lihat Progress</a>
 								<!-- <a href="#f-<?php echo $p->getId() ?>" class="btn btn-success wb-tugaskan" data-toggle="modal" data-target="#myModalFinalisasi" name="btn-final">Finalisasi</a> -->
-								<a href="page/action/update_status_pengaduan.php?final_id_pgd=<?php echo $p->getId() ?>" class="btn btn-success wb-tugaskan">Finalisasi</a>
 							<?php
 								break;
 								case 'Selesai':
