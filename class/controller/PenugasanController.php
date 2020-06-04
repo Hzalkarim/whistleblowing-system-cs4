@@ -14,7 +14,12 @@ class PenugasanController extends WbController {
     }
 
     public function update($model){}
-    public function delete(){}
+
+    public function delete(){
+        $condition = !is_null($this->condition) ? $this->condition : 0;
+
+        return WbController::executeDeleteQuery('penugasan', $condition);
+    }
 
     public function select(){
         $condition = !is_null($this->condition) ? $this->condition : 1;
@@ -66,6 +71,12 @@ class PenugasanController extends WbController {
 
         $resultArr = WbController::getArrayWithForeignModelFromQueryResult($result, $modelClassArr);
         return $resultArr;
+    }
+
+    public function joinSelectOne() {
+        $result = $this->joinSelect();
+        if (!is_null($result) && count($result) > 0)
+            return $result[0];
     }
 
 }
