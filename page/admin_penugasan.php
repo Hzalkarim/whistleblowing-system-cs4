@@ -88,7 +88,7 @@ if (isset($_GET['id_pgd'])){
                             <td><?php echo $p->getChildModel("User")->getNama() ?></td>
                             <td><?php echo $p->getBidang() ?></td>
                             <td>
-                                <a href="#" class="btn btn-primary">
+                                <a href="page/action/admin_penugasan_action.php?id_pgw=<?php echo $p->getIdPegawai() ?>&id_pgd=<?php echo $_GET['id_pgd'] ?>" class="btn btn-primary">
                                     <span class="glyphicon glyphicon-briefcase"></span>
                                 </a>
                             </td>
