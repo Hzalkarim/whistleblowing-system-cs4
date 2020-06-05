@@ -10,12 +10,13 @@ $pages = Array(
     'hasil_pelapor' => 'Histori Pengaduan',
     'pegawai' => 'Daftar Pengaduan',
     'pegawai_regis' => 'Registrasi Pegawai',
+    'pegawai_deskripsi_pl' => 'Isi Tindak Lanjut',
     'mhs_regis' => 'Registrasi Mahasiswa',
     'admin_pengaduan' => 'Administrator - List Pengaduan',
     'admin_penugasan' => 'Administrator - Penugasan',
     'admin_progress' => 'Administrator - Progress',
     'admin_deskripsiTL' => 'Administrator - Deskripsi Tingkat Lanjut',
-    'admin_daftarkan' => 'Administrator - Tambah Anggota'
+    'admin_daftarkan' => 'Administrator - Tambah Anggota',
 );
 
 if (!isset($_GET['view'])) $_GET['view'] = 'home';
