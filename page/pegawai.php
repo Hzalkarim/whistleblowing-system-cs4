@@ -8,11 +8,13 @@ require_once "class/controller/PenindakLanjutController.php";
 require_once "class/model/User.php";
 require_once "class/controller/UserController.php";
 
-$user = new User();
-$user->setId($_SESSION['user_id']);
-
-echo "<h2>Under Construction</h2>";die;
-
+$pLanjutCt = new PenindakLanjutController();
+$c = "user.id = '".$_SESSION['user_id']."'";
+$pLanjut = $pLanjutCt->where($c)->joinSelectOne();
+//echo "<h2>Under Construction</h2>";die;
+$pengaduanCt = new PengaduanController();
+$c = "id IN (SELECT id_pengaduan FROM penugasan WHERE id_pegawai = '".$pLanjut->getIdPegawai()."') AND status != 'Selesai'";
+$pengaduan = $pengaduanCt->where($c)->select();
 ?>
 
 
@@ -23,21 +25,7 @@ echo "<h2>Under Construction</h2>";die;
             <h4>Bidang: <?php echo $pLanjut->getBidang() ?></h4>
         </div>
     </div>
-    <!-- <div class="col-12">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Pelapor</th>
-                    <th>Tanggal Pelaporan</th>
-                    <th>Kategori</th>
-                    <th>Judul</th>
-                    <th>Pengaduan</th>
-                    <th>Bukti</th>
-                    <th></th>
-                </tr>
-            </thead>
-        </table>
-    </div> -->
+<?php if (count($pengaduan) > 0): ?>
 <?php foreach($pengaduan as $p): ?>
     <div class="col-xs-12 col-md-6 col-lg-4">
         <div class="panel panel-info">
@@ -54,4 +42,11 @@ echo "<h2>Under Construction</h2>";die;
         </div>
     </div>
 <?php endforeach ?>
+<?php else: ?>
+    <div class="col-12">
+        <div class="text-center">
+            <h2>Tidak Ada Penugasan</h2>
+        </div>
+    </div>
+<?php endif ?>
 </div>
