@@ -3,10 +3,10 @@
 class PenugasanController extends WbController {
 
     public function insert($model){
-        $col = implode(", ", $newModel->getColumns());
+        $col = implode(", ", $model->getColumns());
         $valArr = array_map(
             function ($x) { return $x == "NULL" ? $x : "'" . $x . "'"; },
-            $newModel->getAllValues()
+            $model->getAllValues()
         );
         $val = implode(", ", $valArr);
 
