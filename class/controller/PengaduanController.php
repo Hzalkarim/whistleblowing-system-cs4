@@ -43,6 +43,14 @@ class PengaduanController extends WbController {
         return WbController::executeUpdateQuery('pengaduan', $setter, $condition);
     }
 
+    public function updateStatus($status){
+        $setter = "status = '{$status}'";
+        $condition = 0;
+        if (!is_null($this->condition))
+            $condition = $this->condition;
+        return WbController::executeUpdateQuery('pengaduan', $setter, $condition);
+    }
+
     public function delete(){
 
     }
