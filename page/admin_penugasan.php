@@ -5,6 +5,7 @@ include "page/component/auth_validator/admin_validator.php";
 if (isset($_GET['id_pgd'])){
 
     require_once "class/controller/PengaduanController.php";
+    require_once "class/controller/UserController.php";
     require_once "class/controller/PenindakLanjutController.php";
     require_once "class/model/Pengaduan.php";
     require_once "class/model/Mahasiswa.php";
@@ -20,6 +21,10 @@ if (isset($_GET['id_pgd'])){
     // echo "<pre>";print_r($pengaduan);die;
     $pLanjutCt = new PenindakLanjutController();
     $pLanjut = $pLanjutCt->joinSelect();
+
+    $userCt = new UserController();
+    $c = "id = (SELECT user_id FROM mahasiswa WHERE nim = '".$pengaduan->getChildModel("Mahasiswa")->getNim()."')";
+    $user = $userCt->where($c)->selectOne();
 }
 
 ?>
@@ -32,7 +37,7 @@ if (isset($_GET['id_pgd'])){
                 <b style="font-size: 1.75em;"><?php echo $pengaduan->getJudul() ?></b>
                 <span style="position: absolute; right:5%;">oleh:
                 <span class="label label-success"><?php
-                    echo $pengaduan->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $pengaduan->getChildModel("Mahasiswa")->getNim()
+                    echo $pengaduan->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : ($pengaduan->getChildModel("Mahasiswa")->getNim()." - ".$user->getNama())
                 ?></span></span>
             </div>
             <div class="panel-body bg-success">

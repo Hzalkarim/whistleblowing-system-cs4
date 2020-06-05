@@ -7,6 +7,7 @@ if (isset($_GET['id_dtl'])){
     require_once "class/controller/PengaduanController.php";
     require_once "class/controller/PenindakLanjutController.php";
     require_once "class/controller/PenugasanController.php";
+    require_once "class/controller/UserController.php";
     require_once "class/model/Pengaduan.php";
     require_once "class/model/Mahasiswa.php";
     require_once "class/model/Kategori.php";
@@ -28,6 +29,10 @@ if (isset($_GET['id_dtl'])){
         $pLanjutCt = new PenindakLanjutController();
         $c = "penindak_lanjut.id_pegawai = {$penugasan->getIdPegawai()}";
         $pLanjut = $pLanjutCt->where($c)->joinSelectOne();
+
+        $userCt = new UserController();
+        $c = "id = (SELECT user_id FROM mahasiswa WHERE nim = '".$pengaduan->getChildModel("Mahasiswa")->getNim()."')";
+        $user = $userCt->where($c)->selectOne();
     }
 }
 
@@ -42,7 +47,7 @@ if (isset($_GET['id_dtl'])){
             <div class="panel-heading">
                 <b style="font-size: 1.75em;"><?php echo $pengaduan->getJudul() ?></b>
                 <span style="position: absolute; right:5%;">oleh:
-                <span class="label label-success"><?php echo $pengaduan->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : $pengaduan->getChildModel("Mahasiswa")->getNim() ?></span></span>
+                <span class="label label-success"><?php echo $pengaduan->getPrivasiPengadu() == 'Anonim' ? 'Anonim' : ($pengaduan->getChildModel("Mahasiswa")->getNim()." - ".$user->getNama()) ?></span></span>
             </div>
             <div class="panel-body bg-success">
                 Kategori: <i><?php echo $pengaduan->getChildModel("Kategori")->getNama() ?></i>
