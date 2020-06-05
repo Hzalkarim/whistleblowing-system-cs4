@@ -51,6 +51,14 @@ class PengaduanController extends WbController {
         return WbController::executeUpdateQuery('pengaduan', $setter, $condition);
     }
 
+    public function updateTindakLanjut($deskripsi){
+        $setter = "deskripsi_tindak_lanjut = '{$deskripsi}', tanggal_tindak_lanjut = CURRENT_DATE";
+        $condition = 0;
+        if (!is_null($this->condition))
+            $condition = $this->condition;
+        return WbController::executeUpdateQuery('pengaduan', $setter, $condition);
+    }
+
     public function delete(){
 
     }
