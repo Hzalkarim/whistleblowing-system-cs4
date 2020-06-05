@@ -58,8 +58,9 @@ if (isset($_GET['id_dtl'])){
             </div>
             <div class="panel-body wb-panel-content">
                 <form action="page/action/pegawai_simpan_desk.php" method="post">
-                    Deskripsi:
-                    <textarea name="desk-tl" rows="15" cols="100%" style="resize:none"><?php echo $pengaduan->getDeskripsiTindakLanjut() ?></textarea>
+                    <div class="form-group">
+                        <label for="desk-tl">Deskripsi:</label>
+                        <textarea name="desk-tl" class="form-control" rows="15" cols="100%" style="resize:none"><?php echo $pengaduan->getDeskripsiTindakLanjut() ?></textarea></div>
                     <input type="text" name="id-pgd" value="<?php echo $pengaduan->getId() ?>" style="display:none">
                     <input type="submit" name="btn-submit" class="btn btn-info" style="position: absolute; right:5%;" value="Simpan">
                     <br><br>
