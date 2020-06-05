@@ -37,7 +37,8 @@ $pengaduan = $pengaduanCt->where($c)->select();
                 <?php echo $p->getIsi() ?>
             </div>
             <div class="panel-footer">
-                <i class="text-muted" style="font-size: .75em;">dilaporkan pada <?php echo $p->getTanggalPengaduan() ?></i>
+                <i class="text-muted" style="font-size: .75em;">dilaporkan pada <?php echo $p->getTanggalPengaduan() ?></i><br><br>
+                <a href="index.php?view=pegawai_deskripsi_pl&id_dtl=<?php echo $p->getId() ?>" class="btn btn-primary wb-tugaskan">Tindak Lanjuti</a>
             </div>
         </div>
     </div>
