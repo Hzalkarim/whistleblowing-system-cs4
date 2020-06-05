@@ -17,7 +17,7 @@ if (isset($_POST['btn-submit'])) {
     $findUser = $userCt->where($c)->selectOne();
 
     $findUser->setAllValues($_POST, true);
-    $findUser->setPassword(md5($_POST['password']));
+    $findUser->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
 
     // $user->setEmail(NULL);
     // $user->setId($findUser->getId());
