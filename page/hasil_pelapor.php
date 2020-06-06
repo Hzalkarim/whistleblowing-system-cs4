@@ -69,6 +69,9 @@ $count = 1;
 								<?php echo $p->getIsi() ?><br><br><hr>
 								<b>Bukti:</b><br>
 								<?php echo $p->getBukti() ?>
+								<?php if ($p->getStatus() == 'Selesai'){
+									echo "<hr><b>Tindak Lanjut:</b><br>".$p->getDeskripsiTindakLanjut()."<br><br>";
+								}?>
 							</div>
 						</div>
 					</td>
